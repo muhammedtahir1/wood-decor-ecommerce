@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, XAxis, YAxis } from "recharts"
+import { TrendingUp } from "lucide-react";
+import { Bar, BarChart, XAxis, YAxis } from "recharts";
 
 import {
   Card,
@@ -10,48 +10,65 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
-const chartData = [
-  { browser: "chrome", visitors: 300, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 201, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 254, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 270, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 260, fill: "var(--color-other)" },
-]
+} from "@/components/ui/chart";
+import { User } from "@prisma/client";
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
+  progress: {
+    label: "progress",
   },
-  chrome: {
+  faizan: {
     label: "Faizan",
     color: "hsl(var(--chart-1))",
   },
-  safari: {
+  tahir: {
     label: "Tahir",
     color: "hsl(var(--chart-2))",
   },
-  firefox: {
+  Kupe: {
     label: "Kupe",
     color: "hsl(var(--chart-3))",
   },
-  edge: {
+  Liktha: {
     label: "Liktha",
     color: "hsl(var(--chart-4))",
   },
-  other: {
+  Akshy: {
     label: "Akshy",
     color: "hsl(var(--chart-5))",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
-export function Chart() {
+export function Chart({ data }: { data: User[] }) {
+  const chartData = [
+    { browser: "faizan", progress: data[0].current_progress, fill: "#000" },
+    {
+      browser: "tahir",
+      progress: data[1].current_progress,
+      fill: "var(--color-safari)",
+    },
+    {
+      browser: "Kupe",
+      progress: data[2].current_progress,
+      fill: "var(--color-firefox)",
+    },
+    {
+      browser: "Liktha",
+      progress: data[3].current_progress,
+      fill: "var(--color-edge)",
+    },
+    {
+      browser: "Akshy",
+      progress: data[4].current_progress,
+      fill: "var(--color-other)",
+    },
+  ];
   return (
     <Card>
       <CardHeader>
@@ -78,12 +95,12 @@ export function Chart() {
                 chartConfig[value as keyof typeof chartConfig]?.label
               }
             />
-            <XAxis dataKey="visitors" type="number" hide />
+            <XAxis dataKey="progress" type="number" hide />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey="visitors" layout="vertical" radius={5} />
+            <Bar dataKey="progress" layout="vertical" radius={5} />
           </BarChart>
         </ChartContainer>
       </CardContent>
@@ -96,5 +113,5 @@ export function Chart() {
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }
