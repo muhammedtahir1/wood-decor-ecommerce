@@ -1,4 +1,4 @@
-import prisma from "@/lib/db";
+// import prisma from "@/lib/db";
 
  // const newData = await prisma.user.createMany({
   //   data: [
@@ -31,12 +31,12 @@ import prisma from "@/lib/db";
   //   skipDuplicates: true,
   // });
 
-  const newData = await prisma.user.create({
-    data: {
-      email: "faizan@unicornspace.com",
-      password: "12345678",
-      current_progress: 310,
-    },
-  });
+  // const newData = await prisma.user.create({
+  //   data: {
+  //     email: "faizan@unicornspace.com",
+  //     password: "12345678",
+  //     current_progress: 310,
+  //   },
+  // });
 
-  console.log("created new data", newData);
+  // console.log("created new data", newData);

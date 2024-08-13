@@ -5,7 +5,6 @@ import Link from "next/link";
 import prisma from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { auth, signOut } from "@/auth";
-import { redirect } from "next/navigation";
 import { ArrowRight, Minus, Plus } from "lucide-react";
 
 const page = async () => {
@@ -32,7 +31,7 @@ const page = async () => {
     <main className="flex min-h-screen flex-col items-center gap-2 justify-center p-12">
       {/* <h1 className="text-4xl font-bold capitalize">{session?.user?.email?.split("@")[0]}</h1> */}
       <h1 className="font-bold text-4xl text-center font-roboto">
-        Experience the future of tracking team's progress
+        Experience the future of tracking team progress
       </h1>
       <section className="flex-col gap-4 items-center justify-center">
         <div className="space-x-2 py-4 flex justify-center">
@@ -82,7 +81,7 @@ const page = async () => {
           </form>
         </div>
         <div className="max-w-96 min-w-80 h-5">
-          <Progress value={percentage} className="" />
+          <Progress value={percentage} />
           <div>
             <p className="text-sm opacity-70 mt-1 ml-2">
               {userDetails?.current_progress}/{userDetails?.final_goal}
@@ -104,7 +103,7 @@ const page = async () => {
           </div>
         </section>
         <Link href={"/team"} className="underline text-blue-400 text-center flex mt-3">
-          Checkout teams progress{" "} <ArrowRight/>
+          Checkout teams progress <ArrowRight/>
         </Link>
       </div>
     </main>
