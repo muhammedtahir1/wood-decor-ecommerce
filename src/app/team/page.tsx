@@ -6,6 +6,8 @@ import { Chart } from "./chart";
 import prisma from "@/lib/db";
 import { Chart2 } from "./chart2";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 const page = async () => {
   const all = await prisma.user.findMany();
@@ -18,13 +20,15 @@ const page = async () => {
   // });
   console.log(all);
   return (
-    <div>
+    <main className="flex flex-col items-center">
       {/* <Chart data={all}/> */}
-      <Chart2 data={all} />
-      <Link href={"/dashboard"} className="underline text-blue-400 ">
-        Dashboard
+      <div className="mx-auto mt-10">
+        <Chart2 data={all} />
+      </div>
+      <Link href={"/dashboard"} className="underline mt-4 ">
+        <Button variant={"fullRounded"}>Dashboard <ArrowRight/></Button>
       </Link>
-    </div>
+    </main>
   );
 };
 

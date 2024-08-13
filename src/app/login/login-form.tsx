@@ -72,7 +72,7 @@ export function InputForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-4">
         <FormField
           control={form.control}
           name="email"
@@ -99,7 +99,7 @@ export function InputForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">
+        <Button type="submit" className="w-full mt-2">
           Submit
         </Button>
       </form>
