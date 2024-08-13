@@ -43,11 +43,11 @@ const chartConfig = {
 export function Chart2({ data }: { data: User[] }) {
   const chartData = [
     { month: "🎯 Final goal", progress: 400, mobile: 80 },
-    { month: "Faizan", progress: data[0].current_progress, mobile: 80 },
-    { month: "Tahir", progress: data[1].current_progress, mobile: 200 },
-    { month: "Kupe", progress: data[2].current_progress, mobile: 120 },
-    { month: "Liktha", progress: data[3].current_progress, mobile: 190 },
-    { month: "Akshy", progress: data[4].current_progress, mobile: 130 },
+    { month: "Tahir", progress: data[0].current_progress, mobile: 80 },
+    { month: "Kupe", progress: data[1].current_progress, mobile: 200 },
+    { month: "Likitha", progress: data[2].current_progress, mobile: 120 },
+    { month: "Akshy", progress: data[3].current_progress, mobile: 190 },
+    { month: "Faizan", progress: data[4].current_progress, mobile: 130 },
   ];
 
   return (
