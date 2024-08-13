@@ -42,6 +42,7 @@ const chartConfig = {
 
 export function Chart2({ data }: { data: User[] }) {
   const chartData = [
+    { month: "🎯 Final goal", progress: 400, mobile: 80 },
     { month: "Faizan", progress: data[0].current_progress, mobile: 80 },
     { month: "Tahir", progress: data[1].current_progress, mobile: 200 },
     { month: "Kupe", progress: data[2].current_progress, mobile: 120 },

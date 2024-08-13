@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+// 'auto' | 'force-dynamic' | 'error' | 'force-static'
+
 import React from "react";
 import { Chart } from "./chart";
 import prisma from "@/lib/db";

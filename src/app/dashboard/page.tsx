@@ -4,11 +4,16 @@ import { Progress } from "@/components/ui/progress";
 import Link from "next/link";
 import prisma from "@/lib/db";
 import { revalidatePath } from "next/cache";
+import { auth, signOut } from "@/auth";
+import { redirect } from "next/navigation";
 
 const page = async () => {
+  const session = await auth();
+  // console.log(session);
+
   const userDetails = await prisma.user.findFirst({
     where: {
-      id: 2,
+      email: session?.user?.email as string,
     },
     select: {
       current_progress: true,
@@ -16,16 +21,22 @@ const page = async () => {
       password: false,
     },
   });
+  if (!userDetails) return <div />;
+
+  const percentage = Math.floor(
+    (userDetails?.current_progress / userDetails?.final_goal) * 100
+  );
+
   return (
     <main className="flex min-h-screen flex-col items-center gap-2 justify-center">
-      <h1 className="text-4xl font-bold">Tahir</h1>
+      <h1 className="text-4xl font-bold">{session?.user?.email}</h1>
       <div className="space-x-2 py-4 flex">
         <form
           action={async () => {
             "use server";
             await prisma.user.update({
               where: {
-                id: 2,
+                email: session?.user?.email as string,
               },
               data: {
                 current_progress: { increment: 1 },
@@ -43,7 +54,7 @@ const page = async () => {
             "use server";
             await prisma.user.update({
               where: {
-                id: 2,
+                email: session?.user?.email as string,
               },
               data: {
                 current_progress: { decrement: 1 },
@@ -58,7 +69,7 @@ const page = async () => {
         </form>
       </div>
       <div className="w-96 h-5">
-        <Progress value={50} className="" />
+        <Progress value={percentage} className="" />
         <div>
           <p className="text-sm opacity-70 mt-1 ml-2">
             {userDetails?.current_progress}/{userDetails?.final_goal}
@@ -69,6 +80,14 @@ const page = async () => {
         <Link href={"/team"} className="underline text-blue-400 ">
           Checkout teams progress{" "}
         </Link>
+        <form
+          action={async () => {
+            "use server";
+            await signOut();
+          }}
+        >
+          <Button variant={"destructive"}>Logout</Button>
+        </form>
       </div>
     </main>
   );
