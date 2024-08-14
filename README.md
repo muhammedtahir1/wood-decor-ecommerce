@@ -7,7 +7,7 @@
 4. good name
 
 5. team page
-    - dynamic rendering the chart data
+    - dynamic rendering the chart data ✅
     - changing chart
     - adding different colors in chart
      

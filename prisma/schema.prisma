@@ -26,4 +26,5 @@ model User {
   password         String
   current_progress Int
   final_goal       Int    @default(400)
+  // github_profile String 
 }

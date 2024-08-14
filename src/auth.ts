@@ -39,6 +39,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         user = {
           email: dbUser.email,
+          // github: "https://github.com/mohdfaizan5",
         };
         return user;
       },
@@ -52,7 +53,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     jwt: async ({ token, user }) => {
       if (user) {
         token.id = token.sub as string;
+        // if (user?.github) {
+        //   token.github = user?.github
+        // }
       }
+      // console.log("🧓🧓JWT callback");
+      // console.log(token, user);
       return token;
     },
     // used when client useSession is called
