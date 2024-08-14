@@ -18,6 +18,9 @@ import { signIn } from "@/auth";
 import { signInAction } from "@/lib/actions";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useFormStatus } from "react-dom";
+import { CircleArrowLeft } from "lucide-react";
+import { useActionState } from "react";
 
 const FormSchema = z.object({
   email: z.string().min(2, {
@@ -70,6 +73,16 @@ export function InputForm() {
     // }
   }
 
+// (TODO: see why its not working)
+  // const initialState = {
+  //   message: "",
+  // };
+  // const [state, formAction, pending] = useActionState(
+  //   signInAction,
+  //   initialState
+  // );
+  {/* {pending ? "Submitting..." : "Sign up"} */}
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-4">
@@ -99,10 +112,19 @@ export function InputForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full mt-2">
-          Submit
-        </Button>
+        <Button type="submit" className="w-full mt-2">Submit</Button>
       </form>
     </Form>
   );
 }
+
+
+// const SubmitBtn = () => {
+//   const { pending } = useFormStatus();
+//   console.log("pending", pending);
+//   return (
+//     <Button disabled={pending} type="submit" className="w-full mt-2">
+//       {pending ? <CircleArrowLeft className="animate-spin" /> : "Submit"}
+//     </Button>
+//   );
+// };

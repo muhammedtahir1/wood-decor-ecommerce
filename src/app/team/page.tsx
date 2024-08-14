@@ -10,7 +10,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 const page = async () => {
-  const all = await prisma.user.findMany();
+  const all = await prisma.user.findMany({
+    orderBy: {
+      current_progress: "asc",
+    },
+  });
   // await prisma.user.create({
   //   data: {
   //     email: "tahir@unicornspace.com",
@@ -26,7 +30,9 @@ const page = async () => {
         <Chart2 data={all} />
       </div>
       <Link href={"/dashboard"} className="underline mt-4 ">
-        <Button variant={"fullRounded"}>Dashboard <ArrowRight/></Button>
+        <Button variant={"fullRounded"}>
+          Dashboard <ArrowRight />
+        </Button>
       </Link>
     </main>
   );
