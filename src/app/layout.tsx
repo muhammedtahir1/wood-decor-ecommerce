@@ -7,11 +7,11 @@ import localFont from "next/font/local";
 // import callFont from "./CalSans-SemiBold.woff2";
 
 const inter = Inter({ subsets: ["latin"] });
-const roboto_mono = Roboto_Mono({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-roboto-mono',
-})
+// const roboto_mono = Roboto_Mono({
+//   subsets: ['latin'],
+//   display: 'swap',
+//   variable: '--font-roboto-mono',
+// })
 
 // (TODO: See why its not working)
 // const myFont = localFont({
