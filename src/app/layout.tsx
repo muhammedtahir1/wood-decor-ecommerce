@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Roboto_Mono  } from "next/font/google";
-import "./globals.css";
+import "@/styles/globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import Navbar from "@/components/navbar";
 import localFont from "next/font/local";

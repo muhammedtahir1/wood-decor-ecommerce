@@ -20,8 +20,8 @@ model Product {
   id              Int      @id @default(autoincrement())
   title           String
   slug            String   @unique
-  description     String?
   price           Int
+  description     String?
   discountedPrice Int?
   category        String?
   images          String[]

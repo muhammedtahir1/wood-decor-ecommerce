@@ -1,29 +1,73 @@
 import { Button } from "@/components/ui/button";
 import prisma from "@/lib/db";
 import React from "react";
+import AddProductForm from "./admin-form";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Delete, DeleteIcon, PenTool } from "lucide-react";
 
 const page = async () => {
   // await prisma.product.create({
   //   data: {
-  //     title: "product",
-  //     price: 100,
+  //     title: "L3 shape Classic Memory Foam Mattress",
+  //     price: 30999,
   //     description: "product description",
-  //     slug: "product",
-  //     images: ["image1", "image2"],
+  //     slug: "l3shape",
+  //     category: "sofa",
+  //     images: [
+  //       "https://ik.imagekit.io/2xkwa8s1i/consumer-react/category-thumb/mattress-recommendation.jpg?tr=w-1349",
+  //       "image2",
+  //     ],
   //   },
   // });
   const products = await prisma.product.findMany();
   console.log(products);
   return (
     <main>
-      <header>
+      <header className="flex justify-between border-b mb-5 py-5 px-10">
         <h1>Admin</h1>
-        <Button>Add new</Button>
+        <AddProductForm />
       </header>
-      <section>
-        {products.map((product) => (
-          <div>{product.title}</div>
-        ))}
+      <section className="max-w-5xl mx-auto">
+        {/* Write typography css file to maintain typo consistency */}
+        <h1>All Products</h1>
+        <Table>
+          <TableCaption>A list of your recent invoices.</TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[100px]">Name</TableHead>
+              <TableHead>Price</TableHead>
+              <TableHead>Category</TableHead>
+              <TableHead className="text-right">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {products.map((product) => (
+              <TableRow>
+                <TableCell className="font-medium w-96">
+                  {product.title}
+                </TableCell>
+                <TableCell>{product.price}</TableCell>
+                <TableCell>{product.slug}</TableCell>
+                <TableCell className="text-right">
+                  <Button variant={"destructive"} size={"icon"}>
+                    <DeleteIcon />
+                  </Button>
+                  <Button variant={"secondary"} size={"icon"}>
+                    <PenTool />
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       </section>
     </main>
   );
