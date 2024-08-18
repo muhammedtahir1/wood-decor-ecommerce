@@ -9,20 +9,39 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Product } from "@prisma/client";
+import Header from "@/components/landingpage/header";
+import Hero from "@/components/landingpage/hero";
+import Category from "@/components/landingpage/category";
+import Featured from "@/components/landingpage/featured";
+import Faq from "@/components/landingpage/faq";
+import Footer from "@/components/landingpage/footer";
+
+
+
+
 export default async function Home() {
-  const products = await prisma.product.findMany();
+  // const products = await prisma.product.findMany();
   return (
-    <div>
-      <section>
-        {products.map((product) => (
-          <EachProduct title={product.title} slug={product.slug}/>
-        ))}
-      </section>
-    </div>
+    //   <div>
+    //     <section>
+    //       {products.map((product) => (
+    //         <EachProduct title={product.title} slug={product.slug}/>
+    //       ))}
+    //     </section>
+    //   </div>
+
+    <main>
+      <Header />
+      <Hero />
+      <Category />
+      <Featured />
+      <Faq />
+      <Footer />
+    </main>
   );
 }
 
-const EachProduct = ({ title, slug }: { title: string, slug:string }) => {
+const EachProduct = ({ title, slug }: { title: string; slug: string }) => {
   return (
     <Link href={`/products/${slug}`}>
       <Card className="h-[360px] w-[220px] md:h-[400px] md:w-[260px] md:mt-[50px] md:shadow-md rounded-none ">
