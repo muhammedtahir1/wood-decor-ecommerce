@@ -14,21 +14,9 @@ import {
 import { Delete, DeleteIcon, PenTool } from "lucide-react";
 
 const page = async () => {
-  // await prisma.product.create({
-  //   data: {
-  //     title: "L3 shape Classic Memory Foam Mattress",
-  //     price: 30999,
-  //     description: "product description",
-  //     slug: "l3shape",
-  //     category: "sofa",
-  //     images: [
-  //       "https://ik.imagekit.io/2xkwa8s1i/consumer-react/category-thumb/mattress-recommendation.jpg?tr=w-1349",
-  //       "image2",
-  //     ],
-  //   },
-  // });
+  
   const products = await prisma.product.findMany();
-  console.log(products);
+  // console.log(products);
   return (
     <main>
       <header className="flex justify-between border-b mb-5 py-5 px-10">

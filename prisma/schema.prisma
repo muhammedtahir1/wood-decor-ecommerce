@@ -28,6 +28,7 @@ model Product {
   features        String[]
   colors          String[]
   label           String?
+  isFeatured      Boolean  @default(false)
   // Order           Order?   @relation(fields: [orderId], references: [id])
   // orderId         Int?
 }
