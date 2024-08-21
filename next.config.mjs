@@ -12,7 +12,15 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
+                hostname: 'ik.imagekit.io',
+            },
+            {
+                protocol: 'https',
                 hostname: 'www.ikea.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'i.pinimg.com',
             },
         ]
     }

@@ -12,12 +12,8 @@ import { Product } from "@prisma/client";
 import Header from "@/components/landingpage/header";
 import Hero from "@/components/landingpage/hero";
 import Category from "@/components/landingpage/category";
-import Featured from "@/components/landingpage/featured";
-import Faq from "@/components/landingpage/faq";
+import Featured from "@/components/landingpage/featured-products";
 import Footer from "@/components/landingpage/footer";
-
-
-
 
 export default async function Home() {
   // const products = await prisma.product.findMany();
@@ -35,7 +31,6 @@ export default async function Home() {
       <Hero />
       <Category />
       <Featured />
-      <Faq />
       <Footer />
     </main>
   );
@@ -46,12 +41,6 @@ const EachProduct = ({ title, slug }: { title: string; slug: string }) => {
     <Link href={`/products/${slug}`}>
       <Card className="h-[360px] w-[220px] md:h-[400px] md:w-[260px] md:mt-[50px] md:shadow-md rounded-none ">
         <CardHeader className="p-0"></CardHeader>
-        {/* <div className="md:flex flex">
-      <FaRegHeart
-        size={15}
-        className="md:ml-[-30px] md:mt-4 ml-[-10px] mt-2 "
-      />
-    </div> */}
         <CardContent className="flex flex-col gap-1 items-start">
           <Badge variant={"outline"} className="text-[10px] mx-auto">
             category

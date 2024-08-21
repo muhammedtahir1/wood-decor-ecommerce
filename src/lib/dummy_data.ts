@@ -1,7 +1,4 @@
-import { Product } from "@prisma/client";
-import Card from "./card";
-
-export const allProductData: Product = [
+export const allProductData = [
   {
     images: [
       "https://www.ikea.com/in/en/images/products/gammalbyn-3-seat-sofa-grey__0868926_pe781434_s5.jpg?f=xl",
@@ -183,21 +180,3 @@ export const allProductData: Product = [
     slug: "",
   },
 ];
-export default function Featured() {
-  return (
-    <section className="flex flex-col items-center justify-center mt-10 md:mt-20 border-b-2">
-      <div className="text-center capitalize">
-        <h1>Featured products</h1>
-        <p className="text-sm ">Impressive collection for your dream home</p>
-      </div>
-
-      <div className="flex flex-wrap max-w-[1280px] gap-6 mx-auto mt-10 md:mt-16 mb-10 md:mb-20 ">
-        {/* <section className="border rounded-xl mx-auto"> */}
-        {allProductData.map((item) => (
-          <Card item={item} />
-        ))}
-        {/* </section> */}
-      </div>
-    </section>
-  );
-}

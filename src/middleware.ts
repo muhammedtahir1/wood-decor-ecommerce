@@ -10,5 +10,5 @@ export default auth((req) => {
 
 export const config = {
   // routes to protect with auth
-  matcher: ["/dashboard", "/team"],
+  matcher: ["/admin/:path*"],
 };

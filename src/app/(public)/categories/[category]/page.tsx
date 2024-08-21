@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import React from "react";
 import "@/styles/typography.css";
 import Footer from "@/components/landingpage/footer";
-import ProductCard from "@/components/landingpage/card";
-import { allProductData } from "@/components/landingpage/featured";
+import ProductCard from "@/components/product-card";
+import { allProductData } from "@/components/landingpage/featured-products";
 // import allProductData from "@/components/landingpage/featured"
 
 

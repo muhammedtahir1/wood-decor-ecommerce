@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Roboto_Mono  } from "next/font/google";
+import { Inter, Roboto_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import "@/styles/typography.css";
 import { Toaster } from "@/components/ui/sonner";
@@ -25,7 +25,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Wood Decor",
-  description: "Track progress of team and yourself",
+  description: "A Store for all your wood needs",
 };
 
 export default function RootLayout({
@@ -37,7 +37,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className}`}>
         {/* <Navbar/> */}
-        <Header/>
         {children} <Toaster />
         {/* <Footer/> */}
       </body>

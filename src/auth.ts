@@ -22,7 +22,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         console.log("credentials", credentials);
 
         // const validationResult = signInFormSchema.safeParse(credentials); // validate the credentials (TODO)
-        const dbUser = await prisma.user.findUnique({
+        const dbUser = await prisma.admin.findUnique({
           where: {
             email: `${credentials.email}`,
           },

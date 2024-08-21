@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 
 import Navbar from "@/components/navbar";
+import Header from "@/components/landingpage/header";
 
 export const metadata: Metadata = {
-  title: "Progress Tracker",
-  description: "Track progress of team and yourself",
+  title: "Wood Decor",
+  description: "A Store for all your wood needs",
 };
 
 export default function RootLayout({
@@ -14,7 +15,8 @@ export default function RootLayout({
 }>) {
   return (
     <main className={``}>
-      <Navbar />
+      <Header />
+
       {children}
     </main>
   );

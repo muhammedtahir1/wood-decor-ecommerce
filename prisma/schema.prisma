@@ -1,71 +1,40 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
-// prisma/schema.prisma
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  // uncomment next line if you use Prisma <5.10
-  // directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
 model Product {
   id              Int      @id @default(autoincrement())
   title           String
   slug            String   @unique
-  price           Int
   description     String?
+  price           Int
   discountedPrice Int?
   category        String?
-  images          String[]
+  image           String
   features        String[]
   colors          String[]
   label           String?
   isFeatured      Boolean  @default(false)
-  // Order           Order?   @relation(fields: [orderId], references: [id])
-  // orderId         Int?
+  orderId         Int?
+  Order           Order?   @relation(fields: [orderId], references: [id])
 }
 
-// Admin
 model Admin {
   id       Int    @id @default(autoincrement())
   email    String @unique
   password String
 }
 
-// Orders
 model Order {
-  id          Int      @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   userId      Int
-  // products    Product[]
   totalAmount Int
-  status      String   @default("pending")
-  createdAt   DateTime @default(now())
+  status      String    @default("pending")
+  createdAt   DateTime  @default(now())
+  products    Product[]
 }
-
-// 👋 Later
-// Reviews 
-
-// ❌ Out of scope
-
-// Users
-// model User {
-//   id       Int     @id @default(autoincrement())
-//   email    String  @unique
-//   password String
-//   name     String?
-//   address  String?
-//   phone    String?
-//   orders   Order[]
-// }
-// Cart - Local storage
-// Wishlist
-// Coupons
-// Discounts
