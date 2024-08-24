@@ -12,47 +12,36 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Link from "next/link";
-// import { paymentLink } from "@/lib/data";
-import { Badge } from "../ui/badge";
-// import Timer from "./timer";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import useCartStore from "@/store/cart";
+import { ShoppingBag } from "lucide-react";
 
 const Header = () => {
   const { cartItems } = useCartStore();
   return (
-    <header className="h-16 md:h-20 flex justify-between items-center w-full fixed bg-brand-bg left-0 right-0 top-0 px-3 py-4 md:border-b-2 md:px-10 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <Link href={"/"} className="border w-4 h-4 p-4 rounded-full bg-slate-400">
-        <Image width={80} height={80} className="" src="" alt="" />
+    <header className="h-14 md:h-20 flex justify-between items-center w-full fixed left-0 right-0 top-0 px-3 py-4 md:px-10 z-50 backdrop-blur supports-[backdrop-filter]:bg-background/20 border-b border-black/10">
+      <Link href={"/"} className="">
+        <Image
+          width={30}
+          height={30}
+          quality={100}
+          src="/wood-decor-logo.jpg"
+          alt=""
+        />
       </Link>
       <nav className="font-bold hidden md:flex gap-4 ">
-        <Link href={"/#benefits"}>
+        <Link href={"#category"}>
           <Button variant={"link"}>Shop</Button>
         </Link>
-        <Link href={"/#faq"}>
+        <Link href={"#collection"}>
           <Button variant={"link"}>Collections</Button>
         </Link>
-        <Link href={"/#testimonils"}>
+        <Link href={"#offer"}>
           <Button variant={"link"}>Explore</Button>
         </Link>
-
-        {/* <Link href={paymentLink}>
-          <Button variant={"brand-outline"}>Get a Majoon just for you!</Button>
-        </Link> */}
-        {/* <p>Offer end in</p>
-        <Badge>
-          <Timer />
-        </Badge> */}
       </nav>
       <Link href={"/cart"} className="hidden md:flex relative">
         <Button variant={"link"}>
+          <ShoppingBag />
           Cart{" "}
           {cartItems.length > 0 && (
             <span className="font-bold text-xs size-4 rounded-full flex flex-col items-center justify-center bg-black absolute top-0 right-0 text-white">
@@ -62,14 +51,10 @@ const Header = () => {
         </Button>
       </Link>
 
-      {/* <Button className="hidden md:flex" variant={"brand"}>
-        Buy Majoon
-      </Button> */}
-
       <nav className="flex items-center gap-1 md:hidden">
         <Sheet>
           <SheetTrigger>
-            <GrMenu size={20} />
+            <GrMenu className="bg-blend-difference" size={20} />
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>
@@ -79,55 +64,30 @@ const Header = () => {
                     width={40}
                     height={40}
                     className="mx-auto"
-                    src=""
-                    alt=""
+                    src="/wood-decor-logo.jpg"
+                    alt="logo"
                   />
                   Home Decor Furnitures
                 </h3>
               </SheetTitle>
               <SheetDescription className="py-10 flex flex-col justify-between h-[90vh]">
                 <div className="flex flex-col items-start">
-                  <Link href={"/#benefits"}>
+                  <Link href={"#category"}>
                     <Button variant={"ghost"}>- Shop</Button>
                   </Link>
-                  <Link href={"/#faq"}>
+                  <Link href={"#collection"}>
                     <Button variant={"ghost"}>- Collections</Button>
                   </Link>
-                  <Link href={"/#testimonils"}>
+                  <Link href={"#offer"}>
                     <Button variant={"ghost"}>
-                      {/* - See what our patients say about us! */}- Explore
+                      - Explore
                     </Button>
                   </Link>
-                  <Link href={"/#testimonils"}>
+                  <Link href={"/cart"}>
                     <Button variant={"ghost"}>
-                      {/* - See what our patients say about us! */}- Cart
+                      - Cart
                     </Button>
                   </Link>
-                  {/* <Card className="mx-auto mt-2">
-                    <CardHeader>
-                      <CardTitle>Cart</CardTitle>
-                      {/* <CardDescription>Card Description</CardDescription> */}
-                  {/* </CardHeader>
-                    <CardContent>
-                      <p className="text-xs text-center">Ends in</p>
-                      <Badge className="w-full flex items-center justify-center">
-                        <Timer />
-                      </Badge>
-                    </CardContent>
-                    <CardFooter>
-                      <p>Card Footer</p>
-                    </CardFooter>
-                  </Card> */}
-                </div>
-                <div className="flex flex-col items-center gap-2">
-                  {/* <Link href={paymentLink}>
-                    <Button variant={"brand-outline"}>
-                      Get a Majoon just for you!
-                    </Button>
-                  </Link> */}
-                  {/* <Link href={paymentLink}>
-                    <Button variant={"brand"}>Buy Majoon Keemya</Button>
-                  </Link> */}
                 </div>
               </SheetDescription>
             </SheetHeader>

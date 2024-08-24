@@ -27,8 +27,8 @@ const page = async () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {orders.map((order) => (
-            <TableRow>
+          {orders.map((order, i) => (
+            <TableRow key={i}>
               <TableCell className="font-medium w-96">
                 {order.createdAt.toDateString()}
               </TableCell>

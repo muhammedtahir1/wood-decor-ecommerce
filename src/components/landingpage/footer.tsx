@@ -11,7 +11,7 @@ const Footer = () => {
     >
       <section className="flex flex-wrap items-center justify-between py-10 md:py-16 w-full md:px-20 footer gap-7 grow ">
         <div className="flex flex-col gap-4 footer-section1">
-          <h1 className="text-4xl font-medium capitalize">
+          <h1 className="text-4xl font-medium capitalize font-gt">
             Lets get 50% discount for <br /> all Product
           </h1>
           <p className="text-sm opacity-65">

@@ -33,11 +33,11 @@ export default function ProductCard({ data }: { data: Product }) {
   console.log(`/products/${slug}`);
 
   return (
-    <Card className="w-72 h-[480px]">
+    <Card className="w-80 rounded-xl md:w-72  h-[460px] mx-auto bg-white/40">
       <CardHeader className="h-[60%] overflow-hidden">
-        <Link href={`/products/${slug}`}>
+        <Link href={`/products/${slug}`} className="rounded-xl  mb-2">
           <Image
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover rounded-md"
             width={250}
             height={260}
             src={image}
@@ -49,19 +49,19 @@ export default function ProductCard({ data }: { data: Product }) {
         <CardDescription>Card Description</CardDescription> */}
       </CardHeader>
       <CardContent>
-        <div></div>
-        <div>
-          <p className="text-xs">GAMMALBYN</p>
+        <div className="mt-1">
+          {/* <p className="text-xs">GAMMALBYN</p> */}
           <h1 className="text-xl font-bold truncate">{title}</h1>
-          <h2>
-            Rs. <span className="text-xl font-semibold">{price}</span>{" "}
+          <h2 className="opacity-80">
+            <span className="text-xl font-semibold">Rs.</span>
+            {price}
           </h2>
           <p className="text-xs">More options</p>
         </div>{" "}
       </CardContent>
       <CardFooter className="space-x-2">
-        <BuyNowBtn product={data} />
-        <AddToCartBtn product={data} />
+        <BuyNowBtn product={{ id, image, price, title }} />
+        <AddToCartBtn product={{ id, image, price, title }} />
       </CardFooter>
     </Card>
   );
