@@ -29,13 +29,13 @@ const Header = () => {
         />
       </Link>
       <nav className="font-bold hidden md:flex gap-4 ">
-        <Link href={"/#benefits"}>
+        <Link href={"#category"}>
           <Button variant={"link"}>Shop</Button>
         </Link>
-        <Link href={"/#faq"}>
+        <Link href={"#collection"}>
           <Button variant={"link"}>Collections</Button>
         </Link>
-        <Link href={"/#testimonils"}>
+        <Link href={"#offer"}>
           <Button variant={"link"}>Explore</Button>
         </Link>
       </nav>
@@ -64,28 +64,28 @@ const Header = () => {
                     width={40}
                     height={40}
                     className="mx-auto"
-                    src=""
-                    alt=""
+                    src="/wood-decor-logo.jpg"
+                    alt="logo"
                   />
                   Home Decor Furnitures
                 </h3>
               </SheetTitle>
               <SheetDescription className="py-10 flex flex-col justify-between h-[90vh]">
                 <div className="flex flex-col items-start">
-                  <Link href={"/#benefits"}>
+                  <Link href={"#category"}>
                     <Button variant={"ghost"}>- Shop</Button>
                   </Link>
-                  <Link href={"/#faq"}>
+                  <Link href={"#collection"}>
                     <Button variant={"ghost"}>- Collections</Button>
                   </Link>
-                  <Link href={"/#testimonils"}>
+                  <Link href={"#offer"}>
                     <Button variant={"ghost"}>
-                      {/* - See what our patients say about us! */}- Explore
+                      - Explore
                     </Button>
                   </Link>
-                  <Link href={"/#testimonils"}>
+                  <Link href={"/cart"}>
                     <Button variant={"ghost"}>
-                      {/* - See what our patients say about us! */}- Cart
+                      - Cart
                     </Button>
                   </Link>
                 </div>

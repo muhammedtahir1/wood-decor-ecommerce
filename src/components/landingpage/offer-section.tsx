@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 
 export default function OfferSection() {
   return (
-    <div className="px-6 w-80  mx-auto md:w-auto md:px-32 flex flex-col md:flex-row justify-center gap-4 md:gap-8 mt-10 md:mt-20 ">
+    <div id="offer" className="px-6 w-80  mx-auto md:w-auto md:px-32 flex flex-col md:flex-row justify-center gap-4 md:gap-8 mt-10 md:mt-20 ">
       <div className=" md:w-[60%] overflow-hidden rounded-lg">
         <Image
           src={

@@ -37,8 +37,15 @@ export async function generateMetadata({
   };
 }
 
-const page = async ({ params }: { params: { slug: string } }) => {
-  const { slug } = params;
+type ParamsProps = {
+  params: {
+    slug: string;
+  };
+};
+
+
+const page = async ({ params }: ParamsProps) => {
+  const slug = params.slug;
 
   const product = await prisma.product.findUnique({
     where: {
@@ -54,7 +61,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
     <>
       <main className="flex flex-col md:flex-row items-center justify-center gap-10 mt-16 md:mt-24 px-10">
         <section className="space-y-2">
-          <BreadCrumbComponent slug={product.title} />
+          {/* <BreadCrumbComponent slug={product.title} /> */}
           <div className="max-w-[400px] max-h-[400px] ">
             <Image
               src={product.image}
@@ -136,28 +143,28 @@ const page = async ({ params }: { params: { slug: string } }) => {
   );
 };
 
-export function BreadCrumbComponent({ slug }: { slug: string }) {
-  return (
-    <Breadcrumb className="my-2">
-      <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink>
-            <Link href="/">Home</Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbLink>
-            <Link href={`/products`}>Products</Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbPage>{slug}</BreadcrumbPage>
-        </BreadcrumbItem>
-      </BreadcrumbList>
-    </Breadcrumb>
-  );
-}
+// export function BreadCrumbComponent({ slug }: { slug: string }) {
+//   return (
+//     <Breadcrumb className="my-2">
+//       <BreadcrumbList>
+//         <BreadcrumbItem>
+//           <BreadcrumbLink>
+//             <Link href="/">Home</Link>
+//           </BreadcrumbLink>
+//         </BreadcrumbItem>
+//         <BreadcrumbSeparator />
+//         <BreadcrumbItem>
+//           <BreadcrumbLink>
+//             <Link href={`/products`}>Products</Link>
+//           </BreadcrumbLink>
+//         </BreadcrumbItem>
+//         <BreadcrumbSeparator />
+//         <BreadcrumbItem>
+//           <BreadcrumbPage>{slug}</BreadcrumbPage>
+//         </BreadcrumbItem>
+//       </BreadcrumbList>
+//     </Breadcrumb>
+//   );
+// }
 
 export default page;
