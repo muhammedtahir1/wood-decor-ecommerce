@@ -39,49 +39,49 @@ const page = async ({ params }: { params: { slug: string } }) => {
 
         <section className="space-y-2">
           <BreadCrumbComponent slug={product.title} />
-          <Image
-            src={
-              "https://images.unsplash.com/photo-1512212621149-107ffe572d2f?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            }
-            alt="sofa"
-            width={600}
-            height={600}
-            className="rounded-lg "
-          />
-          <div className="md:space-x-5 space-x-1 flex ">
+          <div className="max-w-[400px] max-h-[400px] ">
             <Image
-              src={
-                "https://images.unsplash.com/photo-1512212621149-107ffe572d2f?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              }
+              src={product.image}
               alt="sofa"
-              width={112}
-              height={112}
+              width={600}
+              height={600}
               className="rounded-lg "
             />
+          </div>
+          <div className="md:space-x-5 space-x-1 flex mx-auto">
             <Image
-              src={
-                "https://images.unsplash.com/photo-1512212621149-107ffe572d2f?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              }
+              src={product.image}
               alt="sofa"
               width={112}
               height={112}
-              className="object-bottom grayscale-[50%] rounded-lg"
+              className="rounded-lg w-[80px] h-[80px] md:w-[112px] md:h-[112px]"
             />
             <Image
-              src={
-                "https://images.unsplash.com/photo-1512212621149-107ffe572d2f?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              }
+              src={product.image}
               alt="sofa"
               width={112}
               height={112}
-              className="object-bottom grayscale-[70%] rounded-lg"
+              className="object-bottom grayscale-[50%] rounded-lg w-[80px] h-[80px] md:w-[112px] md:h-[112px]"
+            />
+            {/* add a wrapper div for perfect height */}
+            <Image
+              src={product.image}
+              alt="sofa"
+              width={112}
+              height={112}
+              className="object-bottom grayscale-[70%] rounded-lg w-[80px] h-[80px] md:w-[112px] md:h-[112px]"
             />
           </div>
         </section>
 
         <div className="flex flex-col gap-2 md:max-w-[500px]">
-          <Badge variant={"outline"}>Category Sofa</Badge>
-          <h1 className="text-4xl capitalize tracking-tight">
+          <Badge
+            variant={"default"}
+            className="w-20 flex items-center justify-center"
+          >
+            {product.category}
+          </Badge>
+          <h1 className="text-4xl capitalize tracking-tight font-gt">
             {product.title}
           </h1>
           <p className="text-sm">9.2k Reviews</p>
@@ -120,9 +120,9 @@ const page = async ({ params }: { params: { slug: string } }) => {
   );
 };
 
-function BreadCrumbComponent({ slug }: { slug: string }) {
+export function BreadCrumbComponent({ slug }: { slug: string }) {
   return (
-    <Breadcrumb>
+    <Breadcrumb className="my-2">
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink>

@@ -2,7 +2,7 @@ import ProductCard from "../product-card";
 import prisma from "@/lib/db";
 
 export default async function Featured() {
-  const products = await prisma.product.findMany();
+  const products = await prisma.product.findMany({ take: 4});
 
   return (
     <section className="flex flex-col items-center justify-center mt-10 md:mt-20 border-b-2">
@@ -11,9 +11,9 @@ export default async function Featured() {
         <p className="text-sm ">Impressive collection for your dream home</p>
       </div>
 
-      <div className="flex flex-wrap max-w-[1280px] gap-6 mx-auto mt-10 md:mt-16 mb-10 md:mb-20 ">
-        {products.map((item) => (
-          <ProductCard data={item} />
+      <div className="flex flex-wrap max-w-[1280px] gap-6 mt-10 md:mt-16 mb-10 md:mb-20 ">
+        {products.map((item, i) => (
+          <ProductCard key={i} data={item} />
         ))}
       </div>
     </section>

@@ -14,6 +14,7 @@ import Hero from "@/components/landingpage/hero";
 import Category from "@/components/landingpage/category";
 import Featured from "@/components/landingpage/featured-products";
 import Footer from "@/components/landingpage/footer";
+import OfferSection from "@/components/landingpage/offer-section";
 
 export default async function Home() {
   // const products = await prisma.product.findMany();
@@ -31,6 +32,7 @@ export default async function Home() {
       <Hero />
       <Category />
       <Featured />
+      <OfferSection />
       <Footer />
     </main>
   );

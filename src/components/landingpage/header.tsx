@@ -24,13 +24,20 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import useCartStore from "@/store/cart";
+import { ShoppingBag } from "lucide-react";
 
 const Header = () => {
   const { cartItems } = useCartStore();
   return (
-    <header className="h-16 md:h-20 flex justify-between items-center w-full fixed bg-brand-bg left-0 right-0 top-0 px-3 py-4 md:border-b-2 md:px-10 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <Link href={"/"} className="border w-4 h-4 p-4 rounded-full bg-slate-400">
-        <Image width={80} height={80} className="" src="" alt="" />
+    <header className="h-14 md:h-20 flex justify-between items-center w-full fixed left-0 right-0 top-0 px-3 py-4 md:px-10 z-50 backdrop-blur supports-[backdrop-filter]:bg-background/20 border-b border-black/10">
+      <Link href={"/"} className="">
+        <Image
+          width={30}
+          height={30}
+          quality={100}
+          src="/wood-decor-logo.jpg"
+          alt=""
+        />
       </Link>
       <nav className="font-bold hidden md:flex gap-4 ">
         <Link href={"/#benefits"}>
@@ -53,6 +60,7 @@ const Header = () => {
       </nav>
       <Link href={"/cart"} className="hidden md:flex relative">
         <Button variant={"link"}>
+          <ShoppingBag />
           Cart{" "}
           {cartItems.length > 0 && (
             <span className="font-bold text-xs size-4 rounded-full flex flex-col items-center justify-center bg-black absolute top-0 right-0 text-white">
@@ -69,7 +77,7 @@ const Header = () => {
       <nav className="flex items-center gap-1 md:hidden">
         <Sheet>
           <SheetTrigger>
-            <GrMenu size={20} />
+            <GrMenu className="bg-blend-difference" size={20} />
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>

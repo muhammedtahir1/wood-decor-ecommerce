@@ -1,10 +1,11 @@
-import prisma from "@/lib/db";
+"use client";
+import { useRouter } from "next/navigation";
 import React from "react";
 
-const page = async() => {
-
-  const products = await prisma.product.findMany();
-  return <div>page</div>;
+const Page = () => {
+  const router = useRouter();
+  router.push("/admin/products");
+  return <div></div>;
 };
 
-export default page;
+export default Page;
