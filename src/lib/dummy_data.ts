@@ -1,3 +1,21 @@
+type P = {
+  id: number;
+  title: string;
+  slug: string;
+  description: string | null;
+  price: number;
+  discountedPrice: number | null;
+  category: string | null;
+  image: string;
+  features: string[];
+  colors: string[];
+  label: string | null;
+  isFeatured: boolean;
+  orderId: number | null;
+};
+
+type C = Pick<P, "id" | "title" | "price" | "image">;
+
 export const allProductData = [
   {
     images: [

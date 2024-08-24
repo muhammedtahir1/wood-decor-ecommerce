@@ -60,8 +60,8 @@ export default function ProductCard({ data }: { data: Product }) {
         </div>{" "}
       </CardContent>
       <CardFooter className="space-x-2">
-        <BuyNowBtn product={data} />
-        <AddToCartBtn product={data} />
+        <BuyNowBtn product={{ id, image, price, title }} />
+        <AddToCartBtn product={{ id, image, price, title }} />
       </CardFooter>
     </Card>
   );

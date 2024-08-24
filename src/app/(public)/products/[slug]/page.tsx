@@ -16,6 +16,26 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const slug = params.slug;
+  const products = await prisma.product.findUnique({
+    where: {
+      slug,
+    },
+    select: {
+      title: true,
+    },
+  });
+  return {
+    title: products?.title,
+  };
+}
 
 const page = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
@@ -25,7 +45,6 @@ const page = async ({ params }: { params: { slug: string } }) => {
       slug,
     },
   });
-  console.log(product);
 
   if (!product) {
     notFound();
@@ -34,9 +53,6 @@ const page = async ({ params }: { params: { slug: string } }) => {
   return (
     <>
       <main className="flex flex-col md:flex-row items-center justify-center gap-10 mt-16 md:mt-24 px-10">
-        {/* <h1>{product.title}</h1>
-      <p>{product.price}</p> */}
-
         <section className="space-y-2">
           <BreadCrumbComponent slug={product.title} />
           <div className="max-w-[400px] max-h-[400px] ">
@@ -84,7 +100,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
           <h1 className="text-4xl capitalize tracking-tight font-gt">
             {product.title}
           </h1>
-          <p className="text-sm">9.2k Reviews</p>
+          {/* <p className="text-sm">9.2k Reviews</p> */}
           {product.discountedPrice ? (
             <h2>
               <span className="font-light text-xl line-through">
@@ -93,7 +109,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
               ${product.discountedPrice}
             </h2>
           ) : (
-            <h2>${product.price}</h2>
+            <h2>₹{product.price}</h2>
           )}
           <h3 className="text-lg ">Description</h3>
           <p className="text-sm font-light leading-4 max-w-lg">

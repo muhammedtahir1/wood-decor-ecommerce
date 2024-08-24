@@ -12,17 +12,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Link from "next/link";
-// import { paymentLink } from "@/lib/data";
-import { Badge } from "../ui/badge";
-// import Timer from "./timer";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import useCartStore from "@/store/cart";
 import { ShoppingBag } from "lucide-react";
 
@@ -49,14 +38,6 @@ const Header = () => {
         <Link href={"/#testimonils"}>
           <Button variant={"link"}>Explore</Button>
         </Link>
-
-        {/* <Link href={paymentLink}>
-          <Button variant={"brand-outline"}>Get a Majoon just for you!</Button>
-        </Link> */}
-        {/* <p>Offer end in</p>
-        <Badge>
-          <Timer />
-        </Badge> */}
       </nav>
       <Link href={"/cart"} className="hidden md:flex relative">
         <Button variant={"link"}>
@@ -69,10 +50,6 @@ const Header = () => {
           )}
         </Button>
       </Link>
-
-      {/* <Button className="hidden md:flex" variant={"brand"}>
-        Buy Majoon
-      </Button> */}
 
       <nav className="flex items-center gap-1 md:hidden">
         <Sheet>
@@ -111,31 +88,6 @@ const Header = () => {
                       {/* - See what our patients say about us! */}- Cart
                     </Button>
                   </Link>
-                  {/* <Card className="mx-auto mt-2">
-                    <CardHeader>
-                      <CardTitle>Cart</CardTitle>
-                      {/* <CardDescription>Card Description</CardDescription> */}
-                  {/* </CardHeader>
-                    <CardContent>
-                      <p className="text-xs text-center">Ends in</p>
-                      <Badge className="w-full flex items-center justify-center">
-                        <Timer />
-                      </Badge>
-                    </CardContent>
-                    <CardFooter>
-                      <p>Card Footer</p>
-                    </CardFooter>
-                  </Card> */}
-                </div>
-                <div className="flex flex-col items-center gap-2">
-                  {/* <Link href={paymentLink}>
-                    <Button variant={"brand-outline"}>
-                      Get a Majoon just for you!
-                    </Button>
-                  </Link> */}
-                  {/* <Link href={paymentLink}>
-                    <Button variant={"brand"}>Buy Majoon Keemya</Button>
-                  </Link> */}
                 </div>
               </SheetDescription>
             </SheetHeader>

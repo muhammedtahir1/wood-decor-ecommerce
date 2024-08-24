@@ -32,7 +32,7 @@ const page = async () => {
         {/* Write typography css file to maintain typo consistency */}
         <h1>All Products</h1>
 
-        <Card className="my-2">
+        {/* <Card className="my-2">
           <CardHeader className="pb-2">
             <CardDescription>This Month</CardDescription>
             <CardTitle className="text-4xl">$5,329</CardTitle>
@@ -45,7 +45,7 @@ const page = async () => {
           <CardFooter>
             <Progress value={12} aria-label="12% increase" />
           </CardFooter>
-        </Card>
+        </Card> */}
         <Table>
           <TableCaption>A list of your recent invoices.</TableCaption>
           <TableHeader>
