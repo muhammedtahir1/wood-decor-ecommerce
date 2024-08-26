@@ -35,7 +35,10 @@ export default function ProductCard({ data }: { data: Product }) {
   return (
     <Card className="w-80 rounded-xl md:w-72  h-[460px] mx-auto bg-white/40">
       <CardHeader className="h-[60%] overflow-hidden">
-        <Link href={`/products/${slug}`} className="rounded-xl  mb-2">
+        <Link
+          href={`/products/${slug}`}
+          className="rounded-xl  mb-2 w-[250px] h-[260px] hover:scale-105 transition-all duration-300"
+        >
           <Image
             className="h-full w-full object-cover rounded-md"
             width={250}

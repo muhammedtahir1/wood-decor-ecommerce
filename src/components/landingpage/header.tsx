@@ -14,6 +14,9 @@ import {
 import Link from "next/link";
 import useCartStore from "@/store/cart";
 import { ShoppingBag } from "lucide-react";
+import { NavBarlinksMenu } from "../navbar-link-menu";
+import SearchBar from "../search-bar";
+
 
 const Header = () => {
   const { cartItems } = useCartStore();
@@ -28,7 +31,7 @@ const Header = () => {
           alt=""
         />
       </Link>
-      <nav className="font-bold hidden md:flex gap-4 ">
+      {/* <nav className="font-bold hidden md:flex gap-4 ">
         <Link href={"#category"}>
           <Button variant={"link"}>Shop</Button>
         </Link>
@@ -38,7 +41,9 @@ const Header = () => {
         <Link href={"#offer"}>
           <Button variant={"link"}>Explore</Button>
         </Link>
-      </nav>
+      </nav> */}
+      <SearchBar/>
+      <NavBarlinksMenu/>
       <Link href={"/cart"} className="hidden md:flex relative">
         <Button variant={"link"}>
           <ShoppingBag />
@@ -79,14 +84,10 @@ const Header = () => {
                     <Button variant={"ghost"}>- Collections</Button>
                   </Link>
                   <Link href={"#offer"}>
-                    <Button variant={"ghost"}>
-                      - Explore
-                    </Button>
+                    <Button variant={"ghost"}>- Explore</Button>
                   </Link>
                   <Link href={"/cart"}>
-                    <Button variant={"ghost"}>
-                      - Cart
-                    </Button>
+                    <Button variant={"ghost"}>- Cart</Button>
                   </Link>
                 </div>
               </SheetDescription>

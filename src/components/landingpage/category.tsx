@@ -70,7 +70,7 @@ function CategoryCard({
   return (
     <Link
       href={`/categories/${slug}`}
-      className="flex flex-col items-center gap-3 hover:scale-105 transition active:scale-[-1.05] px-4"
+      className="flex flex-col items-center gap-3 hover:scale-105 transition active:scale-[1.05] px-4"
       key={key}
     >
       <Image

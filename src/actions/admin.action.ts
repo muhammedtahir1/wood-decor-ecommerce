@@ -4,7 +4,7 @@ import prisma from "@/lib/db";
 import { Product } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
-const addProduct = async (formData: {
+type TFormData = {
   title: string;
   price: number;
   colors: string[];
@@ -13,7 +13,9 @@ const addProduct = async (formData: {
   category?: string | undefined;
   image?: string | undefined;
   isFeatured?: boolean | undefined;
-}) => {
+};
+
+const addProduct = async (formData: TFormData) => {
   // console.log("Action running ✔✔✔✔");
 
   try {
@@ -56,4 +58,27 @@ const deleteProduct = async (id: Product["id"]) => {
   revalidatePath("/admin");
 };
 
-export { addProduct, deleteProduct };
+const editProduct = async (id: Product["id"], formData: TFormData) => {
+  try {
+    await prisma.product.update({
+      where: {
+        id: id,
+      },
+      data: {
+        title: formData.title as string,
+        price: formData.price,
+        description: formData.description as string,
+        category: formData.category as string,
+        discountedPrice: formData.discountedPrice,
+        image: formData.image as string,
+        colors: formData.colors as string[],
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
+
+  revalidatePath("/admin");
+};
+
+export { addProduct, deleteProduct, editProduct };

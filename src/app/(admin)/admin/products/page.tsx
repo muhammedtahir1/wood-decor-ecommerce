@@ -11,7 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Delete, DeleteIcon, PenTool } from "lucide-react";
+import { ClipboardPen, Delete, DeleteIcon, PenTool, Trash } from "lucide-react";
 import { deleteProduct } from "@/actions/admin.action";
 import {
   Card,
@@ -22,6 +22,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import DeleteProduct from "./delete-product";
 
 const page = async () => {
   const products = await prisma.product.findMany();
@@ -65,20 +66,10 @@ const page = async () => {
                 <TableCell>{product.price}</TableCell>
                 <TableCell>{product.slug}</TableCell>
                 <TableCell className="text-right flex">
-                  <form
-                    action={async () => {
-                      "use server";
-                      console.log("delete");
-                      await deleteProduct(product.id);
-                    }}
-                  >
-                    <Button variant={"destructive"} size={"icon"}>
-                      <DeleteIcon />
-                    </Button>
-                  </form>
-                  <Button variant={"secondary"} size={"icon"}>
-                    <PenTool />
-                  </Button>
+                  <DeleteProduct id={product.id} />
+
+                  <AddProductForm actionType="edit" data={product}/>
+                  
                 </TableCell>
               </TableRow>
             ))}
