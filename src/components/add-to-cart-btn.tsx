@@ -1,7 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import useCartStore, { TCartProduct } from "@/store/cart";
-import { Product } from "@prisma/client";
 import { CircleCheck, TicketCheckIcon } from "lucide-react";
 import React from "react";
 

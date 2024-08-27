@@ -153,22 +153,31 @@ const page = async ({ params }: ParamsProps) => {
                 {product.colors.length} Color Available
               </p>
               <div className="flex gap-1">
-                {product.colors.map((color) => {
+                {product.colors.map((color, i) => {
                   if (color === "black")
                     return (
-                      <div className="size-8 rounded-full border-2 bg-black"></div>
+                      <div
+                        key={i}
+                        className="size-8 rounded-full border-2 bg-black"
+                      ></div>
                     );
                   if (color === "white")
                     return (
-                      <div className="size-8 rounded-full border-2 bg-white"></div>
+                      <div key={i} className="size-8 rounded-full border-2 bg-white"></div>
                     );
                   if (color === "blue")
                     return (
-                      <div className="size-8 rounded-full border-2 bg-[#002366]"></div>
+                      <div
+                        key={i}
+                        className="size-8 rounded-full border-2 bg-[#002366]"
+                      ></div>
                     );
                   if (color === "red")
                     return (
-                      <div className="size-8 rounded-full border-2 bg-red-700"></div>
+                      <div
+                        className="size-8 rounded-full border-2 bg-red-700"
+                        key={i}
+                      ></div>
                     );
                 })}
                 <p className="text-xs">Let us know on note</p>

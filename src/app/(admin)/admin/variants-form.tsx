@@ -13,6 +13,7 @@ import { UseFormReturn } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 type FormProps = UseFormReturn<
   {
@@ -40,26 +41,37 @@ const VariantForm = ({ form }: { form: FormProps }) => {
         render={({ field }) => (
           <FormItem>
             <FormLabel>Product Variants</FormLabel>
-            <FormControl className="flex gap-1">
-              <Input placeholder="Add a variant" onKeyDown={(e) => {}} />
-            </FormControl>
-            <Button
-              type="button"
-              onClick={() => {
-                let d;
-                if (Array.isArray(field.value)) {
-                  d = [...field.value];
-                  field.onChange([...d, text]);
-                }
-                setText("");
-              }}
-            >
-              <Plus />
-              Add variant
-            </Button>
-            <div>
+            <div className="flex">
+              <FormControl className="flex gap-1">
+                <Input
+                  placeholder="Add a variant"
+                  value={text}
+                  onChange={(e) => {
+                    setText(e.target.value);
+                  }}
+                />
+              </FormControl>
+              <Button
+                type="button"
+                onClick={() => {
+                  if (text === "") return;
+                  let d;
+                  if (Array.isArray(field.value)) {
+                    d = [...field.value];
+                    field.onChange([...d, text]);
+                  }
+                  setText("");
+                }}
+              >
+                <Plus />
+                Add variant
+              </Button>
+            </div>
+            <div className="flex flex-wrap gap-1">
               {field.value &&
-                field.value?.map((varient) => <div>{varient}</div>)}
+                field.value?.map((varient, i) => (
+                  <Badge key={i}>{varient}</Badge>
+                ))}
             </div>
             <FormMessage />
           </FormItem>

@@ -49,7 +49,6 @@ export default Hero;
   label           ✅
   price           
   discountedPrice 
-  features        
   colors          
   isFeatured        
 

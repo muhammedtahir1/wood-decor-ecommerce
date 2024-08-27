@@ -3,10 +3,8 @@ import Link from "next/link";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Button } from "./ui/button";
 import { Product } from "@prisma/client";
@@ -19,7 +17,6 @@ export default function ProductCard({ data }: { data: Product }) {
     colors,
     description,
     discountedPrice,
-    features,
     id,
     image,
     label,
@@ -28,8 +25,6 @@ export default function ProductCard({ data }: { data: Product }) {
     title,
   } = data;
 
-  // console.log(slug, title);
-  // console.log("slug , title");
   console.log(`/products/${slug}`);
 
   return (
@@ -53,14 +48,13 @@ export default function ProductCard({ data }: { data: Product }) {
       </CardHeader>
       <CardContent className="m-0s">
         <div className="mt-1">
-          {/* <p className="text-xs">GAMMALBYN</p> */}
           <h1 className="text-lg md:text-xl font-bold truncate">{title}</h1>
           <h2 className="opacity-80 text-lg md:text-3xl">
             <span className="text-base md:text-xl font-semibold">Rs.</span>
             {price}
           </h2>
           <p className="text-xs">More options</p>
-        </div>{" "}
+        </div>
       </CardContent>
       <CardFooter className="space-x-2 md:space-x-4">
         <BuyNowBtn product={{ id, image, price, title }} />
