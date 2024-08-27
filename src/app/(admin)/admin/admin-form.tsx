@@ -36,6 +36,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { CheckboxReactHookFormMultiple } from "./test-checkbox";
 import { Product } from "@prisma/client";
 import { ClipboardPen } from "lucide-react";
+import VariantForm from "./variants-form";
 
 const colors_options = [
   {
@@ -62,13 +63,17 @@ const colors_options = [
 ] as const;
 
 const formSchema = z.object({
-  title: z.string().min(2, {
-    message: "title must be at least 2 characters.",
-  }),
+  title: z
+    .string()
+    .min(2, {
+      message: "title must be at least 2 characters.",
+    })
+    .max(70, { message: "title max length 70 chars" }),
   price: z.coerce.number().int().positive(),
   description: z
     .string()
     .min(10, { message: "description must be at least 10 characters." })
+    .max(300, { message: "description max length 300 chars" })
     .optional(),
   // how do we include 0 as a valid value?
   discountedPrice: z.coerce.number().int().min(0).optional(),
@@ -78,6 +83,7 @@ const formSchema = z.object({
   }),
   category: z.string().optional(),
   image: z.string().optional(),
+  variants: z.array(z.string()).optional(),
 });
 
 export default function AddProductForm({
@@ -96,6 +102,7 @@ export default function AddProductForm({
       description: actionType === "edit" ? (data?.description as string) : "",
       isFeatured: actionType === "edit" ? data?.isFeatured : false,
       colors: actionType === "edit" ? data?.colors : [],
+      variants: actionType === "edit" ? data?.variants : [],
       category: actionType === "edit" ? (data?.category as string) : "",
       image: actionType === "edit" ? data?.image : "",
       discountedPrice:
@@ -224,6 +231,8 @@ export default function AddProductForm({
                     </FormItem>
                   )}
                 />
+                {/* Form field variants which takes input and adds variant form */}
+                <VariantForm form={form} />
                 <FormField
                   control={form.control}
                   name="colors"

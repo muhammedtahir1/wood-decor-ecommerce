@@ -1,7 +1,8 @@
 import Link from "next/link";
 import React from "react";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import Image from "next/image";
+import { Phone } from "lucide-react";
+import Logo from "./logo";
 
 const Footer = () => {
   return (
@@ -20,9 +21,22 @@ const Footer = () => {
           </p>
 
           <div className="flex gap-2">
-            <Input type="email" placeholder="Email" />
-            <Link href="">
-              <Button variant={"secondary"}>Buy now</Button>
+            <p className="max-w-72">
+              No. 10/7, Begur Hulimavu Rd, Raghavendra Layout, Akshaya Gardens,
+              Hulimavu, Bengaluru, Karnataka 560068
+            </p>
+            <Link
+              href="https://maps.app.goo.gl/keBZbAcunBgA97wu9"
+              target="_blank"
+              className="size-28 rounded-full overflow-hidden"
+            >
+              <Image
+                src={"/map-with-destination.png"}
+                width={200}
+                className="size-full object-cover object-right"
+                height={200}
+                alt="location"
+              />
             </Link>
           </div>
           {/* <p className="text-xs opacity-75">
@@ -108,10 +122,11 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="mailto:media.unicornspace@gmail.com"
-                  className="opacity-75 hover:opacity-100"
+                  href={"tel:+%20919341817975"}
+                  className="text-xs flex items-center gap-1"
                 >
-                  Contact us
+                  <Phone size={12} />
+                  9323421423
                 </Link>
               </li>
             </ul>
@@ -120,7 +135,7 @@ const Footer = () => {
       </section>
 
       <section className="py-4 border-t-2 flex items-center justify-between md:px-20">
-        <p className="font-semibold tracking-tighter">Wood Decor</p>
+        <Logo type="full" />
         <nav className="flex  gap-4">
           <p className=" text-xs">Your privacy choices</p>
           <p className=" text-xs">Privacy Policy</p>

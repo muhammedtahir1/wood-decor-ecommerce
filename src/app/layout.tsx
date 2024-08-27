@@ -3,7 +3,6 @@ import { Inter, Roboto_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import "@/styles/typography.css";
 import { Toaster } from "@/components/ui/sonner";
-import Navbar from "@/components/navbar";
 import localFont from "@next/font/local";
 import Header from "@/components/landingpage/header";
 import Footer from "@/components/landingpage/footer";
@@ -56,9 +55,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} trash:bg-[#ece8e17e] bg-brand-bg-DEFALUT text-brand-text-DEFALUT font-buch ${gt_haptik.variable}`}
       >
-        {/* <Navbar/> */}
         {children} <Toaster />
-        {/* <Footer/> */}
       </body>
     </html>
   );

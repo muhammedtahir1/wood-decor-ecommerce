@@ -14,18 +14,13 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Checkbox } from "@/components/ui/checkbox";
+
 import Link from "next/link";
 import { Metadata } from "next";
 import BuyNowBtn from "@/components/buy-now-btn";
 import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Product } from "@prisma/client";
 
 export async function generateMetadata({
@@ -126,7 +121,7 @@ const page = async ({ params }: ParamsProps) => {
           >
             {product.category}
           </Badge>
-          <h1 className="text-2xl md:text-4xl capitalize tracking-tight font-gt">
+          <h1 className="text-2xl md:text-4xl capitalize font-gt">
             {product.title}
           </h1>
           {/* <p className="text-sm">9.2k Reviews</p> */}
@@ -147,19 +142,39 @@ const page = async ({ params }: ParamsProps) => {
             <h2>₹{product.price}</h2>
           )}
           <h3 className="text-sm md:text-lg">Description</h3>
-          <p className="text-sm font-light leading-4 max-w-lg">
+          <p className="text-[15px] text-[#1a1a1a]  leading-5 max-w-lg">
             {product.description}
           </p>
 
           {/* TODO */}
-          <p className="text-base mt-2 tracking-tight capitalize">
-            3 Color Available
-          </p>
-          <div className="flex gap-1">
-            <div className="h-6 w-6 rounded-full border-2 bg-slate-600"></div>
-            <div className="h-6 w-6 rounded-full border-2 bg-cyan-600"></div>
-            <div className="h-6 w-6 rounded-full border-2 bg-lime-500"></div>
-          </div>
+          {product.colors && (
+            <>
+              <p className="text-base mt-2 tracking-tight capitalize">
+                {product.colors.length} Color Available
+              </p>
+              <div className="flex gap-1">
+                {product.colors.map((color) => {
+                  if (color === "black")
+                    return (
+                      <div className="size-8 rounded-full border-2 bg-black"></div>
+                    );
+                  if (color === "white")
+                    return (
+                      <div className="size-8 rounded-full border-2 bg-white"></div>
+                    );
+                  if (color === "blue")
+                    return (
+                      <div className="size-8 rounded-full border-2 bg-[#002366]"></div>
+                    );
+                  if (color === "red")
+                    return (
+                      <div className="size-8 rounded-full border-2 bg-red-700"></div>
+                    );
+                })}
+                <p className="text-xs">Let us know on note</p>
+              </div>
+            </>
+          )}
 
           <div className="flex flex-wrap gap-1">
             <Button
@@ -261,9 +276,11 @@ function EachProduct({
           />
         </Link>
       </CardHeader>
-      <CardContent >
+      <CardContent>
         <div className="mt-3 md:mt-2">
-          <h3 className="text-sm md:text-lg font-bold truncate text-wrap">{title}</h3>
+          <h3 className="text-sm md:text-lg font-bold truncate text-wrap">
+            {title}
+          </h3>
           {/* <h2 className="opacity-80">
             <span className="text-xl font-semibold">Rs.</span>
             {price}

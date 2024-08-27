@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-
-import Navbar from "@/components/navbar";
 import Header from "@/components/landingpage/header";
+import { Phone } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Wood Decor",
@@ -15,6 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <main className={``}>
+      
       <Header />
 
       {children}
