@@ -21,8 +21,17 @@ const config = {
       fontFamily: {
         roboto: "var(--font-roboto-mono)",
         gt: "var(--font-gt_haptik)",
+        buch: "var(--font-buch)",
       },
       colors: {
+        brand: {
+          bg: { DEFALUT: "#FAFAF1", secondary: "rgb(84, 84, 84)" },
+          text: {
+            DEFALUT: "#1f1f1f",
+            muted: "#545454",
+          },
+          secondary: "#545454",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

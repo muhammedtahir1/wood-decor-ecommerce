@@ -6,6 +6,12 @@
 
 ## Getting started
 
+
+bg - #FAFAF1
+
+
+
+
 ### Scope of improvement
 
 1. UI - team page

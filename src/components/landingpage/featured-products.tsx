@@ -19,7 +19,7 @@ export default async function Featured() {
         <p className="text-sm ">Impressive collection for your dream home</p>
       </div>
 
-      <div className="flex flex-wrap max-w-[1280px] gap-6 mt-10 md:mt-16 mb-10 md:mb-20 ">
+      <div className="flex flex-wrap max-w-[1280px] gap-4 mt-10 md:mt-16 mb-10 md:mb-20 ">
         {products.map((item, i) => (
           <ProductCard key={i} data={item} />
         ))}

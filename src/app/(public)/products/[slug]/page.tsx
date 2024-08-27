@@ -126,7 +126,7 @@ const page = async ({ params }: ParamsProps) => {
           >
             {product.category}
           </Badge>
-          <h1 className="text-4xl capitalize tracking-tight font-gt">
+          <h1 className="text-2xl md:text-4xl capitalize tracking-tight font-gt">
             {product.title}
           </h1>
           {/* <p className="text-sm">9.2k Reviews</p> */}
@@ -146,7 +146,7 @@ const page = async ({ params }: ParamsProps) => {
           ) : (
             <h2>₹{product.price}</h2>
           )}
-          <h3 className="text-lg ">Description</h3>
+          <h3 className="text-sm md:text-lg">Description</h3>
           <p className="text-sm font-light leading-4 max-w-lg">
             {product.description}
           </p>
@@ -192,14 +192,14 @@ const page = async ({ params }: ParamsProps) => {
         </div>
       </main>
       {similarProduct.length > 0 && (
-        <>
-          <h1>You may also like</h1>
-          <section className="grid grid-cols-2 md:grid-cols-4">
+        <div className="flex flex-col items-center justify-center mt-16 md:mt-24 px-10 pt-10 gap-10 border-t">
+          <h1>Similar products</h1>
+          <section className="grid grid-cols-2 md:grid-cols-4 gap-10">
             {similarProduct.map((product) => (
               <EachProduct key={product.slug} data={product} />
             ))}
           </section>
-        </>
+        </div>
       )}
 
       <Footer />
@@ -246,14 +246,14 @@ function EachProduct({
   const { slug, image, title, price } = data;
 
   return (
-    <Card className="w-40 rounded-xl md:w-52  h-[260px] mx-auto bg-white/40 col-span-1 row-span-1">
-      <CardHeader className="h-[60%] overflow-hidden">
+    <Card className="w-40 rounded-xl md:w-52  h-[260px] mx-auto bg-white/40 col-span-1 row-span-1 overflow-hidden">
+      <CardHeader className="h-[64%] py-4 px-6 items-center overflow-hidden">
         <Link
           href={`/products/${slug}`}
           className="rounded-xl  mb-2 w-[150px] h-[160px] hover:scale-105 transition-all duration-300"
         >
           <Image
-            className="h-full w-full object-cover rounded-md"
+            className="h-full w-full object-cover rounded-lg"
             width={150}
             height={160}
             src={image}
@@ -261,9 +261,9 @@ function EachProduct({
           />
         </Link>
       </CardHeader>
-      <CardContent>
-        <div className="mt-1">
-          <h3 className="text-xl font-bold truncate">{title}</h3>
+      <CardContent >
+        <div className="mt-3 md:mt-2">
+          <h3 className="text-sm md:text-lg font-bold truncate text-wrap">{title}</h3>
           {/* <h2 className="opacity-80">
             <span className="text-xl font-semibold">Rs.</span>
             {price}

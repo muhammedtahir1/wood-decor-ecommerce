@@ -42,8 +42,11 @@ const Header = () => {
           <Button variant={"link"}>Explore</Button>
         </Link>
       </nav> */}
-      <SearchBar/>
+      {/* <SearchBar/> */}
+      {/* <div className="flex "> */}
       <NavBarlinksMenu/>
+
+      
       <Link href={"/cart"} className="hidden md:flex relative">
         <Button variant={"link"}>
           <ShoppingBag />
@@ -55,6 +58,7 @@ const Header = () => {
           )}
         </Button>
       </Link>
+
 
       <nav className="flex items-center gap-1 md:hidden">
         <Sheet>
@@ -76,20 +80,7 @@ const Header = () => {
                 </h3>
               </SheetTitle>
               <SheetDescription className="py-10 flex flex-col justify-between h-[90vh]">
-                <div className="flex flex-col items-start">
-                  <Link href={"#category"}>
-                    <Button variant={"ghost"}>- Shop</Button>
-                  </Link>
-                  <Link href={"#collection"}>
-                    <Button variant={"ghost"}>- Collections</Button>
-                  </Link>
-                  <Link href={"#offer"}>
-                    <Button variant={"ghost"}>- Explore</Button>
-                  </Link>
-                  <Link href={"/cart"}>
-                    <Button variant={"ghost"}>- Cart</Button>
-                  </Link>
-                </div>
+                <NavBarlinksMenu/>
               </SheetDescription>
             </SheetHeader>
           </SheetContent>

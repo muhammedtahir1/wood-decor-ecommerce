@@ -21,7 +21,7 @@ export default function CartProduct({ item }: { item: TCartProduct }) {
       </div>
 
       <div className="space-y-2">
-        <div className="flex justify-between items-center gap-6 ">
+        <div className="flex justify-between items-center gap-4 ">
           <h1 className="text-base md:text-lg font-bold text-ellipsis overflow-hidden max-w-52 whitespace-nowrap text-left">
             {title}
           </h1>

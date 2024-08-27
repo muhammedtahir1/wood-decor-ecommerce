@@ -10,6 +10,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const page = async () => {
   const orders = await prisma.order.findMany();
@@ -34,7 +43,21 @@ const page = async () => {
               </TableCell>
               <TableCell>{order.totalAmount}</TableCell>
               <TableCell>{order.status}</TableCell>
-              <TableCell className="text-right"></TableCell>
+              <TableCell className="text-right">
+                <Select>
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Order Process" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>Status</SelectLabel>
+                      <SelectItem value="apple">Pending</SelectItem>
+                      <SelectItem value="banana">Delivered</SelectItem>
+                      <SelectItem value="blueberry">Processing</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
