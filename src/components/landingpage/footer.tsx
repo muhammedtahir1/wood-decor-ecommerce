@@ -57,14 +57,7 @@ const Footer = () => {
                   Careers
                 </Link>
               </li>
-              {/* <li>
-              <Link
-                href=""
-                className="opacity-75 hover:opacity-100"
-              >
-                Meet Team
-              </Link>
-            </li> */}
+              
               <li>
                 <Link href="" className="opacity-75 hover:opacity-100">
                   Stories
