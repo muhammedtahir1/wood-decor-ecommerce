@@ -55,7 +55,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} trash:bg-[#ece8e17e] bg-brand-bg-DEFALUT text-brand-text-DEFALUT font-buch ${gt_haptik.variable}`}
       >
-        {children} <Toaster />
+        {children} <Toaster richColors />
       </body>
     </html>
   );
