@@ -4,12 +4,13 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import ProductImageCarousel from "./product-image-carousel";
+import Link from "next/link";
 
 function Hero2() {
   return (
     <main
       className={cn(
-        ` h-[90vh] md:h-[90vh] mt-10 md:mt-24 flex flex-col items-center justify-center w-full px-5 relative md:px-24  gap-4 backdrop-blur-md text-center	`
+        ` h-[90vh] md:h-[90vh] mt-16 md:mt-24 flex flex-col items-center justify-center w-full px-5 relative md:px-24  gap-4 backdrop-blur-md text-center	`
       )}
     >
       <ProductImageCarousel />
@@ -23,13 +24,14 @@ function Hero2() {
             India, only at Wood Decor.
           </p>
           <div className="z-10 flex">
-            <Button
-              className="z-10 mt-4 w-52 rounded-full"
-              variant={"fullRounded"}
-            >
-              Shop Now <ArrowRight size={14} className="ml-2 " />
-            </Button>
-           
+            <Link href="#featured-products">
+              <Button
+                className="z-10 mt-4 w-52 rounded-full"
+                variant={"fullRounded"}
+              >
+                Shop Now <ArrowRight size={14} className="ml-2 " />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

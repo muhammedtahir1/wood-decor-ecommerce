@@ -163,7 +163,10 @@ const page = async ({ params }: ParamsProps) => {
                     );
                   if (color === "white")
                     return (
-                      <div key={i} className="size-8 rounded-full border-2 bg-white"></div>
+                      <div
+                        key={i}
+                        className="size-8 rounded-full border-2 bg-white"
+                      ></div>
                     );
                   if (color === "blue")
                     return (
@@ -184,31 +187,20 @@ const page = async ({ params }: ParamsProps) => {
               </div>
             </>
           )}
-
-          <div className="flex flex-wrap gap-1">
-            <Button
-              variant={"outline"}
-              className="mt-4 bg-transparent"
-              size={"sm"}
-            >
-              Default
-            </Button>
-            <Button
-              variant={"outline"}
-              className="mt-4 bg-transparent"
-              size={"sm"}
-            >
-              2 + 1
-            </Button>
-            <Button
-              variant={"outline"}
-              className="mt-4 bg-transparent"
-              size={"sm"}
-            >
-              2 + 2
-            </Button>
-          </div>
-
+          {product.variants.length > 0 && (
+            <div className="flex flex-wrap gap-1">
+              {product.variants.map((variant, i) => (
+                <Button
+                  key={i}
+                  variant={"outline"}
+                  className="mt-4 bg-transparent"
+                  size={"sm"}
+                >
+                  2 + 1
+                </Button>
+              ))}
+            </div>
+          )}
           <div className="flex gap-x-4 mt-4">
             <BuyNowBtn product={product} />
             <AddToCartBtn product={product} />

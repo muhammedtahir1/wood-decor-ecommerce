@@ -12,11 +12,11 @@ const SearchBar = () => {
       action={(formData) => {
         router.push(`/search?q=${formData.get("search")}`);
       }}
-      className="focus: flex w-72 max-w-sm items-center space-x-1 rounded-full px-2 border "
+      className="focus: flex w-48 md:w-72 max-w-sm items-center space-x-[-10px] md:space-x-1 rounded-full px-2 border "
     >
       <Input
         type="search"
-        className="bg-transparent ring-none  focus:border-none focus-visible:outline-none focus-visible:ring-0 focus:ring-0 border-none w-60 hover:outline"
+        className="bg-transparent ring-none  focus:border-none focus-visible:outline-none focus-visible:ring-0 focus:ring-0 border-none md:w-60 hover:outline"
         placeholder="Search products"
         name="search"
         onSubmit={() => {
@@ -31,6 +31,7 @@ const SearchBar = () => {
       >
         <Search />
       </Button>
+      
     </form>
   );
 };

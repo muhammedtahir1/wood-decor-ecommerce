@@ -4,7 +4,7 @@ import React from "react";
 
 const Logo = ({ type }: { type?: "full" | "normal" }) => {
   return (
-    <Link href={"/"} className="">
+    <Link href={"/"} className="mr-3 md:mr-0">
       {type === "full" ? (
         <Image
           width={130}

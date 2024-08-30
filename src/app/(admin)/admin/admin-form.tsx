@@ -37,6 +37,7 @@ import { CheckboxReactHookFormMultiple } from "./test-checkbox";
 import { Product } from "@prisma/client";
 import { ClipboardPen } from "lucide-react";
 import VariantForm from "./variants-form";
+import UploadProductImageAdmin from "@/components/upload-image-admin";
 
 const colors_options = [
   {
@@ -113,6 +114,7 @@ export default function AddProductForm({
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    return;
     if (actionType === "edit") {
       await editProduct(data!.id, values);
     } else {
@@ -162,7 +164,7 @@ export default function AddProductForm({
                   name="image"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Product Title</FormLabel>
+                      <FormLabel>Product Link</FormLabel>
                       <FormControl>
                         <Input placeholder="Pinterest Img URL" {...field} />
                       </FormControl>
@@ -170,6 +172,7 @@ export default function AddProductForm({
                     </FormItem>
                   )}
                 />
+                <UploadProductImageAdmin />
                 <div className="flex w-full justify-between">
                   <FormField
                     control={form.control}

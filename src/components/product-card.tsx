@@ -28,11 +28,11 @@ export default function ProductCard({ data }: { data: Product }) {
   console.log(`/products/${slug}`);
 
   return (
-    <Card className="w-48 rounded-xl md:w-72 h-[320px]  md:h-[460px] mx-auto bg-white/40">
+    <Card className="w-40 rounded-xl md:w-72 h-[300px]  md:h-[460px] mx-auto bg-white/40">
       <CardHeader className="h-[50%] md:h-[60%] overflow-hidden">
         <Link
           href={`/products/${slug}`}
-          className="rounded-xl md:mb-2 w-[150px] h-[150px] md:w-[250px] md:h-[260px] hover:scale-105 transition-all duration-300"
+          className="rounded-xl md:mb-2 w-[135px] h-[135px] md:w-[250px] md:h-[260px] hover:scale-105 transition-all duration-300"
         >
           <Image
             className="h-full w-full object-cover rounded-md"
@@ -46,7 +46,7 @@ export default function ProductCard({ data }: { data: Product }) {
         {/* 
         <CardDescription>Card Description</CardDescription> */}
       </CardHeader>
-      <CardContent className="m-0s">
+      <CardContent className="m-0">
         <div className="mt-1">
           <h1 className="text-lg md:text-xl font-bold truncate">{title}</h1>
           <h2 className="opacity-80 text-lg md:text-3xl">
@@ -56,7 +56,7 @@ export default function ProductCard({ data }: { data: Product }) {
           <p className="text-xs">More options</p>
         </div>
       </CardContent>
-      <CardFooter className="space-x-2 md:space-x-4">
+      <CardFooter className="space-x-1 md:space-x-4">
         <BuyNowBtn product={{ id, image, price, title }} />
         <AddToCartBtn product={{ id, image, price, title }} />
       </CardFooter>
