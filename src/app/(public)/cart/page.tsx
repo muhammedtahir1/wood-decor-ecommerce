@@ -1,6 +1,7 @@
 "use client";
 import { BuyNow } from "@/actions/customer.action";
 import CartProduct from "@/components/cart-product";
+import CheckoutWithRazorpayAndAdmin from "@/components/checkout-razorpay";
 import { Button } from "@/components/ui/button";
 import useCartStore, { TCartProduct } from "@/store/cart";
 import React from "react";
@@ -48,15 +49,7 @@ const Page = () => {
               {/* <Button variant={"secondary"} className=" rounded-full text-sm">
                 Checkout Now
               </Button> */}
-              <form
-                action={async () => {
-                  await BuyNow(cartItems);
-                  clearCart();
-                  alert("Order placed successfully");
-                }}
-              >
-                <Button className="w-full">Checkout</Button>
-              </form>
+              <CheckoutWithRazorpayAndAdmin/>
               {/* <Button className=" rounded-full">Pay</Button> */}
             </div>
           </div>
