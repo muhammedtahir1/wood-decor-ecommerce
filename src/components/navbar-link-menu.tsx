@@ -116,12 +116,12 @@ export function NavBarlinksMenu() {
             <ul className="grid w-[400px] gap-3 p-4 md:w-[380px] md:grid-rows-3">
               {/* i want to filter out the components based on their categories, in this i want the category to be interiors */}
 
-              {interiorComponents.map((component) => (
-                <Link href={component.href}>
+              {interiorComponents.map((component, i) => (
+                <Link href={component.href} key={i}>
 
-                <ListItem
-                  key={component.title}
-                  title={component.title}
+                  <ListItem
+                    key={component.title}
+                    title={component.title}
                   ></ListItem>
                 </Link>
               ))}
@@ -134,12 +134,12 @@ export function NavBarlinksMenu() {
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[380px] md:grid-rows-2">
-              {bedComponents.map((component) => (
-                <Link href={component.href}>
+              {bedComponents.map((component, i) => (
+                <Link href={component.href} key={i}>
                   <ListItem
                     key={component.title}
                     title={component.title}
-                    ></ListItem>
+                  ></ListItem>
                 </Link>
               ))}
             </ul>
@@ -151,12 +151,12 @@ export function NavBarlinksMenu() {
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[380px] md:grid-rows-2">
-              {diningComponents.map((component) => (
-                <Link href={component.href}>
+              {diningComponents.map((component, i) => (
+                <Link href={component.href} key={i}>
                   <ListItem
                     key={component.title}
                     title={component.title}
-                    ></ListItem>
+                  ></ListItem>
                 </Link>
               ))}
             </ul>

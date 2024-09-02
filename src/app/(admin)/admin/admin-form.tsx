@@ -121,7 +121,7 @@ export default function AddProductForm({
     setIsSubmitting(true);
 
     console.log(values)
-    return 
+    return
     /*
      also in title description I can see hydration errors do check
      - not working the variations
@@ -335,8 +335,8 @@ export default function AddProductForm({
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {CATEGORIES.map(category => (
-                            <SelectItem value={category.value}>{category.label}</SelectItem>
+                          {CATEGORIES.map((category, i) => (
+                            <SelectItem key={i} value={category.value}>{category.label}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>

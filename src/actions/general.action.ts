@@ -35,6 +35,8 @@ const getSearchProducts = async ({
         },
       ],
     },
+    take,
+    skip,
   });
 
   return products;
