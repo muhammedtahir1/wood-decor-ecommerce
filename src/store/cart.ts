@@ -3,7 +3,10 @@ import { Product } from "@prisma/client";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
-export type TCartProduct = Pick<Product, "id" | "title" | "price" | "image">;
+export type TCartProduct = Pick<Product, "id" | "title" | "price" | "image"> & {
+  variant?: string;
+  color?: string;
+};
 
 type CartStore = {
   cartItems: TCartProduct[];
@@ -30,7 +33,19 @@ const useCartStore = create<CartStore>()(
           if (existingProduct) {
             return { cartItems: [...state.cartItems] };
           }
-          return { cartItems: [...state.cartItems, product] };
+          return {
+            cartItems: [
+              ...state.cartItems,
+              {
+                id: product.id,
+                image: product.image,
+                price: product.price,
+                title: product.title,
+                color: product.color,
+                variant: product.variant,
+              },
+            ],
+          };
         }),
       removeItemFromCart: (productId) =>
         set((state) => ({

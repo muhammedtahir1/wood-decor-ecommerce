@@ -22,6 +22,8 @@ import BuyNowBtn from "@/components/buy-now-btn";
 import Image from "next/image";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Product } from "@prisma/client";
+import ColorSelector from "./product-form";
+import FormSelector from "./product-form";
 
 export async function generateMetadata({
   params,
@@ -149,65 +151,8 @@ const page = async ({ params }: ParamsProps) => {
             {product.description}
           </p>
 
-          {/* TODO */}
-          {product.colors && (
-            <>
-              <p className="text-base mt-2 tracking-tight capitalize">
-                {product.colors.length} Color Available
-              </p>
-              <div className="flex gap-1">
-                {product.colors.map((color, i) => {
-                  if (color === "black")
-                    return (
-                      <div
-                        key={i}
-                        className="size-8 rounded-full border-2 bg-black"
-                      ></div>
-                    );
-                  if (color === "white")
-                    return (
-                      <div
-                        key={i}
-                        className="size-8 rounded-full border-2 bg-white"
-                      ></div>
-                    );
-                  if (color === "blue")
-                    return (
-                      <div
-                        key={i}
-                        className="size-8 rounded-full border-2 bg-[#002366]"
-                      ></div>
-                    );
-                  if (color === "red")
-                    return (
-                      <div
-                        className="size-8 rounded-full border-2 bg-red-700"
-                        key={i}
-                      ></div>
-                    );
-                })}
-                <p className="text-xs">Let us know on note</p>
-              </div>
-            </>
-          )}
-          {product.variants.length > 0 && (
-            <div className="flex flex-wrap gap-1">
-              {product.variants.map((variant, i) => (
-                <Button
-                  key={i}
-                  variant={"outline"}
-                  className="mt-4 bg-transparent capitalize"
-                  size={"sm"}
-                >
-                  {variant}
-                </Button>
-              ))}
-            </div>
-          )}
-          <div className="flex gap-x-4 mt-4">
-            <BuyNowBtn product={product} />
-            <AddToCartBtn product={product} />
-          </div>
+          <FormSelector colors={product.colors} product={product} variants={product.variants} />
+
         </div>
       </main>
       {similarProduct.length > 0 && (
