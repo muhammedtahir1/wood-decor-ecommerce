@@ -17,34 +17,41 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-const components: { title: string; category: string }[] = [
+const components: { title: string; category: string, href: string }[] = [
   {
     title: "Modular Kitchen",
     category: "interiors",
+    href: "/search?q=modular kitchen",
   },
   {
     title: "Wardrobes",
     category: "interiors",
+    href: "/search?q=wardrobes",
   },
   {
     title: "TV units",
     category: "interiors",
+    href: "/search?q=tv units",
   },
   {
     title: "Wooden beds",
     category: "beds",
+    href: "/search?q=wooden beds",
   },
   {
     title: "Upholstery Beds",
     category: "beds",
+    href: "/search?q=upholstery beds",
   },
   {
     title: "Wooden dining",
     category: "dining",
+    href: "/search?q=wooden dining",
   },
   {
     title: "PVD dining",
     category: "dining",
+    href: "/search?q=pvd dining",
   },
 ];
 
@@ -70,9 +77,9 @@ export function NavBarlinksMenu() {
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-4">
                 <NavigationMenuLink asChild>
-                  <a
+                  <Link
                     className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                    href="/"
+                    href="/search?q=corner sofa"
                   >
                     <Image
                       className="h-full w-full object-cover rounded-xl"
@@ -91,29 +98,32 @@ export function NavBarlinksMenu() {
                     <p className="text-sm leading-tight text-muted-foreground">
                       Beautifully designed sofas for all your needs.
                     </p>
-                  </a>
+                  </Link>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/" title="Lounger Sofa"></ListItem>
-              <ListItem href="/" title="Wooden Sofa"></ListItem>
-              <ListItem href="/" title="3 + 2 Sofa"></ListItem>
-              <ListItem href="/" title="Wing Chairs"></ListItem>
+              <ListItem href="/search?q=lounger sofa" title="Lounger Sofa"></ListItem>
+              <ListItem href="/search?q=wooden sofa" title="Wooden Sofa"></ListItem>
+              <ListItem href="/search?q=3+2 sofa" title="3 + 2 Sofa"></ListItem>
+              <ListItem href="/search?q=wing chairs" title="Wing Chairs"></ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="bg-transparent hover:scale-105 hover:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent">
+          <NavigationMenuTrigger className="bg-transparent hover:scale-105 hover:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent bg-brand-bg-DEFALUT">
             Interiors
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[380px] md:grid-rows-3">
               {/* i want to filter out the components based on their categories, in this i want the category to be interiors */}
 
               {interiorComponents.map((component) => (
+                <Link href={component.href}>
+
                 <ListItem
                   key={component.title}
                   title={component.title}
-                ></ListItem>
+                  ></ListItem>
+                </Link>
               ))}
             </ul>
           </NavigationMenuContent>
@@ -123,12 +133,14 @@ export function NavBarlinksMenu() {
             Beds
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[380px] md:grid-rows-2">
               {bedComponents.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                ></ListItem>
+                <Link href={component.href}>
+                  <ListItem
+                    key={component.title}
+                    title={component.title}
+                    ></ListItem>
+                </Link>
               ))}
             </ul>
           </NavigationMenuContent>
@@ -138,12 +150,14 @@ export function NavBarlinksMenu() {
             Dining
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[380px] md:grid-rows-2">
               {diningComponents.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                ></ListItem>
+                <Link href={component.href}>
+                  <ListItem
+                    key={component.title}
+                    title={component.title}
+                    ></ListItem>
+                </Link>
               ))}
             </ul>
           </NavigationMenuContent>

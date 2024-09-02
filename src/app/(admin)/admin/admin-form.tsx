@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -30,14 +31,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { addProduct, editProduct } from "@/actions/admin.action";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import { CheckboxReactHookFormMultiple } from "./test-checkbox";
 import { Product } from "@prisma/client";
-import { ClipboardPen } from "lucide-react";
+import { ClipboardPen, RotateCw } from "lucide-react";
 import VariantForm from "./variants-form";
 import UploadProductImageAdmin from "@/components/upload-image-admin";
+import { useState } from "react";
+import { toast } from "sonner";
+import { CATEGORIES } from "@/lib/constants";
+import { addProduct, editProduct } from "@/actions/admin.action";
 
 const colors_options = [
   {
@@ -74,7 +77,7 @@ const formSchema = z.object({
   description: z
     .string()
     .min(10, { message: "description must be at least 10 characters." })
-    .max(300, { message: "description max length 300 chars" })
+    .max(500, { message: "description max length 500 chars" })
     .optional(),
   // how do we include 0 as a valid value?
   discountedPrice: z.coerce.number().int().min(0).optional(),
@@ -112,21 +115,49 @@ export default function AddProductForm({
   });
 
   // 2. Define a submit handler.
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    return;
-    if (actionType === "edit") {
-      await editProduct(data!.id, values);
-    } else {
-      await addProduct(values);
+    setIsSubmitting(true);
+
+    console.log(values)
+    // return 
+    /*
+     also in title description I can see hydration errors do check
+     - not working the variations
+    */
+    try {
+      let response;
+      if (actionType === "edit") {
+        response = await editProduct(data!.id, values);
+        if (response.success) {
+          toast.success("Successfully edited the product");
+        } else {
+          toast.error("Something went wrong in editing the product");
+        }
+      } else {
+        response = await addProduct(values);
+        if (response.success) {
+          toast.success("Successfully added the product");
+        } else {
+          toast.error("Something went wrong in adding the product");
+        }
+      }
+    } catch (error) {
+      toast.error("An unexpected error occurred");
+    } finally {
+      setIsSubmitting(false);
     }
   }
+
+
   return (
-    <Dialog>
+    <Dialog >
       <DialogTrigger asChild>
         {actionType === "edit" ? (
-          <Button variant={"secondary"} size={"icon"}>
-            <ClipboardPen />
+          <Button variant={"secondary"} className="w-28">
+            <ClipboardPen size={14} className="ml-2" />
+            Edit
           </Button>
         ) : (
           <Button>Add Product</Button>
@@ -135,7 +166,7 @@ export default function AddProductForm({
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="text-center mb-2 text-2xl">
-            Add new Product
+            {actionType === "add" ? "Add new Product" : "Edit Product"}
           </DialogTitle>
           <DialogDescription>
             <Form {...form}>
@@ -264,14 +295,14 @@ export default function AddProductForm({
                                     onCheckedChange={(checked) => {
                                       return checked
                                         ? field.onChange([
-                                            ...field.value,
-                                            color.id,
-                                          ])
+                                          ...field.value,
+                                          color.id,
+                                        ])
                                         : field.onChange(
-                                            field.value?.filter(
-                                              (value) => value !== color.id
-                                            )
-                                          );
+                                          field.value?.filter(
+                                            (value) => value !== color.id
+                                          )
+                                        );
                                     }}
                                   />
                                 </FormControl>
@@ -304,10 +335,9 @@ export default function AddProductForm({
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="sofa">Sofa</SelectItem>
-                          <SelectItem value="bedding">Bedding</SelectItem>
-                          <SelectItem value="kitchen">Kitchen</SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
+                          {CATEGORIES.map(category => (
+                            <SelectItem value={category.value}>{category.label}</SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                       <FormDescription>
@@ -318,11 +348,14 @@ export default function AddProductForm({
                   )}
                 />
 
-                <Button type="submit" className="w-full">
-                  Add Product
+                <Button disabled={isSubmitting} type="submit" className="w-full" >
+                  {actionType === "add" ? "Add Product" : "Edit Product"}
+                  {isSubmitting && <RotateCw className="animate-spin mr-2" size={15} />}
+
                 </Button>
               </form>
             </Form>{" "}
+
           </DialogDescription>
         </DialogHeader>
       </DialogContent>

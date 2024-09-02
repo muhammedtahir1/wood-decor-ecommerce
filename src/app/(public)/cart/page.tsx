@@ -14,14 +14,14 @@ const Page = () => {
     }
     return totalPrice;
   }
-  const { cartItems, clearCart } = useCartStore();
+  const { cartItems, clearCart, removeItemFromCart } = useCartStore();
   return (
-    <main className="mt-20 md:px-10">
+    <main className="mt-28 md:mt-32 md:px-10">
       <h1 className="my-2 ml-10 font-gt">Cart</h1>
       <div className="flex flex-col px-5 md:flex-row md:px-10 w-full justify-between">
         <div className="">
           {cartItems.map((item, i) => (
-            <CartProduct item={item} key={i} />
+            <CartProduct item={item} key={i} removeItemFromCart={removeItemFromCart} />
           ))}
         </div>
 

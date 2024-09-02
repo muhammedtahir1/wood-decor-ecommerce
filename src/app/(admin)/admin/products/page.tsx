@@ -11,7 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ClipboardPen, Delete, DeleteIcon, PenTool, Trash } from "lucide-react";
+import { ClipboardPen, Delete, DeleteIcon, Ellipsis, PenTool, Trash } from "lucide-react";
 import { deleteProduct } from "@/actions/admin.action";
 import {
   Card,
@@ -23,6 +23,11 @@ import {
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import DeleteProduct from "./delete-product";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
 const page = async () => {
   const products = await prisma.product.findMany();
@@ -51,13 +56,13 @@ const page = async () => {
           <TableCaption>A list of your recent invoices.</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[100px]">Name</TableHead>
+              <TableHead className="w-[300px]">Name</TableHead>
               <TableHead>Price</TableHead>
               <TableHead>Category</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody className="overflow-x-scroll">
             {products.map((product, i) => (
               <TableRow key={i}>
                 <TableCell className="font-medium w-96">
@@ -66,10 +71,16 @@ const page = async () => {
                 <TableCell>{product.price}</TableCell>
                 <TableCell>{product.slug}</TableCell>
                 <TableCell className="text-right flex">
-                  <DeleteProduct id={product.id} />
+                  <Popover>
+                    <PopoverTrigger><Ellipsis /></PopoverTrigger>
+                    <PopoverContent className="w-36 bg-transparent space-y-2 border-none">
+                      <DeleteProduct id={product.id} />
 
-                  <AddProductForm actionType="edit" data={product}/>
-                  
+                      <AddProductForm actionType="edit" data={product} />
+                    </PopoverContent>
+                  </Popover>
+
+
                 </TableCell>
               </TableRow>
             ))}

@@ -21,8 +21,9 @@ const DeleteProduct = ({ id }: { id: Product["id"] }) => {
     <div>
       <AlertDialog>
         <AlertDialogTrigger asChild>
-          <Button variant="destructive" size={"icon"}>
-            <Trash />
+          <Button variant="destructive" className="w-28">
+            <Trash size={14} className="ml-2" />
+            Delete
           </Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
@@ -36,7 +37,7 @@ const DeleteProduct = ({ id }: { id: Product["id"] }) => {
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
-              
+
               onClick={async () => {
                 console.log("delete");
                 await deleteProduct(id);

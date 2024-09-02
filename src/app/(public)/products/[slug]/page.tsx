@@ -60,6 +60,7 @@ const page = async ({ params }: ParamsProps) => {
   if (!product) {
     notFound();
   }
+  console.log(product)
 
   const similarProduct = await prisma.product.findMany({
     // where: {
@@ -73,6 +74,8 @@ const page = async ({ params }: ParamsProps) => {
       slug: true,
     },
   });
+
+
 
   return (
     <>
@@ -193,10 +196,10 @@ const page = async ({ params }: ParamsProps) => {
                 <Button
                   key={i}
                   variant={"outline"}
-                  className="mt-4 bg-transparent"
+                  className="mt-4 bg-transparent capitalize"
                   size={"sm"}
                 >
-                  2 + 1
+                  {variant}
                 </Button>
               ))}
             </div>

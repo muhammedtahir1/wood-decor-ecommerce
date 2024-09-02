@@ -47,7 +47,7 @@ export function InputForm() {
       console.log("Result from signup action", result);
       if (result.success) {
         toast("Login Success");
-        router.push("/");
+        router.push("/admin");
       } else {
         console.log("Login Failed", result.error);
         toast(`Login Failed: ${result.error}`);
@@ -73,7 +73,7 @@ export function InputForm() {
     // }
   }
 
-// (TODO: see why its not working)
+  // (TODO: see why its not working)
   // const initialState = {
   //   message: "",
   // };
@@ -81,7 +81,7 @@ export function InputForm() {
   //   signInAction,
   //   initialState
   // );
-  {/* {pending ? "Submitting..." : "Sign up"} */}
+  {/* {pending ? "Submitting..." : "Sign up"} */ }
 
   return (
     <Form {...form}>

@@ -114,13 +114,13 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link
+                {/* <Link
                   href={"tel:+%20919341817975"}
                   className="text-xs flex items-center gap-1"
                 >
                   <Phone size={12} />
                   9323421423
-                </Link>
+                </Link> */}
               </li>
             </ul>
           </div>

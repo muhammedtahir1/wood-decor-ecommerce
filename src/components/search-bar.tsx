@@ -16,7 +16,7 @@ const SearchBar = () => {
     >
       <Input
         type="search"
-        className="bg-transparent ring-none  focus:border-none focus-visible:outline-none focus-visible:ring-0 focus:ring-0 border-none md:w-60 hover:outline"
+        className="bg-transparent ring-none  focus:border-none focus-visible:outline-none focus-visible:ring-0 focus:ring-0 border-none md:w-60"
         placeholder="Search products"
         name="search"
         onSubmit={() => {

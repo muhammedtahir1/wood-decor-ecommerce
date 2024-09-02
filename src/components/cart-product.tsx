@@ -1,14 +1,16 @@
+"use client"
 import Image from "next/image";
 import { BsDashCircle } from "react-icons/bs";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { FiHeart } from "react-icons/fi";
 import { TCartProduct } from "@/store/cart";
+import { Button } from "./ui/button";
 
-export default function CartProduct({ item }: { item: TCartProduct }) {
-  const { image, title, price } = item;
+export default function CartProduct({ item, removeItemFromCart }: { item: TCartProduct, removeItemFromCart: any }) {
+  const { image, title, price, id } = item;
   return (
-    <div className="px-4  flex  gap-4 items-center mt-10 border py-4  rounded-xl h-32   text-black bg-white/70">
+    <div className="px-4  flex  gap-4 items-center mt-6 md:mt-10 border py-4  rounded-xl h-32 text-black bg-white/70">
       <div className="max-size-[100px] border rounded-xl">
         <Image
           src={image}
@@ -30,14 +32,17 @@ export default function CartProduct({ item }: { item: TCartProduct }) {
         </div>
 
         <div className="flex items-center gap-24">
-          <div className="flex items-center gap-2">
+          {/* <div className="flex items-center gap-2">
             <BsDashCircle size={16} />
             <p className="text-sm">2</p>
             <IoIosAddCircleOutline size={18} />
-          </div>
+          </div> */}
           <div className="flex items-center gap-2">
-            <MdDelete />
-            <FiHeart />
+            <Button onClick={() => removeItemFromCart(id)} variant={"ghost"} className="rounded-full" size={"icon"}>
+
+              <MdDelete className="text-red-500" />
+            </Button>
+            {/* <FiHeart /> */}
           </div>
         </div>
       </div>

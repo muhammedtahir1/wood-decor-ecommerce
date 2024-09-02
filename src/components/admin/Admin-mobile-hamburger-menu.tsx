@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 type MenuItem = {
   id: string;
@@ -18,7 +17,7 @@ type A = MenuItem & {
 const menuItems: MenuItem[] = [
   {
     id: "1",
-    label: "SOFAS",
+    label: "",
     children: [
       {
         id: "1-1",
@@ -86,7 +85,6 @@ export default function HamburgerMenu() {
     const isExpanded = expandedItems.has(item.id);
     return (
       <div key={item.id} className="border-b border-gray-200">
-        <Link href={"item"}></Link>
         <button
           onClick={() => toggleItem(item.id)}
           className="flex items-center justify-between w-full py-2 px-4 text-left"
