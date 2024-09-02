@@ -28,6 +28,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { AdminBreadCrumbComponent } from "../../layout";
 
 const page = async () => {
   const products = await prisma.product.findMany();
@@ -35,8 +36,9 @@ const page = async () => {
   return (
     <main>
       <section className="max-w-5xl mx-auto">
+        <AdminBreadCrumbComponent slug="Products" />
+        <h1 className="mt-2">All Products</h1>
         {/* Write typography css file to maintain typo consistency */}
-        <h1>All Products</h1>
 
         {/* <Card className="my-2">
           <CardHeader className="pb-2">

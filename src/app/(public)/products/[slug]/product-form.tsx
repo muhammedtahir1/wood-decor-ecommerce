@@ -7,7 +7,6 @@ import * as z from "zod";
 
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import BuyNowBtn from "@/components/buy-now-btn";
@@ -47,47 +46,50 @@ export default function FormSelector({ colors, variants, product }: { colors: st
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         {/* Color Selection */}
-        <FormField
-          control={form.control}
-          name="color"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-base font-medium">Color</FormLabel>
-              <FormControl>
-                <RadioGroup
-                  value={field.value}
-                  onValueChange={field.onChange}
-                  className="flex min-h-10 space-x-2 items-center "
-                >
-                  {finalColors.map((color) => (
-                    <FormItem key={color.value} className="flex flex-col items-center">
-                      <FormControl>
-                        <RadioGroupItem
-                          value={color.value}
-                          id={color.value}
-                          className="sr-only"
-                        />
-                      </FormControl>
-                      <FormLabel htmlFor={color.value}>
-                        <div
-                          className={cn(
-                            `h-8 w-8 rounded-full ${color.class} cursor-pointer transition-all duration-200 ease-in-out hover:ring-2 hover:ring-offset-2 hover:ring-black relative`,
-                            {
-                              "size-9 ring-2 ring-black": field.value === color.value,
-                            }
-                          )}
-                        >
-                          {field.value === color.value && <Check size={12} className="absolute left-1/3 top-1/3 text-white" />}
-                        </div>
-                      </FormLabel>
-                    </FormItem>
-                  ))}
-                </RadioGroup>
-              </FormControl>
-            </FormItem>
-          )}
-        />
 
+        {colors.length > 0 && (
+
+          <FormField
+            control={form.control}
+            name="color"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-base font-medium">Color</FormLabel>
+                <FormControl>
+                  <RadioGroup
+                    value={field.value}
+                    onValueChange={field.onChange}
+                    className="flex min-h-10 space-x-2 items-center "
+                  >
+                    {finalColors.map((color) => (
+                      <FormItem key={color.value} className="flex flex-col items-center">
+                        <FormControl>
+                          <RadioGroupItem
+                            value={color.value}
+                            id={color.value}
+                            className="sr-only"
+                          />
+                        </FormControl>
+                        <FormLabel htmlFor={color.value}>
+                          <div
+                            className={cn(
+                              `h-8 w-8 rounded-full ${color.class} cursor-pointer transition-all duration-200 ease-in-out hover:ring-2 hover:ring-offset-2 hover:ring-black relative`,
+                              {
+                                "size-9 ring-2 ring-black": field.value === color.value,
+                              }
+                            )}
+                          >
+                            {field.value === color.value && <Check size={12} className="absolute left-1/3 top-1/3 text-white" />}
+                          </div>
+                        </FormLabel>
+                      </FormItem>
+                    ))}
+                  </RadioGroup>
+                </FormControl>
+              </FormItem>
+            )}
+          />
+        )}
         {/* Variant Selection */}
         {variants.length > 0 && (
           <FormField
@@ -102,7 +104,7 @@ export default function FormSelector({ colors, variants, product }: { colors: st
                     onValueChange={field.onChange}
                     className="flex min-h-10 space-x-2 items-center"
                   >
-                    {["2+1", "L shaped"].map((variant) => (
+                    {variants.map((variant) => (
                       <FormItem key={variant} className="flex flex-col items-center">
                         <FormControl>
                           <RadioGroupItem
@@ -133,18 +135,9 @@ export default function FormSelector({ colors, variants, product }: { colors: st
           />
         )}
         <div className="flex gap-x-4 mt-4">
-          {/* 
-          product title
-          image
-          variant
-          color
-          price
-          
-          */}
           <BuyNowBtn product={{ ...product, variant: form.getValues("variant"), color: form.getValues("color") }} />
           <AddToCartBtn product={{ ...product, variant: form.getValues("variant"), color: form.getValues("color") }} />
         </div>
-        <Button type="submit">Choose</Button>
       </form>
     </Form>
   );

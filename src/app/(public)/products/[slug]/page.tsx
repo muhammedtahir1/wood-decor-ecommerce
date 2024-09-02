@@ -90,7 +90,7 @@ const page = async ({ params }: ParamsProps) => {
               alt="sofa"
               width={600}
               height={600}
-              className="rounded-lg "
+              className="rounded-t-xl"
             />
           </div>
           <div className="md:space-x-5 space-x-1 flex mx-auto">
@@ -163,6 +163,10 @@ const page = async ({ params }: ParamsProps) => {
               <EachProduct key={product.slug} data={product} />
             ))}
           </section>
+          <Link href={`/categories/${product.category}`}>
+            <Button className="mb-10 md:mb-20" variant={"fullRounded"}>See more ...</Button>
+          </Link>
+
         </div>
       )}
 
@@ -210,11 +214,11 @@ function EachProduct({
   const { slug, image, title, price } = data;
 
   return (
-    <Card className="w-40 rounded-xl md:w-52  h-[260px] mx-auto bg-white/40 col-span-1 row-span-1 overflow-hidden">
-      <CardHeader className="h-[64%] py-4 px-6 items-center overflow-hidden">
+    <Card className="w-40 rounded-xl md:w-52  h-[230px] mx-auto bg-white/40 col-span-1 row-span-1 overflow-hidden justify-normal">
+      <CardHeader className="h-[64%] pb-4 pt-0 px-6 items-center overflow-hidden ">
         <Link
           href={`/products/${slug}`}
-          className="rounded-xl  mb-2 w-[150px] h-[160px] hover:scale-105 transition-all duration-300"
+          className="rounded-xl  mb-2 w-[155px] h-[160px] hover:scale-105 transition-all duration-300"
         >
           <Image
             className="h-full w-full object-cover rounded-lg"
@@ -227,14 +231,10 @@ function EachProduct({
       </CardHeader>
       <CardContent>
         <div className="mt-3 md:mt-2">
-          <h3 className="text-sm md:text-lg font-bold truncate text-wrap">
+          <h3 className="text-base font-gt md:text-lg  truncate text-wrap line-clamp-2">
             {title}
           </h3>
-          {/* <h2 className="opacity-80">
-            <span className="text-xl font-semibold">Rs.</span>
-            {price}
-          </h2> */}
-        </div>{" "}
+        </div>
       </CardContent>
     </Card>
   );

@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { auth } from "@/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import HamburgerMenu from "@/components/admin/Admin-mobile-hamburger-menu";
+import AdminMenuBar from "@/components/admin/Admin-mobile-hamburger-menu";
 
 const layout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
@@ -78,8 +79,10 @@ const layout = async ({ children }: { children: ReactNode }) => {
         </section>
       </aside>
       <div className="md:min-h-screen w-full px-5 md:px-10">
-        <header className="flex justify-between border-b mb-5 py-3 items-center px-10">
-          <BreadCrumbComponent slug="Products" />
+
+        <header className="flex justify-between border-b mb-5 py-3 items-center md:px-10">
+          <AdminMenuBar />
+          
           <AddProductForm actionType="add" />
         </header>
         {children}
@@ -91,7 +94,7 @@ const layout = async ({ children }: { children: ReactNode }) => {
 
 export default layout;
 
-function BreadCrumbComponent({ slug }: { slug: string }) {
+export function AdminBreadCrumbComponent({ slug }: { slug: string }) {
   return (
     <Breadcrumb>
       <BreadcrumbList>

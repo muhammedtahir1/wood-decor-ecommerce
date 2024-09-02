@@ -36,6 +36,7 @@ const addProduct = async (formData: TFormData) => {
         image: formData.image as string,
         colors: formData.colors as string[],
         variants: formData.variants as string[],
+        isFeatured: formData.isFeatured as boolean,
       },
     });
 
@@ -83,6 +84,7 @@ const editProduct = async (id: Product["id"], formData: TFormData) => {
         image: formData.image as string,
         colors: formData.colors as string[],
         variants: formData.variants as string[],
+        isFeatured: formData.isFeatured as boolean,
       },
     });
   } catch (error) {

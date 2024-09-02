@@ -19,11 +19,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { AdminBreadCrumbComponent } from "../../layout";
 
 const page = async () => {
   const orders = await prisma.order.findMany();
   return (
     <div>
+      <AdminBreadCrumbComponent slug="orders" />
+
       <h1>Orders</h1>
       <Table>
         <TableCaption>A list of your recent invoices.</TableCaption>
