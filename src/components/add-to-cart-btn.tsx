@@ -1,7 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import useCartStore, { TCartProduct } from "@/store/cart";
-import { Product } from "@prisma/client";
 import { CircleCheck, TicketCheckIcon } from "lucide-react";
 import React from "react";
 
@@ -10,7 +9,7 @@ const AddToCartBtn = ({ product }: { product: TCartProduct }) => {
   const [isAddingToCart, setIsAddingToCart] = React.useState(false);
   return (
     <Button
-      className="flex-1 md:flex-none transition-all duration-300"
+      className="flex-1 md:flex-none transition-all duration-300 px-1 py-1 md:px-4 md:py-4 text-xs md:text-sm"
       onClick={() => {
         addItemToCart(product);
         setIsAddingToCart(true);

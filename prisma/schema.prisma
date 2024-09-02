@@ -16,7 +16,8 @@ model Product {
   discountedPrice Int?
   category        String?
   image           String
-  features        String[]
+  // features        String[]
+  variants        String[]
   colors          String[]
   label           String?
   isFeatured      Boolean  @default(false)
@@ -38,3 +39,8 @@ model Order {
   createdAt   DateTime  @default(now())
   products    Product[]
 }
+
+
+// cart
+// - product
+// quantity 

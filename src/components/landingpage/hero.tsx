@@ -40,3 +40,16 @@ function Hero() {
 }
 
 export default Hero;
+/*
+  title           ✅
+  slug            ✅
+  description     ✅
+  category        ✅
+  image           ✅
+  label           ✅
+  price           
+  discountedPrice 
+  colors          
+  isFeatured        
+
+*/

@@ -30,10 +30,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { addProduct } from "@/actions/admin.action";
+import { addProduct, editProduct } from "@/actions/admin.action";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { CheckboxReactHookFormMultiple } from "./test-checkbox";
+import { Product } from "@prisma/client";
+import { ClipboardPen } from "lucide-react";
+import VariantForm from "./variants-form";
+import UploadProductImageAdmin from "@/components/upload-image-admin";
 
 const colors_options = [
   {
@@ -60,13 +64,17 @@ const colors_options = [
 ] as const;
 
 const formSchema = z.object({
-  title: z.string().min(2, {
-    message: "title must be at least 2 characters.",
-  }),
+  title: z
+    .string()
+    .min(2, {
+      message: "title must be at least 2 characters.",
+    })
+    .max(70, { message: "title max length 70 chars" }),
   price: z.coerce.number().int().positive(),
   description: z
     .string()
     .min(10, { message: "description must be at least 10 characters." })
+    .max(300, { message: "description max length 300 chars" })
     .optional(),
   // how do we include 0 as a valid value?
   discountedPrice: z.coerce.number().int().min(0).optional(),
@@ -76,36 +84,53 @@ const formSchema = z.object({
   }),
   category: z.string().optional(),
   image: z.string().optional(),
+  variants: z.array(z.string()).optional(),
 });
 
-export default function AddProductForm() {
+export default function AddProductForm({
+  actionType,
+  data,
+}: {
+  actionType: "add" | "edit";
+  data?: Product;
+}) {
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: "",
-      price: 0,
-      description: "",
-      discountedPrice: 0,
-      isFeatured: false,
-      colors: ["black"],
-      category: "",
-      image: "",
+      title: actionType === "edit" ? data?.title : "",
+      price: actionType === "edit" ? data?.price : 0,
+      description: actionType === "edit" ? (data?.description as string) : "",
+      isFeatured: actionType === "edit" ? data?.isFeatured : false,
+      colors: actionType === "edit" ? data?.colors : [],
+      variants: actionType === "edit" ? data?.variants : [],
+      category: actionType === "edit" ? (data?.category as string) : "",
+      image: actionType === "edit" ? data?.image : "",
+      discountedPrice:
+        actionType === "edit" ? Number(data?.discountedPrice) : 0,
     },
   });
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     console.log(values);
-
-    await addProduct(values);
+    return;
+    if (actionType === "edit") {
+      await editProduct(data!.id, values);
+    } else {
+      await addProduct(values);
+    }
   }
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Add Product</Button>
+        {actionType === "edit" ? (
+          <Button variant={"secondary"} size={"icon"}>
+            <ClipboardPen />
+          </Button>
+        ) : (
+          <Button>Add Product</Button>
+        )}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -139,7 +164,7 @@ export default function AddProductForm() {
                   name="image"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Product Title</FormLabel>
+                      <FormLabel>Product Link</FormLabel>
                       <FormControl>
                         <Input placeholder="Pinterest Img URL" {...field} />
                       </FormControl>
@@ -147,6 +172,7 @@ export default function AddProductForm() {
                     </FormItem>
                   )}
                 />
+                <UploadProductImageAdmin />
                 <div className="flex w-full justify-between">
                   <FormField
                     control={form.control}
@@ -208,6 +234,8 @@ export default function AddProductForm() {
                     </FormItem>
                   )}
                 />
+                {/* Form field variants which takes input and adds variant form */}
+                <VariantForm form={form} />
                 <FormField
                   control={form.control}
                   name="colors"

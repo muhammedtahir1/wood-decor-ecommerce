@@ -1,8 +1,8 @@
 "use client";
+
 import React from "react";
 import { Button } from "./ui/button";
 import useCartStore, { TCartProduct } from "@/store/cart";
-import { Product } from "@prisma/client";
 import { useRouter } from "next/navigation";
 
 const BuyNowBtn = ({ product }: { product: TCartProduct }) => {
@@ -14,7 +14,7 @@ const BuyNowBtn = ({ product }: { product: TCartProduct }) => {
         addItemToCart(product);
         router.push("/cart");
       }}
-      className="w-full"
+      className="w-full px-1 py-0 md:px-3 md:py-2 text-xs md:text-sm"
     >
       Buy Now
     </Button>

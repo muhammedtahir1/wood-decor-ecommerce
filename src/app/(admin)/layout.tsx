@@ -21,7 +21,7 @@ const layout = async ({ children }: { children: ReactNode }) => {
     // Fix hydration warning
     <div>
       <div className="flex">
-        <aside className="md:w-60 bg-primary text-white border-r py-2 mr-2 flex flex-col px-4 md:min-h-[80vh] justify-between">
+        <aside className="md:w-60 bg-primary text-white border-r py-2 mr-2 md:flex flex-col px-4 md:min-h-[80vh] justify-between hidden">
           <section>
             <div className="flex justify-between items-center">
               <h3 className="text-center mb-5 mt-2">Admin</h3>
@@ -77,7 +77,7 @@ const layout = async ({ children }: { children: ReactNode }) => {
         <div className="md:min-h-screen w-full">
           <header className="flex justify-between border-b mb-5 py-3 items-center px-10">
             <BreadCrumbComponent slug="Products" />
-            <AddProductForm />
+            <AddProductForm actionType="add" />
           </header>
           {children}
         </div>

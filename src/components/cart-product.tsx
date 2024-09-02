@@ -3,7 +3,6 @@ import { BsDashCircle } from "react-icons/bs";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { FiHeart } from "react-icons/fi";
-import { Product } from "@prisma/client";
 import { TCartProduct } from "@/store/cart";
 
 export default function CartProduct({ item }: { item: TCartProduct }) {
@@ -21,7 +20,7 @@ export default function CartProduct({ item }: { item: TCartProduct }) {
       </div>
 
       <div className="space-y-2">
-        <div className="flex justify-between items-center gap-6 ">
+        <div className="flex justify-between items-center gap-4 ">
           <h1 className="text-base md:text-lg font-bold text-ellipsis overflow-hidden max-w-52 whitespace-nowrap text-left">
             {title}
           </h1>
@@ -29,8 +28,7 @@ export default function CartProduct({ item }: { item: TCartProduct }) {
             ₹{price}
           </p>
         </div>
-        {/* <p className="text-sm opacity-55">New in Bangalore</p> */}
-        {/* <p className="text-sm opacity-55">Color : Cream</p> */}
+
         <div className="flex items-center gap-24">
           <div className="flex items-center gap-2">
             <BsDashCircle size={16} />

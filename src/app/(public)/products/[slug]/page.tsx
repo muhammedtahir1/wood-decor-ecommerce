@@ -2,7 +2,6 @@ import prisma from "@/lib/db";
 import { notFound } from "next/navigation";
 import React from "react";
 import "@/styles/typography.css";
-import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/landingpage/footer";
@@ -15,8 +14,14 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Checkbox } from "@/components/ui/checkbox";
+
 import Link from "next/link";
 import { Metadata } from "next";
+import BuyNowBtn from "@/components/buy-now-btn";
+import Image from "next/image";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Product } from "@prisma/client";
 
 export async function generateMetadata({
   params,
@@ -43,7 +48,6 @@ type ParamsProps = {
   };
 };
 
-
 const page = async ({ params }: ParamsProps) => {
   const slug = params.slug;
 
@@ -56,6 +60,19 @@ const page = async ({ params }: ParamsProps) => {
   if (!product) {
     notFound();
   }
+
+  const similarProduct = await prisma.product.findMany({
+    // where: {
+    //   category: product.category,
+    // },
+    take: 4,
+    select: {
+      image: true,
+      title: true,
+      price: true,
+      slug: true,
+    },
+  });
 
   return (
     <>
@@ -104,40 +121,103 @@ const page = async ({ params }: ParamsProps) => {
           >
             {product.category}
           </Badge>
-          <h1 className="text-4xl capitalize tracking-tight font-gt">
+          <h1 className="text-2xl md:text-4xl capitalize font-gt">
             {product.title}
           </h1>
           {/* <p className="text-sm">9.2k Reviews</p> */}
-          {product.discountedPrice ? (
-            <h2>
-              <span className="font-light text-xl line-through">
-                ${product.price}
-              </span>{" "}
-              ${product.discountedPrice}
-            </h2>
+
+          {product.discountedPrice && product.discountedPrice > 0 ? (
+            <div className="flex items-center gap-2">
+              <h3 className=" scale-90">
+                <span className="font-light opacity-80 relative">
+                  ₹{product.price}
+                  <span className="absolute left-2 bottom-4 -rotate-12 w-20 h-[1px] bg-red-600" />
+                </span>
+              </h3>
+              <p className="font-semibold flex gap-2 scale-105">
+                ₹{product.discountedPrice}
+              </p>
+            </div>
           ) : (
             <h2>₹{product.price}</h2>
           )}
-          <h3 className="text-lg ">Description</h3>
-          <p className="text-sm font-light leading-4 max-w-lg">
-            Bring Axis home and watch life revolve around it. This 2-seat sofa
-            offers exceptional durability for family rooms and casual living
-            rooms, featuring track arms that <span>Read more...</span>
+          <h3 className="text-sm md:text-lg">Description</h3>
+          <p className="text-[15px] text-[#1a1a1a]  leading-5 max-w-lg">
+            {product.description}
           </p>
-          <p className="text-base mt-2 tracking-tight capitalize">
-            3 Color Available
-          </p>
-          <div className="flex gap-1">
-            <div className="h-6 w-6 rounded-full border-2 bg-slate-600"></div>
-            <div className="h-6 w-6 rounded-full border-2 bg-cyan-600"></div>
-            <div className="h-6 w-6 rounded-full border-2 bg-lime-500"></div>
-          </div>
+
+          {/* TODO */}
+          {product.colors && (
+            <>
+              <p className="text-base mt-2 tracking-tight capitalize">
+                {product.colors.length} Color Available
+              </p>
+              <div className="flex gap-1">
+                {product.colors.map((color, i) => {
+                  if (color === "black")
+                    return (
+                      <div
+                        key={i}
+                        className="size-8 rounded-full border-2 bg-black"
+                      ></div>
+                    );
+                  if (color === "white")
+                    return (
+                      <div
+                        key={i}
+                        className="size-8 rounded-full border-2 bg-white"
+                      ></div>
+                    );
+                  if (color === "blue")
+                    return (
+                      <div
+                        key={i}
+                        className="size-8 rounded-full border-2 bg-[#002366]"
+                      ></div>
+                    );
+                  if (color === "red")
+                    return (
+                      <div
+                        className="size-8 rounded-full border-2 bg-red-700"
+                        key={i}
+                      ></div>
+                    );
+                })}
+                <p className="text-xs">Let us know on note</p>
+              </div>
+            </>
+          )}
+          {product.variants.length > 0 && (
+            <div className="flex flex-wrap gap-1">
+              {product.variants.map((variant, i) => (
+                <Button
+                  key={i}
+                  variant={"outline"}
+                  className="mt-4 bg-transparent"
+                  size={"sm"}
+                >
+                  2 + 1
+                </Button>
+              ))}
+            </div>
+          )}
           <div className="flex gap-x-4 mt-4">
-            <Button className="md:w-80 flex-1 md:flex-none">Buy Now</Button>
+            <BuyNowBtn product={product} />
             <AddToCartBtn product={product} />
           </div>
         </div>
       </main>
+      {similarProduct.length > 0 && (
+        <div className="flex flex-col items-center justify-center mt-16 md:mt-24 px-10 pt-10 gap-10 border-t">
+          <h1>Similar products</h1>
+          <section className="grid grid-cols-2 md:grid-cols-4 gap-10">
+            {similarProduct.map((product) => (
+              <EachProduct key={product.slug} data={product} />
+            ))}
+          </section>
+        </div>
+      )}
+
       <Footer />
     </>
   );
@@ -168,3 +248,46 @@ const page = async ({ params }: ParamsProps) => {
 // }
 
 export default page;
+
+function EachProduct({
+  data,
+}: {
+  data: {
+    image: Product["image"];
+    title: Product["title"];
+    price: Product["price"];
+    slug: Product["slug"];
+  };
+}) {
+  const { slug, image, title, price } = data;
+
+  return (
+    <Card className="w-40 rounded-xl md:w-52  h-[260px] mx-auto bg-white/40 col-span-1 row-span-1 overflow-hidden">
+      <CardHeader className="h-[64%] py-4 px-6 items-center overflow-hidden">
+        <Link
+          href={`/products/${slug}`}
+          className="rounded-xl  mb-2 w-[150px] h-[160px] hover:scale-105 transition-all duration-300"
+        >
+          <Image
+            className="h-full w-full object-cover rounded-lg"
+            width={150}
+            height={160}
+            src={image}
+            alt="Sofa set"
+          />
+        </Link>
+      </CardHeader>
+      <CardContent>
+        <div className="mt-3 md:mt-2">
+          <h3 className="text-sm md:text-lg font-bold truncate text-wrap">
+            {title}
+          </h3>
+          {/* <h2 className="opacity-80">
+            <span className="text-xl font-semibold">Rs.</span>
+            {price}
+          </h2> */}
+        </div>{" "}
+      </CardContent>
+    </Card>
+  );
+}
