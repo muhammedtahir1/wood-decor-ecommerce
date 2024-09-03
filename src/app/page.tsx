@@ -17,7 +17,6 @@ export default async function Home() {
       <Hero2/>
       <Category />
       <Featured />
-      <h1 className="text-center mt-2">Gallery</h1>
       <GridDesign/>
       {/* <OfferSection /> */}
       <Footer />

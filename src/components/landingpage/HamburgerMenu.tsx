@@ -60,9 +60,9 @@ const menuItems: MenuItem[] = [
     id: "4",
     label: "DINING",
     children: [
-      { id: "4-1", label: "Wooden Dinings", href: "/categories/wooden dinings" },
+      { id: "4-1", label: "Wooden Dinings", href: "/categories/wooden dining" },
 
-      { id: "4-2", label: "PVD Dinings", href: "/categories/pvd_dining" },
+      { id: "4-2", label: "PVD Dinings", href: "/categories/pvd dining" },
     ],
   },
 ]

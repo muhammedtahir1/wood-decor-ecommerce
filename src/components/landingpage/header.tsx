@@ -8,7 +8,6 @@ import { Phone, ShoppingBag, ShoppingCart } from "lucide-react";
 import { NavBarlinksMenu } from "../navbar-link-menu";
 import SearchBar from "../search-bar";
 import Logo from "./logo";
-import MobileHamburgerMenu from "../mobile-hamberger-menu";
 import HamburgerMenu from "./HamburgerMenu";
 
 const Header = () => {
@@ -44,7 +43,6 @@ const Header = () => {
             </Button>
           </Link>
 
-          {/* <MobileHamburgerMenu /> */}
           <div className="md:hidden">
 
           <HamburgerMenu/>

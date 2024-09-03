@@ -6,7 +6,7 @@ import { UploadDropzone } from "@/lib/uploadthing";
 export default function UploadProductImageAdmin() {
   return (
     <main className="text-black flex flex-col  items-center justify-between ">
-      <UploadDropzone
+      <UploadButton
       // className=" border-dashed bg-slate-300 text-black border-2 p-24 border-black/50"
         endpoint="imageUploader"
         // @ts-ignore

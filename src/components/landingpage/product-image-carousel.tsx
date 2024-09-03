@@ -40,7 +40,7 @@ const ProductImageCarousel = () => {
     <section className="mdasdf:max-w-[90vw] relative mt-10">
       {/*
        */}
-       <video className="md:w-[1100px] hover:paused transition-all duration-300 h-64 object-cover rounded-xl border md:h-80 " src={videoLink}  loop muted autoPlay/>
+       <video className="md:w-[1100px] hover:paused transition-all duration-300 h-64 object-cover rounded-xl border md:h-80 " src={videoLink}  loop muted autoPlay playsInline />
       {/* <Carousel className="hidden" setApi={setApi} opts={{ loop: false }}>
         <CarouselContent className="relative">
           <CarouselItem className="">

@@ -81,7 +81,7 @@ const page = async ({ params }: ParamsProps) => {
 
   return (
     <>
-      <main className="flex flex-col md:flex-row items-center justify-center gap-10 mt-16 md:mt-24 px-10">
+      <main className="flex flex-col md:flex-row items-center justify-center gap-10 mt-28 md:mt-32 px-10">
         <section className="space-y-2">
           {/* <BreadCrumbComponent slug={product.title} /> */}
           <div className="max-w-[400px] max-h-[400px] ">
@@ -156,9 +156,9 @@ const page = async ({ params }: ParamsProps) => {
         </div>
       </main>
       {similarProduct.length > 0 && (
-        <div className="flex flex-col items-center justify-center mt-16 md:mt-24 px-10 pt-10 gap-10 border-t">
+        <div className="flex flex-col items-center justify-center mt-16 md:mt-24 px-10 pt-10 gap-10 border-t ">
           <h1>Similar products</h1>
-          <section className="grid grid-cols-2 md:grid-cols-4 gap-10">
+          <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10">
             {similarProduct.map((product) => (
               <EachProduct key={product.slug} data={product} />
             ))}
@@ -214,7 +214,7 @@ function EachProduct({
   const { slug, image, title, price } = data;
 
   return (
-    <Card className="w-40 rounded-xl md:w-52  h-[230px] mx-auto bg-white/40 col-span-1 row-span-1 overflow-hidden justify-normal">
+    <Card className="w-[145px] rounded-xl md:w-52  h-[230px] md:h-[250px] mx-auto bg-white/40 col-span-1 row-span-1 overflow-hidden justify-normal pb-2 md:pb-4">
       <CardHeader className="h-[64%] pb-4 pt-0 px-6 items-center overflow-hidden ">
         <Link
           href={`/products/${slug}`}

@@ -8,7 +8,7 @@ import { Product } from "@prisma/client";
 import { ArrowLeft, CircleArrowLeft, CircleHelp } from "lucide-react";
 import Link from "next/link";
 
-const NUMBER_OF_PRODUCTS_TO_FETCH = 5;
+const NUMBER_OF_PRODUCTS_TO_FETCH = 4;
 
 const ClientComponent = ({ initialProducts, query }: { initialProducts: Product[], query: string }) => {
   const [products, setProducts] = useState<Product[]>(initialProducts);
@@ -40,7 +40,7 @@ const ClientComponent = ({ initialProducts, query }: { initialProducts: Product[
       <h2 className="px-6 text-xl md:text-3xl font-normal">
         Showing search results for <span className="font-bold capitalize">{query}</span>
       </h2>
-      <div className="px-4 grid grid-cols-2 md:grid-cols-4 max-w-[1280px] gap-x-2 gap-y-8 md:gap-6 mx-auto mt-10 md:mt-16 mb-10 md:mb-20">
+      <div className="flex flex-wrap max-w-[1280px] gap-x-1 gap-y-8 md:gap-4 mt-10 md:mt-16 mb-10 md:mb-20 justify-center ">
         {products.map((product, i) => (
           <ProductCard data={product} key={i} />
         ))}
@@ -51,7 +51,7 @@ const ClientComponent = ({ initialProducts, query }: { initialProducts: Product[
         </div>
       )}
       {!loading && hasMore && (
-        <Button onClick={loadMoreProducts} className="mt-4">Load More...</Button>
+        <Button onClick={loadMoreProducts} className="mb-10 md:mb-20">Load More...</Button>
       )}
       {!loading && !hasMore && products.length === 0 && (
         <div className="flex items-center justify-center gap-10 h-[90vh] flex-col">

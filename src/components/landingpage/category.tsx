@@ -38,8 +38,8 @@ export default function Category() {
     <section id="category"  className="flex flex-col items-center justify-center mt-10 md:mt-20 border-b-2">
       <div className="text-center capitalize">
         <h1 className="font-gt">Top picks for you</h1>
-        <p className="text-base opacity-80">
-          Impressive collection for your dream home
+        <p className=" text-sm md:text-base opacity-80">
+          Explore our top categories for every style
         </p>
       </div>
       <section className="flex flex-wrap gap-2 md:gap-6 justify-center mt-10 md:mt-16 mb-10 md:mb-20 ">
