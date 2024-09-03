@@ -18,11 +18,11 @@ const Header = () => {
         <div className="bg-brand-text-DEFALUT text-brand-bg-DEFALUT h-8 text-xs text-center w-full flex items-center justify-center py-1 gap-2">
           Special offers available
           <Link
-            href={"tel:+%20919341817975"}
+            href={"tel:+%20919845811388"}
             className="text-xs flex items-center gap-1"
           >
             <Phone size={12} />
-            9323421423
+            9845811388
           </Link>
         </div>
         <section className="flex justify-between py-4 md:px-10 px-3 w-full h-16 items-center">

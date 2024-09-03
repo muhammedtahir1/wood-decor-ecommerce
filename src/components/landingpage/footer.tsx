@@ -125,7 +125,7 @@ const Footer = () => {
                   className="text-xs flex items-center gap-1"
                 >
                   <Phone size={12} />
-                  9323421423
+                  9845811388
                 </Link> */}
               </li>
             </ul>

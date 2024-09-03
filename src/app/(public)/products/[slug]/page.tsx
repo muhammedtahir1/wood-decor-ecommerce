@@ -90,10 +90,10 @@ const page = async ({ params }: ParamsProps) => {
               alt="sofa"
               width={600}
               height={600}
-              className="rounded-t-xl"
+              className="rounded-xl"
             />
           </div>
-          <div className="md:space-x-5 space-x-1 flex mx-auto">
+          <div className="md:space-x-5 space-x-1  mx-auto hidden">
             <Image
               src={product.image}
               alt="sofa"
@@ -122,7 +122,7 @@ const page = async ({ params }: ParamsProps) => {
         <div className="flex flex-col gap-2 md:max-w-[500px]">
           <Badge
             variant={"default"}
-            className="w-20 flex items-center justify-center"
+            className="max-w-28 flex items-center justify-center"
           >
             {product.category}
           </Badge>
