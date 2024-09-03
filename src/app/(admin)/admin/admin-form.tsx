@@ -41,6 +41,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { CATEGORIES } from "@/lib/constants";
 import { addProduct, editProduct } from "@/actions/admin.action";
+import Image from "next/image";
 
 const colors_options = [
   {
@@ -121,7 +122,7 @@ export default function AddProductForm({
     setIsSubmitting(true);
 
     console.log(values)
-    return
+    // return
     /*
      also in title description I can see hydration errors do check
      - not working the variations
@@ -142,6 +143,7 @@ export default function AddProductForm({
         } else {
           toast.error("Something went wrong in adding the product");
         }
+
       }
     } catch (error) {
       toast.error("An unexpected error occurred");
@@ -172,6 +174,7 @@ export default function AddProductForm({
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
+
                 className="space-y-4"
               >
                 <FormField
@@ -182,8 +185,9 @@ export default function AddProductForm({
                       <FormLabel>Product Title</FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="A luxury L shaped sofa"
+                          placeholder="eg: Lshaped Sofa"
                           {...field}
+                          className="placeholder:opacity-50 focus:placeholder:opacity-0"
                         />
                       </FormControl>
                       <FormMessage />
@@ -192,6 +196,7 @@ export default function AddProductForm({
                 />
                 <FormField
                   control={form.control}
+
                   name="image"
                   render={({ field }) => (
                     <FormItem>
@@ -203,7 +208,10 @@ export default function AddProductForm({
                     </FormItem>
                   )}
                 />
-                <UploadProductImageAdmin />
+                {form.getValues("image") && <Image className="mx-auto rounded-xl"
+                  src={form.getValues("image") as string}
+                  width={90} height={90} alt={form.getValues("image") as string} />}
+                <UploadProductImageAdmin form={form} />
                 <div className="flex w-full justify-between">
                   <FormField
                     control={form.control}

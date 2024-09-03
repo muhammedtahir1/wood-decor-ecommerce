@@ -21,37 +21,37 @@ const components: { title: string; category: string, href: string }[] = [
   {
     title: "Modular Kitchen",
     category: "interiors",
-    href: "/categorie/modular kitchen",
+    href: "/categories/modular kitchen",
   },
   {
     title: "Wardrobes",
     category: "interiors",
-    href: "/categorie/wardrobes",
+    href: "/categories/wardrobes",
   },
   {
     title: "TV units",
     category: "interiors",
-    href: "/categorie/tv units",
+    href: "/categories/tv units",
   },
   {
     title: "Wooden beds",
     category: "beds",
-    href: "/categorie/wooden beds",
+    href: "/categories/wooden beds",
   },
   {
     title: "Upholstery Beds",
     category: "beds",
-    href: "/categorie/upholstery beds",
+    href: "/categories/upholstery beds",
   },
   {
     title: "Wooden dining",
     category: "dining",
-    href: "/categorie/wooden dining",
+    href: "/categories/wooden dining",
   },
   {
     title: "PVD dining",
     category: "dining",
-    href: "/categorie/pvd dining",
+    href: "/categories/pvd dining",
   },
 ];
 
@@ -79,7 +79,7 @@ export function NavBarlinksMenu() {
                 <NavigationMenuLink asChild>
                   <Link
                     className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                    href="/categorie/corner sofa"
+                    href="/categories/corner sofa"
                   >
                     <Image
                       className="h-full w-full object-cover rounded-xl"
@@ -101,10 +101,10 @@ export function NavBarlinksMenu() {
                   </Link>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/categorie/lounger sofa" title="Lounger Sofa"></ListItem>
-              <ListItem href="/categorie/wooden sofa" title="Wooden Sofa"></ListItem>
-              <ListItem href="/categorie/3+2 sofa" title="3 + 2 Sofa"></ListItem>
-              <ListItem href="/categorie/wing chairs" title="Wing Chairs"></ListItem>
+              <ListItem href="/categories/lounger sofa" title="Lounger Sofa"></ListItem>
+              <ListItem href="/categories/wooden sofa" title="Wooden Sofa"></ListItem>
+              <ListItem href="/categories/3+2 sofa" title="3 + 2 Sofa"></ListItem>
+              <ListItem href="/categories/wing chairs" title="Wing Chairs"></ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
