@@ -24,12 +24,12 @@ import { AdminBreadCrumbComponent } from "../../layout";
 const page = async () => {
   const orders = await prisma.order.findMany();
   return (
-    <div>
+    <div >
       <AdminBreadCrumbComponent slug="orders" />
 
       <h1>Orders</h1>
-      <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
+      <Table >
+        {/* <TableCaption className="mt-auto">A list of your recent invoices.</TableCaption> */}
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">createdAt</TableHead>

@@ -98,6 +98,8 @@ export default function AddProductForm({
   actionType: "add" | "edit";
   data?: Product;
 }) {
+
+  const [isOpen, setIsOpen] = useState(false);
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -122,6 +124,7 @@ export default function AddProductForm({
     setIsSubmitting(true);
 
     console.log(values)
+    
     // return
     /*
      also in title description I can see hydration errors do check
@@ -133,6 +136,7 @@ export default function AddProductForm({
         response = await editProduct(data!.id, values);
         if (response.success) {
           toast.success("Successfully edited the product");
+          setIsOpen(false);
         } else {
           toast.error("Something went wrong in editing the product");
         }
@@ -140,6 +144,8 @@ export default function AddProductForm({
         response = await addProduct(values);
         if (response.success) {
           toast.success("Successfully added the product");
+          form.reset()
+          setIsOpen(false);
         } else {
           toast.error("Something went wrong in adding the product");
         }
@@ -154,7 +160,7 @@ export default function AddProductForm({
 
 
   return (
-    <Dialog >
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         {actionType === "edit" ? (
           <Button variant={"secondary"} className="w-28">

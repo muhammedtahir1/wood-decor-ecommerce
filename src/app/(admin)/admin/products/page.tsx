@@ -55,7 +55,7 @@ const page = async () => {
           </CardFooter>
         </Card> */}
         <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
+          {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
           <TableHeader>
             <TableRow>
               <TableHead className="w-[300px]">Name</TableHead>

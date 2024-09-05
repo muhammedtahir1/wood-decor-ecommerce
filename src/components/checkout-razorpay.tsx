@@ -127,7 +127,7 @@ const CheckoutWithRazorpayAndAdmin: React.FC = () => {
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
       <Button className="w-full" onClick={handlePayment} disabled={loading}>
-        Checkout {loading && <LoaderCircle className="ml-2 animate-spin" />}
+        Buy now {loading && <LoaderCircle className="ml-2 animate-spin" />}
       </Button>
     </>
   );

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Product } from "@prisma/client";
 import { ArrowLeft, CircleArrowLeft, CircleHelp } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const NUMBER_OF_PRODUCTS_TO_FETCH = 4;
 
@@ -16,9 +17,35 @@ const ClientComponent = ({ initialProducts, query }: { initialProducts: Product[
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true); // Track if more products are available
 
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const apiProducts = await getSearchProducts({ query, take: NUMBER_OF_PRODUCTS_TO_FETCH, skip: 0 });
+        setProducts(apiProducts);
+        setOffset(NUMBER_OF_PRODUCTS_TO_FETCH); // Reset offset for new search
+        setHasMore(apiProducts.length === NUMBER_OF_PRODUCTS_TO_FETCH); // Check if more are available
+      } catch (error) {
+        console.error("Failed to load products", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (query) { // Only fetch if query exists
+      fetchProducts();
+    }
+  }, [query]); // Re-run effect on query change
+
   // Load more products
   const loadMoreProducts = async () => {
     if (!hasMore) return;
+
+    // const a = usePathname()
+    // console.log("----", a)
+
+
 
     setLoading(true);
     try {
