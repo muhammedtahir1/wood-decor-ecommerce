@@ -8,12 +8,11 @@ const Footer = () => {
   return (
     <footer
       className="px-10 mt-20 bg-black text-white"
-      // style={{ borderTop: "1px solid #ffffff20" }}
     >
       <section className="flex flex-wrap items-center justify-between py-10 md:py-16 w-full md:px-20 footer gap-7 grow ">
         <div className="flex flex-col gap-4 footer-section1">
           <h1 className="text-4xl font-medium capitalize font-gt">
-            Lets get 50% discount for <br /> all Product
+            Get 15% discount for all Product
           </h1>
           <p className="text-sm opacity-65">
             By claiming, you get a discount for one product from all available
@@ -21,19 +20,26 @@ const Footer = () => {
           </p>
 
           <div className="flex gap-2">
-            <p className="max-w-72">
-              No. 10/7, Begur Hulimavu Rd, Raghavendra Layout, Akshaya Gardens,
-              Hulimavu, Bengaluru, Karnataka 560068
-            </p>
             <Link
               href="https://maps.app.goo.gl/keBZbAcunBgA97wu9"
               target="_blank"
-              className="size-28 rounded-full overflow-hidden"
+              className="flex items-center gap-1"
             >
+              <p className="max-w-72 text-[15px] leading-snug md:text-base">
+                No. 10/7, Begur Hulimavu Rd, Raghavendra Layout, Akshaya Gardens,
+                Hulimavu, Bengaluru, Karnataka 560068
+              </p>
+
               <Image
                 src={"/map-with-destination.png"}
                 width={200}
-                className="size-full object-cover object-right"
+                className="size-28 rounded-full overflow-hidden object-cover object-right"
+                style={{
+                  maxWidth: "150px",
+                  minHeight: "120px",
+                  minWidth: "120px",
+                  objectFit: "cover",
+                }}
                 height={200}
                 alt="location"
               />
@@ -57,7 +63,7 @@ const Footer = () => {
                   Careers
                 </Link>
               </li>
-              
+
               <li>
                 <Link href="" className="opacity-75 hover:opacity-100">
                   Stories
@@ -114,13 +120,13 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link
+                {/* <Link
                   href={"tel:+%20919341817975"}
                   className="text-xs flex items-center gap-1"
                 >
                   <Phone size={12} />
-                  9323421423
-                </Link>
+                  9845811388
+                </Link> */}
               </li>
             </ul>
           </div>

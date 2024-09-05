@@ -3,11 +3,13 @@
 import prisma from "@/lib/db";
 import { Product } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+import { toast } from "sonner";
 
 type TFormData = {
   title: string;
   price: number;
   colors: string[];
+  variants?: string[];
   description?: string | undefined;
   discountedPrice?: number | undefined;
   category?: string | undefined;
@@ -33,15 +35,24 @@ const addProduct = async (formData: TFormData) => {
         discountedPrice: formData.discountedPrice,
         image: formData.image as string,
         colors: formData.colors as string[],
+        variants: formData.variants as string[],
+        isFeatured: formData.isFeatured as boolean,
       },
     });
 
-    console.log("🔥🔥🔥", newProduct);
+    // console.log("🔥🔥🔥", newProduct);
   } catch (error) {
     console.error(error);
+    return {
+      success: "Something went wrong",
+      error: error,
+    };
   }
 
   revalidatePath("/admin");
+  return {
+    success: true,
+  };
 };
 
 const deleteProduct = async (id: Product["id"]) => {
@@ -72,13 +83,22 @@ const editProduct = async (id: Product["id"], formData: TFormData) => {
         discountedPrice: formData.discountedPrice,
         image: formData.image as string,
         colors: formData.colors as string[],
+        variants: formData.variants as string[],
+        isFeatured: formData.isFeatured as boolean,
       },
     });
   } catch (error) {
     console.error(error);
+    return {
+      success: "Something went wrong",
+      error: error,
+    };
   }
 
   revalidatePath("/admin");
+  return {
+    success: true,
+  };
 };
 
 export { addProduct, deleteProduct, editProduct };

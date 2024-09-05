@@ -22,6 +22,8 @@ import BuyNowBtn from "@/components/buy-now-btn";
 import Image from "next/image";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Product } from "@prisma/client";
+import ColorSelector from "./product-form";
+import FormSelector from "./product-form";
 
 export async function generateMetadata({
   params,
@@ -60,6 +62,7 @@ const page = async ({ params }: ParamsProps) => {
   if (!product) {
     notFound();
   }
+  console.log(product)
 
   const similarProduct = await prisma.product.findMany({
     // where: {
@@ -74,9 +77,11 @@ const page = async ({ params }: ParamsProps) => {
     },
   });
 
+
+
   return (
     <>
-      <main className="flex flex-col md:flex-row items-center justify-center gap-10 mt-16 md:mt-24 px-10">
+      <main className="flex flex-col md:flex-row items-center justify-center gap-10 mt-28 md:mt-32 px-10">
         <section className="space-y-2">
           {/* <BreadCrumbComponent slug={product.title} /> */}
           <div className="max-w-[400px] max-h-[400px] ">
@@ -85,10 +90,10 @@ const page = async ({ params }: ParamsProps) => {
               alt="sofa"
               width={600}
               height={600}
-              className="rounded-lg "
+              className="rounded-xl"
             />
           </div>
-          <div className="md:space-x-5 space-x-1 flex mx-auto">
+          <div className="md:space-x-5 space-x-1  mx-auto hidden">
             <Image
               src={product.image}
               alt="sofa"
@@ -117,7 +122,7 @@ const page = async ({ params }: ParamsProps) => {
         <div className="flex flex-col gap-2 md:max-w-[500px]">
           <Badge
             variant={"default"}
-            className="w-20 flex items-center justify-center"
+            className="max-w-28 flex items-center justify-center"
           >
             {product.category}
           </Badge>
@@ -146,75 +151,22 @@ const page = async ({ params }: ParamsProps) => {
             {product.description}
           </p>
 
-          {/* TODO */}
-          {product.colors && (
-            <>
-              <p className="text-base mt-2 tracking-tight capitalize">
-                {product.colors.length} Color Available
-              </p>
-              <div className="flex gap-1">
-                {product.colors.map((color, i) => {
-                  if (color === "black")
-                    return (
-                      <div
-                        key={i}
-                        className="size-8 rounded-full border-2 bg-black"
-                      ></div>
-                    );
-                  if (color === "white")
-                    return (
-                      <div
-                        key={i}
-                        className="size-8 rounded-full border-2 bg-white"
-                      ></div>
-                    );
-                  if (color === "blue")
-                    return (
-                      <div
-                        key={i}
-                        className="size-8 rounded-full border-2 bg-[#002366]"
-                      ></div>
-                    );
-                  if (color === "red")
-                    return (
-                      <div
-                        className="size-8 rounded-full border-2 bg-red-700"
-                        key={i}
-                      ></div>
-                    );
-                })}
-                <p className="text-xs">Let us know on note</p>
-              </div>
-            </>
-          )}
-          {product.variants.length > 0 && (
-            <div className="flex flex-wrap gap-1">
-              {product.variants.map((variant, i) => (
-                <Button
-                  key={i}
-                  variant={"outline"}
-                  className="mt-4 bg-transparent"
-                  size={"sm"}
-                >
-                  2 + 1
-                </Button>
-              ))}
-            </div>
-          )}
-          <div className="flex gap-x-4 mt-4">
-            <BuyNowBtn product={product} />
-            <AddToCartBtn product={product} />
-          </div>
+          <FormSelector colors={product.colors} product={product} variants={product.variants} />
+
         </div>
       </main>
       {similarProduct.length > 0 && (
-        <div className="flex flex-col items-center justify-center mt-16 md:mt-24 px-10 pt-10 gap-10 border-t">
+        <div className="flex flex-col items-center justify-center mt-16 md:mt-24 px-10 pt-10 gap-10 border-t ">
           <h1>Similar products</h1>
-          <section className="grid grid-cols-2 md:grid-cols-4 gap-10">
+          <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10">
             {similarProduct.map((product) => (
               <EachProduct key={product.slug} data={product} />
             ))}
           </section>
+          <Link href={`/categories/${product.category}`}>
+            <Button className="mb-10 md:mb-20" variant={"fullRounded"}>See more ...</Button>
+          </Link>
+
         </div>
       )}
 
@@ -262,11 +214,11 @@ function EachProduct({
   const { slug, image, title, price } = data;
 
   return (
-    <Card className="w-40 rounded-xl md:w-52  h-[260px] mx-auto bg-white/40 col-span-1 row-span-1 overflow-hidden">
-      <CardHeader className="h-[64%] py-4 px-6 items-center overflow-hidden">
+    <Card className="w-[145px] rounded-xl md:w-52  h-[230px] md:h-[250px] mx-auto bg-white/40 col-span-1 row-span-1 overflow-hidden justify-normal pb-2 md:pb-4">
+      <CardHeader className="h-[64%] pb-4 pt-0 px-6 items-center overflow-hidden ">
         <Link
           href={`/products/${slug}`}
-          className="rounded-xl  mb-2 w-[150px] h-[160px] hover:scale-105 transition-all duration-300"
+          className="rounded-xl  mb-2 w-[155px] h-[160px] hover:scale-105 transition-all duration-300"
         >
           <Image
             className="h-full w-full object-cover rounded-lg"
@@ -279,14 +231,10 @@ function EachProduct({
       </CardHeader>
       <CardContent>
         <div className="mt-3 md:mt-2">
-          <h3 className="text-sm md:text-lg font-bold truncate text-wrap">
+          <h3 className="text-base font-gt md:text-lg  truncate text-wrap line-clamp-2">
             {title}
           </h3>
-          {/* <h2 className="opacity-80">
-            <span className="text-xl font-semibold">Rs.</span>
-            {price}
-          </h2> */}
-        </div>{" "}
+        </div>
       </CardContent>
     </Card>
   );

@@ -58,7 +58,8 @@ const VariantForm = ({ form }: { form: FormProps }) => {
                   let d;
                   if (Array.isArray(field.value)) {
                     d = [...field.value];
-                    field.onChange([...d, text]);
+                    // field.onChange([...d, text]);
+                    field.onChange([...field.value, text]);
                   }
                   setText("");
                 }}

@@ -28,15 +28,15 @@ export default function ProductCard({ data }: { data: Product }) {
   console.log(`/products/${slug}`);
 
   return (
-    <Card className="w-40 rounded-xl md:w-72 h-[300px]  md:h-[460px] mx-auto bg-white/40">
-      <CardHeader className="h-[50%] md:h-[60%] overflow-hidden">
+    <Card className="w-40 rounded-xl md:w-72 h-[300px]  md:h-[460px] mx-1  bg-white/40 ">
+      <CardHeader className="h-[50%] md:h-[60%] overflow-hidden p-0">
         <Link
           href={`/products/${slug}`}
-          className="rounded-xl md:mb-2 w-[135px] h-[135px] md:w-[250px] md:h-[260px] hover:scale-105 transition-all duration-300"
+          className="rounded-xl md:mb-2 w-[160px] h-[150px] md:w-[270px] md:h-[260px] hover:scale-105 transition-all duration-300"
         >
           <Image
-            className="h-full w-full object-cover rounded-md"
-            width={250}
+            className="h-full w-full object-contain rounded-t-xl"
+            width={270}
             height={260}
             src={image}
             alt="Sofa set"
@@ -53,7 +53,7 @@ export default function ProductCard({ data }: { data: Product }) {
             <span className="text-base md:text-xl font-semibold">Rs.</span>
             {price}
           </h2>
-          <p className="text-xs">More options</p>
+          {/* <p className="text-xs">More options</p> */}
         </div>
       </CardContent>
       <CardFooter className="space-x-1 md:space-x-4">

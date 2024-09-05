@@ -1,6 +1,7 @@
 "use client";
 
-const videoLink = "/7578552-uhd_2560_1440_30fps (1).mp4"
+const videoLink1 = "/hero_video.mp4"
+const videoLink2 = "/hero_video.webm"
 const bgs = [
   "https://images.unsplash.com/photo-1634712282287-14ed57b9cc89?q=80&w=1812&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   // "https://images.unsplash.com/photo-1680503397671-caa25818d36f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -16,7 +17,7 @@ import {
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { type CarouselApi } from "@/components/ui/carousel";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import { Badge } from "../ui/badge";
 import { WiStars } from "react-icons/wi";
@@ -40,7 +41,20 @@ const ProductImageCarousel = () => {
     <section className="mdasdf:max-w-[90vw] relative mt-10">
       {/*
        */}
-       <video className="md:w-[1100px] hover:paused transition-all duration-300 h-64 object-cover rounded-xl border md:h-80 " src={videoLink}  loop muted autoPlay/>
+
+      <Suspense fallback={
+
+        <div className="md:w-[1100px] transition-all duration-300 h-64 object-cover rounded-xl border md:h-80">
+          <Image src={"https://plus.unsplash.com/premium_photo-1683141443663-503f4140c667?q=80&w=1934&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} className=" w-full h-full" height={300} width={600} alt="hero image" />
+
+        </div>}>
+
+        <video className="md:w-[1100px] hover:paused transition-all duration-300 h-64 object-cover rounded-xl border md:h-80 " loop muted autoPlay playsInline>
+          <source src={videoLink2} type="video/webm" />
+          <source src={videoLink1} type="video/mp4" />
+
+        </video>
+      </Suspense>
       {/* <Carousel className="hidden" setApi={setApi} opts={{ loop: false }}>
         <CarouselContent className="relative">
           <CarouselItem className="">

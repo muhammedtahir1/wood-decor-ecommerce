@@ -15,11 +15,11 @@ function Hero2() {
     >
       <ProductImageCarousel />
       <section className="flex flex-col md:flex-row items-center md:w-[1100px] md:py-8 justify-between">
-        <h2 className="font-gt z-10 text-5xl font-normal shadow-sm text-brand-text-DEFALUT md:w-[50%] capitalize text-balance text-start">
+        <h2 className="font-gt z-10 text-5xl font-normal  text-brand-text-DEFALUT md:w-[50%] capitalize text-balance text-start">
           All in one furniture needs
         </h2>
         <div className="flex flex-col md:w-[50%]  md:items-end gap-1 md:gap-0 md:mt-0 mt-2">
-          <p className="md:text-end text-start max-w-3xl shadow-sm text-base  tracking-tight font-sans text-brand-text-muted z-10 leading-6 text-balance">
+          <p className="md:text-end text-start max-w-3xl  text-base  tracking-tight font-sans text-brand-text-muted z-10 leading-6 text-balance">
             Get the best furniture at the best price from the best store in the
             India, only at Wood Decor.
           </p>
