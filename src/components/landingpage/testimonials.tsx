@@ -61,7 +61,7 @@ const Testimonials = () => {
 const Testimonial = ({ data }: any) => {
   const { description, image, name, subTitle, stars } = data;
   return (
-    <Card className="bg-brand-bg/30 p-6 rounded-xl">
+    <Card className="bg-brand-bg-DEFALUT/70 p-6 rounded-xl">
       <div className="flex items-center pb-2 gap-2">
         <Avatar>
           <AvatarImage src={image} />

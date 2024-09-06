@@ -28,7 +28,7 @@ export default function ProductCard({ data }: { data: Product }) {
   console.log(`/products/${slug}`);
 
   return (
-    <Card className="w-40 rounded-xl md:w-72 h-[300px]  md:h-[460px] mx-1  bg-white/40 ">
+    <Card className="w-40 rounded-xl md:w-72 h-[300px]  md:h-[460px] mx-1  bg-white/30 ">
       <CardHeader className="h-[50%] md:h-[60%] overflow-hidden p-0">
         <Link
           href={`/products/${slug}`}

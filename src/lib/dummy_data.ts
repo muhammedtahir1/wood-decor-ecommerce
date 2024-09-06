@@ -34,6 +34,59 @@ export const backgroundImages = [
   }
 ];
 
+export const indianStates = [
+  { value: "AN", name: "Andaman and Nicobar Islands" },
+  { value: "AP", name: "Andhra Pradesh" },
+  { value: "AR", name: "Arunachal Pradesh" },
+  { value: "AS", name: "Assam" },
+  { value: "BR", name: "Bihar" },
+  {
+    value:
+      "CH", name: "Chandigarh"
+  },
+  { value: "CG", name: "Chhattisgarh" },
+  {
+    value:
+      "DD", name: "Dadra and Nagar Haveli and Daman and Diu"
+  },
+  { value: "DL", name: "Delhi" },
+  { value: "GA", name: "Goa" },
+  { value: "GJ", name: "Gujarat" },
+  { value: "HR", name: "Haryana" },
+  {
+    value: "HP", name: "Himachal Pradesh"
+  },
+  {
+    value: "JH",
+    name: "Jharkhand"
+  },
+  { value: "KA", name: "Karnataka" },
+  { value: "KL", name: "Kerala" },
+  { value: "LA", name: "Ladakh" },
+  { value: "MP", name: "Madhya Pradesh" },
+  { value: "MH", name: "Maharashtra" },
+  { value: "MN", name: "Manipur" },
+  { value: "ML", name: "Meghalaya" },
+  { value: "MZ", name: "Mizoram" },
+  { value: "NL", name: "Nagaland" },
+  {
+    value:
+      "OD", name: "Odisha"
+  },
+  { value: "PB", name: "Punjab" },
+  { value: "PY", name: "Puducherry" },
+  { value: "RJ", name: "Rajasthan" },
+  { value: "SK", name: "Sikkim" },
+  { value: "TN", name: "Tamil Nadu" },
+  { value: "TG", name: "Telangana" },
+  { value: "TR", name: "Tripura" },
+  { value: "UP", name: "Uttar Pradesh" },
+  { value: "UT", name: "Uttarakhand" },
+  {
+    value: "WB", name: "West Bengal"
+  },
+];
+
 export const allProductData = [
   {
     images: [

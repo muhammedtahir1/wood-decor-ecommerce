@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Product } from "@prisma/client";
 import { ArrowLeft, CircleArrowLeft, CircleHelp } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 const NUMBER_OF_PRODUCTS_TO_FETCH = 4;
 
@@ -33,7 +32,8 @@ const ClientComponent = ({ initialProducts, query }: { initialProducts: Product[
       }
     };
 
-    if (query) { // Only fetch if query exists
+    if (query) {
+      // Only fetch if query exists
       fetchProducts();
     }
   }, [query]); // Re-run effect on query change

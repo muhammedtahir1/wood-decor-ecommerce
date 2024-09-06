@@ -24,7 +24,7 @@ export default async function Home() {
       <Featured seeMore={true} />
       <Featured title="Sofa" desc={"All the luxury sofa"} query="sofa" />
       <Featured title="Beds" desc={"All the luxury beds"} query="bed" />
-      <Featured title="Beds" desc={"All the luxury beds"} query="dining" />
+      {/* <Featured title="Dining" desc={"All the luxury dining"} query="dining" /> */}
       <GridDesign />
       <Testimonials />
       <OfferSection />

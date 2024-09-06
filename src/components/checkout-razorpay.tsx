@@ -6,6 +6,8 @@ import { LoaderCircle } from "lucide-react";
 import { Button } from "./ui/button";
 import useCartStore from "@/store/cart";
 import { BuyNow } from "@/actions/customer.action";
+import { CheckoutForm, CustomerDataFormSchema } from "@/app/(payments)/checkout/checkout-form";
+import { z } from "zod";
 
 interface RazorpayResponse {
   razorpay_payment_id: string;
@@ -66,18 +68,18 @@ const CheckoutWithRazorpayAndAdmin: React.FC = () => {
     }
   };
 
-  const handlePayment = async () => {
+  const handlePayment = async (customerData: z.infer<typeof CustomerDataFormSchema>) => {
     setLoading(true);
     const amount = cartItems.reduce((acc, curr) => acc + curr.price, 0);
 
     try {
       const orderId = await createOrderId(amount);
 
-      const options: any = {
+      const options = {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         amount: amount * 100,
         currency: "INR",
-        name: "Your Company Name",
+        name: "Wood Decor",
         description: "Product Purchase",
         order_id: orderId,
         handler: async (response: RazorpayResponse) => {
@@ -91,16 +93,23 @@ const CheckoutWithRazorpayAndAdmin: React.FC = () => {
           const isVerified = await verifyPayment(verificationData);
 
           if (isVerified) {
-            toast.success("Payment successful!");
-            await BuyNow(cartItems);
-            clearCart();
+            const res = await BuyNow(cartItems, customerData);
+            if (res) {
+              toast.success("Payment successful!");
+              clearCart();
+            }
           } else {
             toast.error("Payment verification failed. Please contact support.");
           }
         },
         prefill: {
-          name: "Customer Name",
+          name: "",
           email: "customer@example.com",
+          address: ""
+        },
+        notes: {
+          address: "lafl;jsdflkj",
+          addres2: "lafl;jsdflkj"
         },
         theme: {
           color: "#FAFAF1",
@@ -126,9 +135,13 @@ const CheckoutWithRazorpayAndAdmin: React.FC = () => {
         id="razorpay-checkout-js"
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
-      <Button className="w-full" onClick={handlePayment} disabled={loading}>
-        Buy now {loading && <LoaderCircle className="ml-2 animate-spin" />}
-      </Button>
+
+
+      <div className="w-full" >
+        <CheckoutForm action={handlePayment} loading={loading} />
+        {/* Buy now */}
+
+      </div>
     </>
   );
 };
