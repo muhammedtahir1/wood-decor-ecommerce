@@ -67,9 +67,9 @@ const diningComponents = components.filter(
 
 export function NavBarlinksMenu() {
   return (
-    <NavigationMenu className="font-gt">
-      <NavigationMenuList className="bg-transparent">
-        <NavigationMenuItem>
+    <NavigationMenu className="font-gt bg-brand-bg-DEFALUT/50">
+      <NavigationMenuList className="bg-brand-bg-DEFALUT/50">
+        <NavigationMenuItem className="bg-brand-bg-DEFALUT/50">
           <NavigationMenuTrigger className="bg-transparent">
             Sofa
           </NavigationMenuTrigger>
@@ -109,7 +109,7 @@ export function NavBarlinksMenu() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="bg-transparent hover:scale-105 hover:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent bg-brand-bg-DEFALUT">
+          <NavigationMenuTrigger className="hover:scale-105 hover:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent bg-brand-bg-DEFALUT/50">
             Interiors
           </NavigationMenuTrigger>
           <NavigationMenuContent>

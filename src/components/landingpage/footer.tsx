@@ -100,7 +100,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="footer-section3">
-            <ul className="flex flex-col gap-2 text-sm list-none">
+            {/* <ul className="flex flex-col gap-2 text-sm list-none">
               <p className="text-base  md:text-lg font-semibold">
                 Customer Service
               </p>
@@ -120,15 +120,15 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                {/* <Link
+                <Link
                   href={"tel:+%20919341817975"}
                   className="text-xs flex items-center gap-1"
                 >
                   <Phone size={12} />
                   9845811388
-                </Link> */}
+                </Link>
               </li>
-            </ul>
+            </ul> */}
           </div>
         </div>
       </section>

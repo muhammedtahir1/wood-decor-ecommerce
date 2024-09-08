@@ -4,28 +4,29 @@ const nextConfig = {
         remotePatterns:[
             {
                 protocol: 'https',
-                hostname: 'images.unsplash.com',
+                hostname: '**',
+                // hostname: 'images.unsplash.com',
             },
-            {
-                protocol: 'https',
-                hostname: 'plus.unsplash.com',
-            },
-            {
-                protocol: 'https',
-                hostname: 'ik.imagekit.io',
-            },
-            {
-                protocol: 'https',
-                hostname: 'www.ikea.com',
-            },
-            {
-                protocol: 'https',
-                hostname: 'i.pinimg.com',
-            },
-            {
-                protocol: 'https',
-                hostname: 'utfs.io',
-            },
+            // {
+            //     protocol: 'https',
+            //     hostname: 'plus.unsplash.com',
+            // },
+            // {
+            //     protocol: 'https',
+            //     hostname: 'ik.imagekit.io',
+            // },
+            // {
+            //     protocol: 'https',
+            //     hostname: 'www.ikea.com',
+            // },
+            // {
+            //     protocol: 'https',
+            //     hostname: 'i.pinimg.com',
+            // },
+            // {
+            //     protocol: 'https',
+            //     hostname: 'utfs.io',
+            // },
         ]
     }
 };
