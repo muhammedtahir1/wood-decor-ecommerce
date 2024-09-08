@@ -35,7 +35,7 @@ const raw = [
 ];
 export default function Category() {
   return (
-    <section id="category"  className="flex flex-col items-center justify-center mt-10 md:mt-20 border-b-2">
+    <section id="category"  className="flex flex-col items-center justify-center mt-20 md:mt-28 border-b-2">
       <div className="text-center capitalize">
         <h1 className="font-gt">Top picks for you</h1>
         <p className=" text-sm md:text-base opacity-80">

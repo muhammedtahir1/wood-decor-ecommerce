@@ -1,6 +1,7 @@
 "use server";
 
 import prisma from "@/lib/db";
+import { searchProductByKeyword } from "@/lib/server-utils";
 
 const getSearchProducts = async ({
   query,
@@ -12,32 +13,8 @@ const getSearchProducts = async ({
   skip?: number;
 }) => {
   // query to get products which include the search query
-  const products = await prisma.product.findMany({
-    where: {
-      OR: [
-        {
-          title: {
-            contains: query,
-            mode: "insensitive",
-          },
-        },
-        {
-          description: {
-            contains: query,
-            mode: "insensitive",
-          },
-        },
-        {
-          category: {
-            contains: query,
-            mode: "insensitive",
-          },
-        },
-      ],
-    },
-    take,
-    skip,
-  });
+  const products = searchProductByKeyword(query, take, skip)
+
 
   return products;
 };

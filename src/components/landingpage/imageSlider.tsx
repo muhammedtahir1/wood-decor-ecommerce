@@ -32,8 +32,8 @@ const ImageSlider = () => {
     });
   }, [api]);
   return (
-    <section className="w-full md:max-w-full pb-10 md:pb-20 border-b-2 ">
-      <Carousel setApi={setApi} opts={{ loop: false }}>
+    <section className="w-full md:max-w-full pb-10 md:pb-20 border-b-2 z-10">
+      <Carousel setApi={setApi} opts={{ loop: true }}>
         <CarouselContent className="relative">
           <CarouselItem className="">
             <Image

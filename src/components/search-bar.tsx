@@ -3,7 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const SearchBar = () => {
   const router = useRouter();
@@ -11,6 +13,7 @@ const SearchBar = () => {
     <form
       action={(formData) => {
         router.push(`/search?q=${formData.get("search")}`);
+        // revalidatePath("/search")
       }}
       className="focus: flex w-48 md:w-72 max-w-sm items-center space-x-[-10px] md:space-x-1 rounded-full px-2 border "
     >

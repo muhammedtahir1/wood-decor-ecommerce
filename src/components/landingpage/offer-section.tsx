@@ -1,35 +1,37 @@
-import Image from "next/image";
-import { Button } from "../ui/button";
+import React from 'react';
+import { FaTruck, FaTshirt, FaHeadset } from 'react-icons/fa';
 
 export default function OfferSection() {
   return (
-    <div id="offer" className="px-6 w-80  mx-auto md:w-auto md:px-32 flex flex-col md:flex-row justify-center gap-4 md:gap-8 mt-10 md:mt-20 ">
-      <div className=" md:w-[60%] overflow-hidden rounded-lg">
-        <Image
-          src={
-            "https://images.unsplash.com/photo-1531303435785-3853ba035cda?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          }
-          alt="offer-image"
-          width={600}
-          height={400}
-          className="rounded-md w-full"
-        />
+    <div className="bg-black text-white py-10 px-6 md:px-24 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+      <div className="flex items-center space-x-4 w-full md:w-1/3">
+        <FaTruck className="text-3xl flex-shrink-0" />
+        <div>
+          <h3 className="font-bold text-sm md:text-base">FREE SHIPPING & Delivery</h3>
+          <p className="text-xs md:text-sm md:w-[80%]">
+            We provide free delivery across India. Please connect to Customer Support
+          </p>
+        </div>
       </div>
-      <div className="md:w-[30%] flex flex-col gap-4">
-        <h1 className="text-xl md:text-4xl font-semibold tracking-tight">
-          Find your Perfect Furniture at Wood Decor New on Tokyo
-        </h1>
-        <p className="text-sm opacity-55 w-80 leading-4">
-          Welcome to the newest Wood Decor outlet in Bammanahalli, Bangalore.
-          Step into our stylish and trendy store and discover the latest in
-          fashion and apparel. Come and experience the unique and vibrant
-          atmosphere.
-        </p>
-        <h3 className="text-xl font-semibold tracking-tight ">
-          Come and Enjoy Sale!
-        </h3>
-        <h2 className="text-5xl font-semibold">50%</h2>
-        <Button className="rounded-full">See On Maps</Button>
+
+      <div className="flex items-center space-x-4 w-full md:w-1/3">
+        <FaTshirt className="text-3xl flex-shrink-0" />
+        <div>
+          <h3 className="font-bold text-sm md:text-base">Customization Available</h3>
+          <p className="text-xs md:text-sm md:w-[80%]">
+            We provide customisation on, dimension, fabric and colour on your product orders. Please connect to Customer Support
+          </p>
+        </div>
+      </div>
+
+      <div className="flex items-center space-x-4 w-full md:w-1/3">
+        <FaHeadset className="text-3xl flex-shrink-0" />
+        <div>
+          <h3 className="font-bold text-sm md:text-base">ONLINE SUPPORT</h3>
+          <p className="text-xs md:text-sm md:w-[80%]">
+            We are available every day during business hours from 10am-8pm on WhatsApp and over phone and 24 hrs. on email support.
+          </p>
+        </div>
       </div>
     </div>
   );
