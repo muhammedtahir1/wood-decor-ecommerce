@@ -70,7 +70,7 @@ const Testimonial = ({ data }: any) => {
         <div>
           <h5 className=" font-semibold">{name}</h5>
           {/* <p className="text-xs opacity-75">{subTitle}</p> */}
-          <div className="flex">{Array.from({ length: stars }, (_, i) => i + 1).map(each => <Star size={12} className="text-amber-400 fill-amber-300"/>)}</div>
+          <div className="flex">{Array.from({ length: stars }, (_, i) => i + 1).map((each, index) => <Star key={index} size={12} className="text-amber-400 fill-amber-300"/>)}</div>
         </div>
       </div>
       <CardContent className="p-0 mt-4">

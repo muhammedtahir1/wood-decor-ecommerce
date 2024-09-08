@@ -80,6 +80,7 @@ export function CheckoutForm({ action, loading }: { action: (data: z.infer<typeo
     }
 
     return (
+        
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="w-full max-w-2xl space-y-6">
                 <FormField
@@ -162,7 +163,7 @@ export function CheckoutForm({ action, loading }: { action: (data: z.infer<typeo
                                     </FormControl>
                                     <SelectContent>
                                         {indianStates.map(state =>
-                                            <SelectItem value={state.name.replaceAll(' ', '-').toLowerCase()}>{state.name}</SelectItem>
+                                            <SelectItem key={state.name} value={state.name.replaceAll(' ', '-').toLowerCase()}>{state.name}</SelectItem>
                                         )}
                                     </SelectContent>
                                 </Select>

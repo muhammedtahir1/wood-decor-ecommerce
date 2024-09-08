@@ -6,3 +6,12 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 
+import { z } from "zod";
+
+const urlSchema = z.string().url({
+  message: "Please enter a valid URL.",
+});
+
+export function validateUrl(url: string): boolean {
+  return urlSchema.safeParse(url).success;
+}

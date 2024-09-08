@@ -42,6 +42,7 @@ import { toast } from "sonner";
 import { CATEGORIES } from "@/lib/constants";
 import { addProduct, editProduct } from "@/actions/admin.action";
 import Image from "next/image";
+import { validateUrl } from "@/lib/utils";
 
 const colors_options = [
   {
@@ -119,12 +120,13 @@ export default function AddProductForm({
 
   // 2. Define a submit handler.
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [inputImageUrl, setInputImageUrl] = useState(form.getValues("image"))
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
 
     console.log(values)
-    
+
     // return
     /*
      also in title description I can see hydration errors do check
@@ -208,15 +210,17 @@ export default function AddProductForm({
                     <FormItem>
                       <FormLabel>Product Link</FormLabel>
                       <FormControl>
-                        <Input placeholder="Pinterest Img URL" {...field} />
+                        <Input placeholder="Pinterest Img URL"  {...field} value={inputImageUrl} onChange={(e) => {
+                          setInputImageUrl(e.target.value)
+                        }} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                {form.getValues("image") && <Image className="mx-auto rounded-xl"
-                  src={form.getValues("image") as string}
-                  width={90} height={90} alt={form.getValues("image") as string} />}
+                {form.getValues("image") && validateUrl(form.getValues("image") as string) && <Image className="mx-auto rounded-xl"
+                  src={inputImageUrl as string}
+                  width={90} height={90} alt={"invalid url"} />}
                 <UploadProductImageAdmin form={form} />
                 <div className="flex w-full justify-between">
                   <FormField
