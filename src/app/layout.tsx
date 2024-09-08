@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import localFont from "@next/font/local";
 import Header from "@/components/landingpage/header";
 import Footer from "@/components/landingpage/footer";
+import { siteConfig } from "@/lib/site";
 // import callFont from "./CalSans-SemiBold.woff2";
 
 const gt_haptik = localFont({
@@ -45,6 +46,7 @@ export const metadata: Metadata = {
   description: "A Store for all your wood needs",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -52,6 +54,32 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+        <meta property="og:title" content="Your Page Title" />
+        <meta property="og:description" content={siteConfig.description} />
+        <meta property="og:image" content={siteConfig.ogImage} />
+        <meta property="og:url" content={siteConfig.url} />
+        <meta property="og:type" content="website" />
+
+        {/* TODO'
+         - Add title and meta deta for each product page
+         - 
+        
+        */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": siteConfig.name,
+              "url": siteConfig.url
+            })
+          }}
+        />
+      </head>
       <body
         className={`${inter.className} trash:bg-[#ece8e17e] bg-brand-bg-DEFALUT text-brand-text-DEFALUT font-buch ${gt_haptik.variable}`}
       >

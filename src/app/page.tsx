@@ -12,16 +12,29 @@ import GridDesign from "@/components/landingpage/grid-design";
 
 export default async function Home() {
   return (
-    <main>
-      <Header />
-      {/* <Hero /> */}
-      <Hero2/>
-      {/* <ZoomedOnHoverImage src="https://utfs.io/f/6159f064-3415-4f8c-8d8d-e9f8a3d8bdd4-q34aag.jpeg" alt="hi" /> */}
-      <Category />
-      <Featured />
-      <GridDesign/>
-      {/* <OfferSection /> */}
-      <Footer />
-    </main>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Your Website Name",
+            "url": "https://yourdomain.com"
+          })
+        }}
+      />
+      <main>
+        <Header />
+        {/* <Hero /> */}
+        <Hero2 />
+        {/* <ZoomedOnHoverImage src="https://utfs.io/f/6159f064-3415-4f8c-8d8d-e9f8a3d8bdd4-q34aag.jpeg" alt="hi" /> */}
+        <Category />
+        <Featured />
+        <GridDesign />
+        {/* <OfferSection /> */}
+        <Footer />
+      </main>
+    </>
   );
 }
