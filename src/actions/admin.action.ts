@@ -17,6 +17,40 @@ type TFormData = {
   isFeatured?: boolean | undefined;
 };
 
+const getProducts = async ({ take, skip }: { take: number; skip: number }) => {
+  // Add try and catch
+  const products = await prisma.product.findMany({
+    take,
+    skip,
+  });
+  console.log("🔥🔥🔥", products);
+  return products;
+};
+
+const getOrders = async ({ take, skip }: { take: number; skip: number }) => {
+  const orders = await prisma.order.findMany({
+    take,
+    skip,
+    include: {
+      orderItems: {
+        include: {
+          product: {
+            select: {
+              id: true,
+              image: true,
+              title: true,
+              slug: true,
+              price: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  return orders;
+};
+
 const addProduct = async (formData: TFormData) => {
   // console.log("Action running ✔✔✔✔");
 
@@ -101,4 +135,4 @@ const editProduct = async (id: Product["id"], formData: TFormData) => {
   };
 };
 
-export { addProduct, deleteProduct, editProduct };
+export { addProduct, deleteProduct, editProduct, getProducts, getOrders };

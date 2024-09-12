@@ -16,6 +16,32 @@ type P = {
 
 type C = Pick<P, "id" | "title" | "price" | "image">;
 
+
+export const colors_options = [
+  {
+    id: "red",
+    label: "Red",
+  },
+  {
+    id: "blue",
+    label: "Blue",
+  },
+
+  {
+    id: "black",
+    label: "Black",
+  },
+  {
+    id: "white",
+    label: "White",
+  },
+  {
+    id: "other",
+    label: "Let us know on call",
+  },
+] as const;
+
+
 export const backgroundImages = [
   {
     src: "https://images.unsplash.com/photo-1680503397671-caa25818d36f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",

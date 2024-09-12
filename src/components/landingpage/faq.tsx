@@ -36,7 +36,7 @@ const Faq = () => {
       id="faq"
       className="mt-6 md:mt-10  px-6 flex flex-col justify-center items-center gap-3"
     >
-      <h2>FAQ&apos;s</h2>
+      <h2 className="font-gt">FAQ&apos;s</h2>
       <Accordion type="single" className="md:w-[600px] mx-auto" collapsible>
         {faqs.map((faq, i) => (
           <AccordionItem key={i} value={`item-${i}`}>

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Product } from "@prisma/client";
 import { ArrowLeft, CircleArrowLeft, CircleHelp } from "lucide-react";
 import Link from "next/link";
+import { ImSpinner6 } from "react-icons/im";
 
 const NUMBER_OF_PRODUCTS_TO_FETCH = 4;
 
@@ -74,7 +75,7 @@ const ClientComponent = ({ initialProducts, query }: { initialProducts: Product[
       </div>
       {loading && (
         <div className="flex justify-center items-center mt-4">
-          <CircleArrowLeft className="animate-spin" size={24} />
+          <ImSpinner6 className="animate-spin" size={24} />
         </div>
       )}
       {!loading && hasMore && (

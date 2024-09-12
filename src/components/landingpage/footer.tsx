@@ -135,10 +135,19 @@ const Footer = () => {
 
       <section className="py-4 border-t-2 flex items-center justify-between md:px-20">
         <Logo type="full" />
-        <nav className="flex  gap-4">
+        <nav className="flex  gap-4 items-center">
           <p className=" text-xs">Your privacy choices</p>
           <p className=" text-xs">Privacy Policy</p>
           <p className=" text-xs">Terms of Use</p>
+          <Link target="_blank" href={"https://www.unicornspace.tech/"} className=" text-xs flex items-center">Made by<Image
+            width={20}
+            height={20}
+            quality={100}
+            src="/unicorn-space-logo-white-256x256.webp"
+            className="inline-block ml-1"
+            alt=""
+          /> UnicornSpace</Link>
+
         </nav>
       </section>
     </footer>

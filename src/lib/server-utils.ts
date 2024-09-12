@@ -12,12 +12,12 @@ export const searchProductByKeyword = async (query: string, take: number, skip: 
                         mode: "insensitive",
                     },
                 },
-                {
-                    description: {
-                        contains: query,
-                        mode: "insensitive",
-                    },
-                },
+                // {
+                //     description: {
+                //         contains: query,
+                //         mode: "insensitive",
+                //     },
+                // },
                 {
                     category: {
                         contains: query,

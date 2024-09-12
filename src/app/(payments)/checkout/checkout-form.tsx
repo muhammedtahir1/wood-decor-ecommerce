@@ -90,7 +90,7 @@ export function CheckoutForm({ action, loading }: { action: (data: z.infer<typeo
                         <FormItem>
                             <FormLabel>Full Name</FormLabel>
                             <FormControl>
-                                <Input placeholder="John Doe" {...field} />
+                                <Input placeholder="Virat Koli" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -103,7 +103,7 @@ export function CheckoutForm({ action, loading }: { action: (data: z.infer<typeo
                         <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                                <Input type="email" placeholder="johndoe@example.com" {...field} />
+                                <Input type="email" placeholder="virat@example.com" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -116,7 +116,7 @@ export function CheckoutForm({ action, loading }: { action: (data: z.infer<typeo
                         <FormItem>
                             <FormLabel>Phone Number</FormLabel>
                             <FormControl>
-                                <Input placeholder="1234567890" {...field} />
+                                <Input placeholder="6362*****3" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -129,7 +129,7 @@ export function CheckoutForm({ action, loading }: { action: (data: z.infer<typeo
                         <FormItem>
                             <FormLabel>Address</FormLabel>
                             <FormControl>
-                                <Input placeholder="123 Main St" {...field} />
+                                <Input placeholder="#155 Z cross " {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -143,7 +143,7 @@ export function CheckoutForm({ action, loading }: { action: (data: z.infer<typeo
                             <FormItem>
                                 <FormLabel>City</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="New York" {...field} />
+                                    <Input placeholder="Bangalore" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -179,7 +179,7 @@ export function CheckoutForm({ action, loading }: { action: (data: z.infer<typeo
                         <FormItem>
                             <FormLabel>ZIP Code</FormLabel>
                             <FormControl>
-                                <Input placeholder="12345" {...field} />
+                                <Input placeholder="56***3" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

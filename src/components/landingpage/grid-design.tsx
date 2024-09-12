@@ -6,12 +6,12 @@ import { Button } from "../ui/button";
 const GridDesign = () => {
   return (
     <>
-        <h1 className="text-center mt-10 md:mt-20">Gallery</h1>
+        <h1 className="text-center mt-10 md:mt-20 font-gt">Gallery</h1>
         <p className="text-center text-sm md:text-base opacity-80 capitalize">Browse our inspiring collection of visuals</p>
 
       <section className="grid grid-cols-[200px_200px] md:grid-cols-[300px_300px_300px] grid-rows-[140px_140px] md:grid-rows-[180px_180px_180px] justify-center gap-4 md:my-10 h-[440px] mb-24 md:mb-48 md:h-[440px] md:w-[600px] mx-auto scale-75 md:scale-90 ">
         <div className="bg-zinc-200 col-start-1 col-end-2 row-start-1 row-end-2 rounded-xl overflow-hidden hover:backdrop-grayscale">
-          <Link href={"/search?q=interiors"}>
+          <Link href={"/search?q=chair"}>
             <Image
               quality={50}
               src={
@@ -28,7 +28,7 @@ const GridDesign = () => {
 
         </div>
         <div className="bg-zinc-200 col-start-1 col-end-2 row-start-2 row-end-4 rounded-xl  overflow-hidden">
-          <Link href={"/search?q=interiors"}>
+          <Link href={"/search?q=wardrobe"}>
             <Image
               quality={50}
               src={
@@ -42,7 +42,7 @@ const GridDesign = () => {
           </Link>
         </div>
         <div className="bg-zinc-200 col-start-2 col-end-3 row-start-1 row-end-3 rounded-xl   overflow-hidden">
-          <Link href={"/search?q=interiors"}>
+          <Link href={"/search?q=kitchen"}>
             <Image
               quality={50}
               src={
@@ -56,7 +56,7 @@ const GridDesign = () => {
           </Link>
         </div>
         <div className="bg-brand-text-muted/10 md:col-start-2 col-start-2 md:col-end-3 col-end-3 md:row-start- row-start- md:row-end-4 row-end-4 rounded-xl overflow-hidden ">
-          <Link href={"/search?q=interiors"}>
+          <Link href={"/search?q=sofa"}>
             <Image
               quality={50}
               src={
@@ -69,14 +69,14 @@ const GridDesign = () => {
             />
           </Link>
         </div>
-        <div className="hidden md:block bg-zinc-200 md:col-start-3 md:col-end-4 md:row-start-1 md:row-end-2 rounded-xl  overflow-hidden ">
-          <Link href={"/search?q=interiors"}>
+        <div className="hidden md:block bg-zinc-200 md:col-start-3 md:col-end-4 md:row-start-1 md:row-end-2 rounded-xl relative overflow-hidden ">
+          <Link href={"/search?q=bed"}>
             <Image
               quality={50}
               src={
-                "https://images.unsplash.com/photo-1564078516393-cf04bd966897?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                "https://plus.unsplash.com/premium_photo-1684445035187-c4bc7c96bc5d?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               }
-              className="mx-auto hover:scale-105 transition-all duration-500  object-top rounded-xl w-full object-cover hover:contrast-50"
+              className="mx-auto hover:scale-105 transition-all duration-500  object-center rounded-xl w-full object-cover hover:contrast-50 absolute bottom-0"
               width={550}
               height={600}
               alt=""
@@ -84,7 +84,7 @@ const GridDesign = () => {
           </Link>
         </div>
         <div className="hidden md:block bg-zinc-200 md:col-start-3 md:col-end-4 md:row-start-2 md:row-end-4 md:rounded-xl overflow-hidden">
-          <Link href={"/search?q=interiors"}>
+          <Link href={"/search?q=dining"}>
             <Image
               quality={50}
               src={

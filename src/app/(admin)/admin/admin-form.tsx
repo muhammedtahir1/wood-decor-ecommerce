@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -43,30 +42,7 @@ import { CATEGORIES } from "@/lib/constants";
 import { addProduct, editProduct } from "@/actions/admin.action";
 import Image from "next/image";
 import { validateUrl } from "@/lib/utils";
-
-const colors_options = [
-  {
-    id: "red",
-    label: "Red",
-  },
-  {
-    id: "blue",
-    label: "Blue",
-  },
-
-  {
-    id: "black",
-    label: "Black",
-  },
-  {
-    id: "white",
-    label: "White",
-  },
-  {
-    id: "other",
-    label: "Let us know on call",
-  },
-] as const;
+import { colors_options } from "@/lib/dummy_data";
 
 const formSchema = z.object({
   title: z
@@ -121,6 +97,7 @@ export default function AddProductForm({
   // 2. Define a submit handler.
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [inputImageUrl, setInputImageUrl] = useState(form.getValues("image"))
+  // const [] = useState()
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
@@ -182,7 +159,6 @@ export default function AddProductForm({
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-
                 className="space-y-4"
               >
                 <FormField
@@ -202,6 +178,10 @@ export default function AddProductForm({
                     </FormItem>
                   )}
                 />
+                <Button type="button" onClick={() => {
+                  alert(form.getValues('image'))
+                  // form.setValue("image", "hi")
+                }}>change</Button>
                 <FormField
                   control={form.control}
 

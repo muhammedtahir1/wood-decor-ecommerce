@@ -8,7 +8,10 @@ import Hero2 from "@/components/landingpage/hero2";
 import GridDesign from "@/components/landingpage/grid-design";
 import Faq from "@/components/landingpage/faq";
 import Testimonials from "@/components/landingpage/testimonials";
-import CarouselComponent from "@/components/landingpage/carousel-component";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Star } from "lucide-react";
 // import ZoomedOnHoverImage from "@/components/zoom-on-hover-img";
 // import dynamic from "next/dynamic";
 // const DynamicHeader = dynamic(() => import("@/components/landingpage/header"));
@@ -27,17 +30,32 @@ export default async function Home() {
           })
         }}
       />
-      <main>
+      <main className="relative">
         <Header />
         <Hero2 />
-        {/* <CarouselComponent /> */}
 
-        <Category />
+        {/* <Category /> */}
+
         <Featured seeMore={true} />
         <Featured title="Sofa" desc={"All the luxury sofa"} query="sofa" />
         <Featured title="Beds" desc={"All the luxury beds"} query="bed" />
-        {/* <Featured title="Dining" desc={"All the luxury dining"} query="dining" /> */}
+        <Link href={"/search?q="}>
+          <Image
+            src={"/Web-Banner.png"}
+            alt="sofa banner"
+            width={1000}
+            height={300}
+            className="rounded-xl mx-auto my-10"
+          />
+        </Link>
         <GridDesign />
+        <Link href={"#testimonils"}>
+          <Button className="-rotate-90 flex items-center gap-1 fixed top-1/2 -right-8">
+            <Star size={14} className="fill-white" />
+            Reviews
+          </Button>
+        </Link>
+
         <Testimonials />
         <OfferSection />
         <Faq />

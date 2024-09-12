@@ -56,7 +56,7 @@ export default function ProductCard({ data }: { data: Product }) {
           {/* <p className="text-xs">More options</p> */}
         </div>
       </CardContent>
-      <CardFooter className="space-x-2 md:space-x-4 px-4 md:px-8 mt-4 md:mt-6">
+      <CardFooter className="space-x-1 md:space-x-4 px-1 md:px-8 mt-4 md:mt-6">
         <BuyNowBtn product={{ id, image, price, title }} />
         <AddToCartBtn product={{ id, image, price, title }} />
       </CardFooter>

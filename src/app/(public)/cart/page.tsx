@@ -30,11 +30,11 @@ const Page = () => {
         <section className="mt-10 border rounded-xl bg-white/50 px-4 py-6 ">
           <h1 className="font-bold text-2xl mb-4  font-gt">Summary</h1>
           <div className="flex items-center justify-between gap-2 mb-16">
-            <div className="text-sm space-x-5 space-y-2">
+            <div className="text-sm space-x-5 space-y-2 text-left">
               <p>Subtotal</p>
               <p className="text-sm">Estimated Delivery & Handling</p>
             </div>
-            <div className="text-sm space-y-2 font-semibold">
+            <div className="text-sm space-y-2 font-semibold text-right">
               <p>₹{calculateTotalPrice(cartItems)}</p>
               <p>Free</p>
             </div>

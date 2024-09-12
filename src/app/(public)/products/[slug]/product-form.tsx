@@ -59,10 +59,10 @@ export default function FormSelector({ colors, variants, product }: { colors: st
                   <RadioGroup
                     value={field.value}
                     onValueChange={field.onChange}
-                    className="flex min-h-10 space-x-2 items-center "
+                    className="flex min-h-12 space-x-2 items-center "
                   >
                     {finalColors.map((color) => (
-                      <FormItem key={color.value} className="flex flex-col items-center">
+                      <FormItem key={color.value} className="flex flex-col items-center ">
                         <FormControl>
                           <RadioGroupItem
                             value={color.value}
@@ -73,7 +73,7 @@ export default function FormSelector({ colors, variants, product }: { colors: st
                         <FormLabel htmlFor={color.value}>
                           <div
                             className={cn(
-                              `h-8 w-8 rounded-full ${color.class} cursor-pointer transition-all duration-200 ease-in-out hover:ring-2 hover:ring-offset-2 hover:ring-black relative`,
+                              `h-8 border w-8 rounded-full ${color.class} cursor-pointer transition-all duration-200 ease-in-out hover:ring-2 hover:ring-offset-2 hover:ring-black relative`,
                               {
                                 "size-9 ring-2 ring-black": field.value === color.value,
                               }

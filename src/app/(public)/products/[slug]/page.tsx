@@ -214,24 +214,24 @@ function EachProduct({
   const { slug, image, title, price } = data;
 
   return (
-    <Card className="w-[145px] rounded-xl md:w-52  h-[230px] md:h-[250px] mx-auto bg-white/40 col-span-1 row-span-1 overflow-hidden justify-normal pb-2 md:pb-4">
-      <CardHeader className="h-[64%] pb-4 pt-0 px-6 items-center overflow-hidden ">
+    <Card className="w-[145px] rounded-xl md:w-52  h-[230px] md:h-[230px] mx-auto bg-white/40 col-span-1 row-span-1 overflow-hidden justify-normal pb-2 md:pb-4">
+      <CardHeader className="h-[74%] pb-4 pt-0 px-6 items-center overflow-hidden ">
         <Link
           href={`/products/${slug}`}
-          className="rounded-xl  mb-2 w-[155px] h-[160px] hover:scale-105 transition-all duration-300"
+          className="rounded-xl  mb-2 w-[200px] h-[160px] hover:scale-105 transition-all duration-300"
         >
           <Image
             className="h-full w-full object-cover rounded-lg"
-            width={150}
-            height={160}
+            width={200}
+            height={180}
             src={image}
             alt="Sofa set"
           />
         </Link>
       </CardHeader>
       <CardContent>
-        <div className="mt-3 md:mt-2">
-          <h3 className="text-base font-gt md:text-lg  truncate text-wrap line-clamp-2">
+        <div className="mt-3 md:mt-2 p-2">
+          <h3 className="text-base font-gt md:text-lg  truncate text-wrap line-clamp-2 text-center">
             {title}
           </h3>
         </div>

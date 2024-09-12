@@ -33,7 +33,7 @@ const Header = () => {
 
           <SearchBar />
           <Link href={"/cart"} className="md:flex relative">
-            <Button variant={"link"}>
+            <Button size={"icon"} variant={"link"}>
               <ShoppingCart  />
               {cartItems.length > 0 && (
                 <span className="font-bold text-xs size-4 rounded-full flex flex-col items-center justify-center bg-black absolute top-0 right-0 text-white">
