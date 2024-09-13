@@ -56,32 +56,7 @@ export function InputForm() {
       console.log(error);
       console.log("Login Failed");
     }
-    // if (result.success) {
-    //   console.log("Login succes");
-    //   toast({
-    //     title: "Login success",
-    //     description: "There was a problem with your request.",
-    //   });
-    //   // router.push("/courses");
-    // } else {
-    //   console.log("Login Failed", result.error);
-    //   toast({
-    //     variant: "destructive",
-    //     title: "Login Failed!",
-    //     description: result.error,
-    //   });
-    // }
   }
-
-  // (TODO: see why its not working)
-  // const initialState = {
-  //   message: "",
-  // };
-  // const [state, formAction, pending] = useActionState(
-  //   signInAction,
-  //   initialState
-  // );
-  {/* {pending ? "Submitting..." : "Sign up"} */ }
 
   return (
     <Form {...form}>
@@ -117,14 +92,3 @@ export function InputForm() {
     </Form>
   );
 }
-
-
-// const SubmitBtn = () => {
-//   const { pending } = useFormStatus();
-//   console.log("pending", pending);
-//   return (
-//     <Button disabled={pending} type="submit" className="w-full mt-2">
-//       {pending ? <CircleArrowLeft className="animate-spin" /> : "Submit"}
-//     </Button>
-//   );
-// };

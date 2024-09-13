@@ -9,7 +9,7 @@ const GridDesign = () => {
         <h1 className="text-center mt-10 md:mt-20 font-gt">Gallery</h1>
         <p className="text-center text-sm md:text-base opacity-80 capitalize">Browse our inspiring collection of visuals</p>
 
-      <section className="grid grid-cols-[200px_200px] md:grid-cols-[300px_300px_300px] grid-rows-[140px_140px] md:grid-rows-[180px_180px_180px] justify-center gap-4 md:my-10 h-[440px] mb-24 md:mb-48 md:h-[440px] md:w-[600px] mx-auto scale-75 md:scale-90 ">
+      <section className="grid grid-cols-[200px_200px] md:grid-cols-[300px_300px_300px] grid-rows-[140px_140px] md:grid-rows-[180px_180px_180px] justify-center gap-4 md:my-10 h-[440px] mb-16 md:mb-48 md:h-[440px] md:w-[600px] mx-auto scale-75 md:scale-90 ">
         <div className="bg-zinc-200 col-start-1 col-end-2 row-start-1 row-end-2 rounded-xl overflow-hidden hover:backdrop-grayscale">
           <Link href={"/search?q=chair"}>
             <Image

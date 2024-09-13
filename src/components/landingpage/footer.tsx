@@ -76,12 +76,12 @@ const Footer = () => {
               <p className="text-base md:text-lg  font-semibold">Section</p>
               <li>
                 <Link href="/work" className="opacity-75 hover:opacity-100">
-                  Product
+                  Privacy Policy
                 </Link>
               </li>
               <li>
                 <Link href="" className="opacity-75 hover:opacity-100">
-                  Display
+                  Terms of use
                 </Link>
               </li>
               <li>
@@ -135,20 +135,22 @@ const Footer = () => {
 
       <section className="py-4 border-t-2 flex items-center justify-between md:px-20">
         <Logo type="full" />
-        <nav className="flex  gap-4 items-center">
-          <p className=" text-xs">Your privacy choices</p>
-          <p className=" text-xs">Privacy Policy</p>
-          <p className=" text-xs">Terms of Use</p>
-          <Link target="_blank" href={"https://www.unicornspace.tech/"} className=" text-xs flex items-center">Made by<Image
+        <Link target="_blank" href={"https://www.unicornspace.tech/"} className=" text-xs flex items-center">Made by
+          <Image
             width={20}
             height={20}
             quality={100}
             src="/unicorn-space-logo-white-256x256.webp"
             className="inline-block ml-1"
             alt=""
-          /> UnicornSpace</Link>
+          /> <span className="text-brand-bg-DEFALUT font-semibold text-sm">UnicornSpace</span>
+        </Link>
+        {/* <nav className="flex gap-2 md:gap-4 items-center">
+          <p className=" text-xs">Privacy Policy</p>
+          <p className=" text-xs">Terms of Use</p>
 
-        </nav>
+
+        </nav> */}
       </section>
     </footer>
   );

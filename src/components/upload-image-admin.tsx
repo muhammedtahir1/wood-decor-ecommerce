@@ -24,8 +24,6 @@ export default function UploadProductImageAdmin({ form }: {
         endpoint="imageUploader"
 
         onClientUploadComplete={(res) => {
-          // console.log("Files: ", res);
-          // alert(`"Upload Completed ${res[0].url}"`);
           if (res[0].url) {
             alert(`Uploaded image ${res[0].url}`)
             form.setValue("image", res[0].url)

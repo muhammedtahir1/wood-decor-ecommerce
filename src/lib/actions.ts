@@ -9,15 +9,13 @@ const signInAction = async (data: any) => {
       ...data,
       redirect: false,
     });
-    // console.log(" from action ✅", req);
     return {
       success: true,
       data: req,
     };
   } catch (error: any) {
-    // console.log("⭕⭕⭕ ", typeof error)
     console.log("⭕⭕⭕ ", error.code);
-    // console.log("⭕⭕ ", error.cause.err.code);
+
     return {
       success: false,
       error: `${error.code}`,

@@ -9,7 +9,6 @@ import { ArrowLeft } from "lucide-react";
 const page = async () => {
   const session = await auth();
   if (session) redirect("/admin");
-  console.log(session);
 
   return (
     <main className="flex flex-col items-center justify-center min-h-[70dvh]">

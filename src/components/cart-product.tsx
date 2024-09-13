@@ -10,7 +10,7 @@ import { Badge } from "./ui/badge";
 export default function CartProduct({ item, removeItemFromCart }: { item: TCartProduct, removeItemFromCart: any }) {
   const { image, title, price, id, color, variant } = item;
   return (
-    <div className="px-4 pr-6   flex  gap-4 items-center mt-6 md:mt-10 border py-4  rounded-xl h-32 text-black bg-white/50">
+    <div className="px-4 flex  gap-4 items-center mr-2 mt-6 md:mt-10 border py-4  rounded-xl h-32 text-black bg-white/50">
       <div className="max-size-[100px] border rounded-xl">
         <Image
           src={image}
@@ -25,7 +25,7 @@ export default function CartProduct({ item, removeItemFromCart }: { item: TCartP
 
       <div className="space-y-2 w-full">
         <div className="flex flex-col justify-between items-start w-full">
-          <h1 className="text-base md:text-lg font-gt font-bold text-ellipsis overflow-hidden max-w-52 whitespace-nowrap text-left">
+          <h1 className="text-base md:text-lg font-gt font-bold text-ellipsis overflow-hidden w-40 whitespace-nowrap text-left">
             {title}
           </h1>
           <p className="font-semibold text-lg md:text-xl opacity-70 text-end">
@@ -43,7 +43,7 @@ export default function CartProduct({ item, removeItemFromCart }: { item: TCartP
             </Badge>}
           </section>
           <div className="flex items-center gap-2">
-            <Button onClick={() => removeItemFromCart(id)} variant={"ghost"} className="rounded-full " size={"icon"}>
+            <Button onClick={() => removeItemFromCart(id)} variant={"secondary"} className="rounded-full" size={"icon"}>
 
               <MdDelete className="text-red-500" size={18} />
             </Button>
