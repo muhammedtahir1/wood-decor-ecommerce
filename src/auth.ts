@@ -19,7 +19,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       credentials: { email: { type: "email" }, password: { type: "password" } },
       authorize: async (credentials) => {
         let user = null;
-        console.log("credentials", credentials);
 
         // const validationResult = signInFormSchema.safeParse(credentials); // validate the credentials (TODO)
         const dbUser = await prisma.admin.findUnique({
@@ -27,8 +26,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             email: `${credentials.email}`,
           },
         });
-        console.log("user", dbUser);
-
         if (!dbUser) {
           throw new CustomAuthError("No such email found");
         }
@@ -49,25 +46,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     strategy: "jwt",
   },
   callbacks: {
-    // used when session in server is created
     jwt: async ({ token, user }) => {
       if (user) {
         token.id = token.sub as string;
-        // if (user?.github) {
-        //   token.github = user?.github
-        // }
       }
-      // console.log("🧓🧓JWT callback");
-      // console.log(token, user);
       return token;
     },
-    // used when client useSession is called
     session: async ({ session, token, user }) => {
       if (session?.user) {
         session.user.id = token.id as string;
       }
-      // console.log("🛠🛠🛠session callback sesssion", session);
-      // console.log("🛠🛠🛠session callback token ", token);
       return session;
     },
   },

@@ -4,13 +4,6 @@ import ImageSlider from "./imageSlider";
 import { cn } from "@/lib/utils";
 
 function Hero() {
-  // const bg_imgs = ["bg-hero-bg1", "bg-hero-bg2", "bg-hero-bg3"];
-  // let i = 0;
-  // setInterval(() => {
-  //   i++;
-  //   console.log(i);
-  //   if (i === bg_imgs.length) i = 0;
-  // }, 2000);
   return (
     <main
       className={cn(
@@ -40,16 +33,3 @@ function Hero() {
 }
 
 export default Hero;
-/*
-  title           ✅
-  slug            ✅
-  description     ✅
-  category        ✅
-  image           ✅
-  label           ✅
-  price           
-  discountedPrice 
-  colors          
-  isFeatured        
-
-*/

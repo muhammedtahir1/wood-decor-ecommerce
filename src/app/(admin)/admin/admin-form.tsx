@@ -178,10 +178,6 @@ export default function AddProductForm({
                     </FormItem>
                   )}
                 />
-                <Button type="button" onClick={() => {
-                  alert(form.getValues('image'))
-                  // form.setValue("image", "hi")
-                }}>change</Button>
                 <FormField
                   control={form.control}
 

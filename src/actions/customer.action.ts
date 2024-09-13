@@ -8,10 +8,6 @@ import { z } from "zod";
 
 const BuyNow = async (products: TCartProduct[], customerData: z.infer<typeof CustomerDataFormSchema>) => {
   try {
-    console.log("products", products);
-    console.log("customerData", customerData);
-
-
     const order = await prisma.order.create({
       data: {
         name: customerData.name,
@@ -32,8 +28,6 @@ const BuyNow = async (products: TCartProduct[], customerData: z.infer<typeof Cus
         orderItems: true
       }
     })
-
-    console.log('Order created:', order)
     return order
     
   } catch (error) {

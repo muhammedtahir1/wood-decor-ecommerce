@@ -23,7 +23,6 @@ const getProducts = async ({ take, skip }: { take: number; skip: number }) => {
     take,
     skip,
   });
-  console.log("🔥🔥🔥", products);
   return products;
 };
 
@@ -52,7 +51,6 @@ const getOrders = async ({ take, skip }: { take: number; skip: number }) => {
 };
 
 const addProduct = async (formData: TFormData) => {
-  // console.log("Action running ✔✔✔✔");
 
   try {
     const newProduct = await prisma.product.create({
@@ -73,8 +71,6 @@ const addProduct = async (formData: TFormData) => {
         isFeatured: formData.isFeatured as boolean,
       },
     });
-
-    // console.log("🔥🔥🔥", newProduct);
   } catch (error) {
     console.error(error);
     return {

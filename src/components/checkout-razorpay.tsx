@@ -8,6 +8,7 @@ import useCartStore from "@/store/cart";
 import { BuyNow } from "@/actions/customer.action";
 import { CheckoutForm, CustomerDataFormSchema } from "@/app/(payments)/checkout/checkout-form";
 import { z } from "zod";
+import { useRouter } from "next/navigation";
 
 interface RazorpayResponse {
   razorpay_payment_id: string;
@@ -25,6 +26,7 @@ interface VerificationData {
 const CheckoutWithRazorpayAndAdmin: React.FC = () => {
   const { cartItems, clearCart } = useCartStore();
   const [loading, setLoading] = useState(false);
+  const router = useRouter()
 
   const createOrderId = async (amount: number): Promise<string> => {
     try {
@@ -95,8 +97,10 @@ const CheckoutWithRazorpayAndAdmin: React.FC = () => {
           if (isVerified) {
             const res = await BuyNow(cartItems, customerData);
             if (res) {
+
               toast.success("Payment successful!");
               clearCart();
+              router.push("/success")
             }
           } else {
             toast.error("Payment verification failed. Please contact support.");

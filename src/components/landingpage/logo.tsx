@@ -7,8 +7,8 @@ const Logo = ({ type }: { type?: "full" | "normal" }) => {
     <Link href={"/"} className="mr-3 md:mr-0">
       {type === "full" ? (
         <Image
-          width={130}
-          height={130}
+          width={110}
+          height={110}
           quality={100}
           src="/wood-decor-logo-full.png"
           alt=""
