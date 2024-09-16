@@ -4,8 +4,6 @@ import "@/styles/globals.css";
 import "@/styles/typography.css";
 import { Toaster } from "@/components/ui/sonner";
 import localFont from "@next/font/local";
-import Header from "@/components/landingpage/header";
-import Footer from "@/components/landingpage/footer";
 import { siteConfig } from "@/lib/site";
 // import callFont from "./CalSans-SemiBold.woff2";
 
@@ -57,17 +55,13 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <meta property="og:title" content="Your Page Title" />
+        <meta property="og:title" content="Wood Decor" />
         <meta property="og:description" content={siteConfig.description} />
         <meta property="og:image" content={siteConfig.ogImage} />
         <meta property="og:url" content={siteConfig.url} />
         <meta property="og:type" content="website" />
 
-        {/* TODO'
-         - Add title and meta deta for each product page
-         - 
         
-        */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

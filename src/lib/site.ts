@@ -1,13 +1,12 @@
 export const siteConfig = {
   name: "wooddecor",
   url: "https://wooddecor.in",
-  ogImage: "https://ui.shadcn.com/og.jpg",
-  description:
-    "A Store for all your wood needs",
+  ogImage: "/og.png",
+  description: "A Store for all your Sofa, Beds, Kitchens, Wood needs",
   links: {
-    twitter: "https://twitter.com/",
+    twitter: "https://twitter.com/mohdfaizan_5",
     github: "https://github.com/mohdfaizan5",
   },
-}
+};
 
-export type SiteConfig = typeof siteConfig
+export type SiteConfig = typeof siteConfig;

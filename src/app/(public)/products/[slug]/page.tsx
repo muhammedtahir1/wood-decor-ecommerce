@@ -5,31 +5,20 @@ import "@/styles/typography.css";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/landingpage/footer";
-import AddToCartBtn from "../../../../components/add-to-cart-btn";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Checkbox } from "@/components/ui/checkbox";
-
 import Link from "next/link";
 import { Metadata } from "next";
-import BuyNowBtn from "@/components/buy-now-btn";
 import Image from "next/image";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Product } from "@prisma/client";
-import ColorSelector from "./product-form";
 import FormSelector from "./product-form";
+
+type generateMetaDataProps = {
+  params: { slug: string };
+}
 
 export async function generateMetadata({
   params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+}: generateMetaDataProps): Promise<Metadata> {
   const slug = params.slug;
   const products = await prisma.product.findUnique({
     where: {
@@ -40,7 +29,7 @@ export async function generateMetadata({
     },
   });
   return {
-    title: products?.title,
+    title: `${products?.title} - WoodDecor`,
   };
 }
 
@@ -65,9 +54,6 @@ const page = async ({ params }: ParamsProps) => {
   console.log(product)
 
   const similarProduct = await prisma.product.findMany({
-    // where: {
-    //   category: product.category,
-    // },
     take: 4,
     select: {
       image: true,

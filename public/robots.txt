@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://wooddecor.in
+
+# Sitemaps
+Sitemap: https://wooddecor.in/sitemap.xml
