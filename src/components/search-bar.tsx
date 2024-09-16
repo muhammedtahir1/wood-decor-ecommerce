@@ -7,12 +7,15 @@ import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-const SearchBar = () => {
+const SearchBar = ({ setDialogOpen }: { setDialogOpen?: React.Dispatch<React.SetStateAction<boolean>> }) => {
   const router = useRouter();
   return (
     <form
       action={(formData) => {
         router.push(`/search?q=${formData.get("search")}`);
+        if (setDialogOpen) {
+          setDialogOpen(false)
+        }
         // revalidatePath("/search")
       }}
       className="flex w-64 md:w-72 max-w-sm items-center space-x-[-10px] md:space-x-1 pr-2 border "
@@ -34,7 +37,7 @@ const SearchBar = () => {
       >
         <Search />
       </Button>
-      
+
     </form>
   );
 };

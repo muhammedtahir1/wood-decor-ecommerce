@@ -64,7 +64,7 @@ const ClientComponent = ({ initialProducts, query }: { initialProducts: Product[
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[90vh] pt-6 px-1 md:px-16 mt-20">
+    <div className="flex flex-col items-center min-h-[90vh] pt-6 px-1 md:px-16 mt-28 md:mt-20">
       <h2 className="px-6 text-xl md:text-3xl font-normal">
         Showing search results for <span className="font-bold capitalize">{query}</span>
       </h2>

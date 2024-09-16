@@ -42,7 +42,7 @@ const page = async ({ params }: { params: { category: string } }) => {
 
   return (
     <main className=" pt-6 border-b-2 ">
-      <div className="px-8 md:px-16 mt-20">
+      <div className="px-8 md:px-16 mt-28 md:mt-24">
         <h1 className="text-3xl md:text-4xl">{category.charAt(0).toUpperCase() + category.slice(1)}</h1>
         <p className="text-xs md:text-sm opacity-85 md:max-w-[500px] mt-3">
           Wood Decor sofas are just what you need for awesome body support and a

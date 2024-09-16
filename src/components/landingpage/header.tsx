@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/dialog"
 
 const Header = () => {
+  const [open, setOpen] = React.useState(false)
   const { cartItems } = useCartStore();
   return (
     <>
@@ -39,14 +40,14 @@ const Header = () => {
           </div>
         </div>
         <section className="flex justify-between py-4 md:px-10 px-3 w-full h-16 items-center">
-          <Dialog>
-            <DialogTrigger>        <Search />
+          <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger >        <Search />
             </DialogTrigger>
-            <DialogContent  className="">
+            <DialogContent className="">
               <DialogHeader>
                 <DialogTitle>Search</DialogTitle>
                 <DialogDescription className="mx-auto">
-                  <SearchBar />
+                  <SearchBar setDialogOpen={setOpen} />
                 </DialogDescription>
               </DialogHeader>
             </DialogContent>

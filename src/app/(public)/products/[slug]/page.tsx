@@ -67,7 +67,7 @@ const page = async ({ params }: ParamsProps) => {
 
   return (
     <>
-      <main className="flex flex-col md:flex-row items-center justify-center gap-10 mt-28 md:mt-32 px-10">
+      <main className="flex flex-col md:flex-row items-center justify-center gap-10 mt-36 md:mt-32 px-10">
         <section className="space-y-2">
           {/* <BreadCrumbComponent slug={product.title} /> */}
           <div className="max-w-[400px] max-h-[400px] ">
