@@ -77,6 +77,8 @@ export default function AddProductForm({
 }) {
 
   const [isOpen, setIsOpen] = useState(false);
+
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -194,10 +196,8 @@ export default function AddProductForm({
                     </FormItem>
                   )}
                 />
-                {form.getValues("image") && validateUrl(form.getValues("image") as string) && <Image className="mx-auto rounded-xl"
-                  src={inputImageUrl as string}
-                  width={90} height={90} alt={"invalid url"} />}
-                <UploadProductImageAdmin form={form} />
+
+                <UploadProductImageAdmin form={form} inputImageUrl={inputImageUrl} setInputImageUrl={setInputImageUrl} />
                 <div className="flex w-full justify-between">
                   <FormField
                     control={form.control}

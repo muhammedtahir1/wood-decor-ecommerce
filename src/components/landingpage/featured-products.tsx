@@ -22,20 +22,22 @@ export default async function Featured({ query, title, desc, seeMore = false }: 
     products = await searchProductByKeyword(query, 4, 0)
   }
 
+
   return (
     <section
       id="featured-products"
       className="flex flex-col items-center justify-center mt-8 md:mt-16 mb-16 md:mb-14"
     >
       <div className="text-center capitalize">
-        <h1>{title ? title : "Featured products"}</h1>
+        <h1 className="uppercase">{title ? title : "Featured products"}</h1>
         <p className="text-sm md:text-base opacity-80">{desc ? desc : "Impressive collection for your dream home"}</p>
       </div>
 
       <div className="flex flex-wrap max-w-[1280px] gap-x-1 gap-y-3 md:gap-4 mt-8 md:mt-10 mb-4 md:mb-12 justify-center md:justify-normal">
-        {products?.map((item, i) => (
+
+        {products.length > 0 ? products?.map((item, i) => (
           <ProductCard key={i} data={item} />
-        ))}
+        )) : <div>No products in category</div>}
       </div>
       {seeMore &&
         <Link href={`/search?q=${query || ""}`}>

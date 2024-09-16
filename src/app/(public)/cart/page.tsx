@@ -18,7 +18,7 @@ const Page = () => {
   }
   const { cartItems, removeItemFromCart, } = useCartStore();
   return (
-    <main className="mt-28 md:mt-32 md:px-10">
+    <main className="mt-32  md:px-10">
       <h1 className="my-2 ml-10 font-gt">Cart</h1>
       <div className="flex  flex-col px-5 md:flex-row md:gap-10 md:px-10 max-w-5xl mx-auto justify-between">
         <div >
