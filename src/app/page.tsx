@@ -37,8 +37,9 @@ export default async function Home() {
         {/* <Category /> */}
 
         <Featured seeMore={true} />
-        <Featured title="Sofa" desc={"All the luxury sofa"} query="sofa" />
+        <Featured title="SECTIONAL SOFA" desc={"All the luxury sofa"} query="sofa" />
         <Featured title="Beds" desc={"All the luxury beds"} query="bed" />
+        <Featured title="Dining" desc={"All the luxury Dining"} query="dining" />
         <Link href={"/search?q="} className="mx-5 rounded-2xl px-5  overflow-hidden">
           <Image
             src={"/Web-Banner.png"}

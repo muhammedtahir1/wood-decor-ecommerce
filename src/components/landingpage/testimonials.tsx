@@ -46,7 +46,7 @@ const testimonialsData = [
 const Testimonials = () => {
   return (
     <section className="py-10 md:py-20 px-8 md:px-16 my-10 md:my-20 border-t-2" id="testimonils">
-      <h3 className="text-brand-text2 font-semibold text-3xl text-center mb-8 md:mb-12 font-gt">
+      <h3 className="text-brand-text2 font-semibold text-3xl text-center mb-8 md:mb-12 font-gt capitalize">
         Testimonials
       </h3>
       <div className=" flex flex-col md:flex-row gap-2">

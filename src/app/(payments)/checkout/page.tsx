@@ -8,7 +8,7 @@ const page = () => {
   return (
     <main className="mt-24">
       <Header />
-      <h1 className="text-center my-6 mt-16">Final Step</h1>
+      <h1 className="text-center my-6 mt-36">Delivery Details</h1>
       <section className="max-w-2xl px-5 mx-auto py-5">
         <CheckoutWithRazorpayAndAdmin />
       </section>

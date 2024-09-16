@@ -52,23 +52,25 @@ const Footer = () => {
         <div className="flex gap-6">
           <div className="footer-section2">
             <ul className="flex flex-col gap-2 text-sm list-none">
-              <p className="text-base md:text-lg font-semibold">Our Company</p>
+              <p className="text-base md:text-lg font-semibold">About Us</p>
               <li>
-                <Link href="" className="opacity-75 hover:opacity-100">
-                  About us
+                <Link href={"tel:+%20919341817975"} className="opacity-75 hover:opacity-100">
+                  <span className="font-semibold">Phone: </span>
+                   +91 9341817975
                 </Link>
               </li>
               <li>
-                <Link href="" className="opacity-75 hover:opacity-100">
-                  Careers
+                <Link href="mailto:md.azmath84@gmail.com" className="opacity-75 hover:opacity-100">
+                  <span className="font-semibold">Email: </span> 
+                  md.azmath84@gmail.com
                 </Link>
               </li>
 
-              <li>
+              {/* <li>
                 <Link href="" className="opacity-75 hover:opacity-100">
                   Stories
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className="footer-section3">
@@ -85,13 +87,13 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="" className="opacity-75 hover:opacity-100">
+                <Link href="#faq" className="opacity-75 hover:opacity-100">
                   QNA
                 </Link>
               </li>
               <li>
                 <Link
-                  href="mailto:media.unicornspace@gmail.com"
+                  href={"tel:+%20919341817975"}
                   className="opacity-75 hover:opacity-100"
                 >
                   Contact
@@ -125,7 +127,7 @@ const Footer = () => {
                   className="text-xs flex items-center gap-1"
                 >
                   <Phone size={12} />
-                  9845811388
+                  9341817975
                 </Link>
               </li>
             </ul> */}

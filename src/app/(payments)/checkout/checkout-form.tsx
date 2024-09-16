@@ -90,7 +90,7 @@ export function CheckoutForm({ action, loading }: { action: (data: z.infer<typeo
                         <FormItem>
                             <FormLabel>Full Name</FormLabel>
                             <FormControl>
-                                <Input placeholder="Virat Koli" {...field} />
+                                <Input placeholder="Virat Kohli" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

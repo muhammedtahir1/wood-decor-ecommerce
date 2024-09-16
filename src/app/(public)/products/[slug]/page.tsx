@@ -136,7 +136,23 @@ const page = async ({ params }: ParamsProps) => {
           <p className="text-[15px] text-[#1a1a1a]  leading-5 max-w-lg">
             {product.description}
           </p>
+          <div className="text-xs">
+            <li>You may select the color & fabric from the mentioned codes and share it with our customer services representative post placing an order with your order id.</li>
+            <li>
+              You may select the color & fabric from the mentioned
+              codes and add the code while placing an order on cart
+              page under &ldquo;SPECIAL SELLER INSTRUCTIONS&ldquo;
 
+              <a href={"https://sarom.info/catalogpdf/VELVETO.pdf"} className="font-bold mx-2">
+                Fabrics
+              </a>
+
+              <Link href={"https://sarom.info/catalogpdf/BENTLEY.pdf"} className="font-bold mx-2">
+                Colors
+              </Link>
+
+            </li>
+          </div>
           <FormSelector colors={product.colors} product={product} variants={product.variants} />
 
         </div>
