@@ -15,11 +15,11 @@ const SearchBar = () => {
         router.push(`/search?q=${formData.get("search")}`);
         // revalidatePath("/search")
       }}
-      className="focus: flex w-48 md:w-72 max-w-sm items-center space-x-[-10px] md:space-x-1 rounded-full px-2 border "
+      className="flex w-64 md:w-72 max-w-sm items-center space-x-[-10px] md:space-x-1 pr-2 border "
     >
       <Input
         type="search"
-        className="bg-transparent ring-none  focus:border-none focus-visible:outline-none focus-visible:ring-0 focus:ring-0 border-none md:w-60"
+        className="bg-transparent ring-none  focus:border-none focus-visible:outline-none focus-visible:ring-0 focus:ring-0 border-none md:w-60 mr-3"
         placeholder="Search products"
         name="search"
         onSubmit={() => {
