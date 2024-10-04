@@ -43,6 +43,8 @@ import { addProduct, editProduct } from "@/actions/admin.action";
 import Image from "next/image";
 import { validateUrl } from "@/lib/utils";
 import { colors_options } from "@/lib/dummy_data";
+import TiptapEditor from "@/components/tiptap-editor";
+import { Slider } from "@/components/ui/slider";
 
 const formSchema = z.object({
   title: z
@@ -66,6 +68,7 @@ const formSchema = z.object({
   category: z.string().optional(),
   image: z.string().optional(),
   variants: z.array(z.string()).optional(),
+  rating: z.number().default(4.2),
 });
 
 export default function AddProductForm({
@@ -75,17 +78,17 @@ export default function AddProductForm({
   actionType: "add" | "edit";
   data?: Product;
 }) {
-
   const [isOpen, setIsOpen] = useState(false);
+  const [editorContent, setEditorContent] = useState(
+    data?.description as string
+  );
 
-
-  // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: actionType === "edit" ? data?.title : "",
       price: actionType === "edit" ? data?.price : 0,
-      description: actionType === "edit" ? (data?.description as string) : "",
+      description: actionType === "edit" ? (data?.description as string) : ``,
       isFeatured: actionType === "edit" ? data?.isFeatured : false,
       colors: actionType === "edit" ? data?.colors : [],
       variants: actionType === "edit" ? data?.variants : [],
@@ -93,28 +96,22 @@ export default function AddProductForm({
       image: actionType === "edit" ? data?.image : "",
       discountedPrice:
         actionType === "edit" ? Number(data?.discountedPrice) : 0,
+      rating: actionType === "edit" ? data?.rating : 4.2,
     },
   });
 
-  // 2. Define a submit handler.
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [inputImageUrl, setInputImageUrl] = useState(form.getValues("image"))
-  // const [] = useState()
+  const [inputImageUrl, setInputImageUrl] = useState(form.getValues("image"));
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
+    const finalValues = { ...values, image: inputImageUrl };
+    console.log(finalValues);
 
-    console.log(values)
-
-    // return
-    /*
-     also in title description I can see hydration errors do check
-     - not working the variations
-    */
     try {
       let response;
       if (actionType === "edit") {
-        response = await editProduct(data!.id, values);
+        response = await editProduct(data!.id, finalValues);
         if (response.success) {
           toast.success("Successfully edited the product");
           setIsOpen(false);
@@ -122,15 +119,14 @@ export default function AddProductForm({
           toast.error("Something went wrong in editing the product");
         }
       } else {
-        response = await addProduct(values);
+        response = await addProduct(finalValues);
         if (response.success) {
           toast.success("Successfully added the product");
-          form.reset()
+          form.reset();
           setIsOpen(false);
         } else {
           toast.error("Something went wrong in adding the product");
         }
-
       }
     } catch (error) {
       toast.error("An unexpected error occurred");
@@ -138,7 +134,6 @@ export default function AddProductForm({
       setIsSubmitting(false);
     }
   }
-
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -182,22 +177,30 @@ export default function AddProductForm({
                 />
                 <FormField
                   control={form.control}
-
                   name="image"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Product Link</FormLabel>
                       <FormControl>
-                        <Input placeholder="Pinterest Img URL"  {...field} value={inputImageUrl} onChange={(e) => {
-                          setInputImageUrl(e.target.value)
-                        }} />
+                        <Input
+                          placeholder="Pinterest Img URL"
+                          {...field}
+                          value={inputImageUrl}
+                          onChange={(e) => {
+                            setInputImageUrl(e.target.value);
+                          }}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
 
-                <UploadProductImageAdmin form={form} inputImageUrl={inputImageUrl} setInputImageUrl={setInputImageUrl} />
+                <UploadProductImageAdmin
+                  form={form}
+                  inputImageUrl={inputImageUrl}
+                  setInputImageUrl={setInputImageUrl}
+                />
                 <div className="flex w-full justify-between">
                   <FormField
                     control={form.control}
@@ -233,12 +236,51 @@ export default function AddProductForm({
                     <FormItem>
                       <FormLabel>Description</FormLabel>
                       <FormControl>
-                        <Textarea
-                          {...field}
-                          placeholder="Type your description here."
+                        <TiptapEditor
+                          content={editorContent}
+                          onChange={(newContent) => {
+                            setEditorContent(newContent);
+                            field.onChange(newContent);
+                          }}
                         />
                       </FormControl>
                       <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="rating"
+                  render={({ field }) => (
+                    <FormItem className="flex items-center gap-5">
+                      <FormLabel>Ratings ⭐</FormLabel>
+                      <FormControl>
+                        {/* <Slider
+                          // {...field}
+                          onValueChange={(e) => {
+                            // console.log(typeof e[0], e, field);
+                            // field.onChange(e[0]);
+                            form.setValue("rating", e[0]);
+                          }}
+                          value={[field.value]}
+                          defaultValue={[3]}
+                          max={5}
+                          step={0.5}
+                        /> */}
+
+                        <Input
+                          {...field}
+                          onChange={(e) => {
+                            field.onChange(Number(e.target.value));
+                          }}
+                          type="number"
+                          step={0.5}
+                          max={5}
+                          min={1}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                      <p>{field.value}</p>
                     </FormItem>
                   )}
                 />
@@ -289,14 +331,14 @@ export default function AddProductForm({
                                     onCheckedChange={(checked) => {
                                       return checked
                                         ? field.onChange([
-                                          ...field.value,
-                                          color.id,
-                                        ])
+                                            ...field.value,
+                                            color.id,
+                                          ])
                                         : field.onChange(
-                                          field.value?.filter(
-                                            (value) => value !== color.id
-                                          )
-                                        );
+                                            field.value?.filter(
+                                              (value) => value !== color.id
+                                            )
+                                          );
                                     }}
                                   />
                                 </FormControl>
@@ -330,7 +372,9 @@ export default function AddProductForm({
                         </FormControl>
                         <SelectContent>
                           {CATEGORIES.map((category, i) => (
-                            <SelectItem key={i} value={category.value}>{category.label}</SelectItem>
+                            <SelectItem key={i} value={category.value}>
+                              {category.label}
+                            </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
@@ -342,14 +386,18 @@ export default function AddProductForm({
                   )}
                 />
 
-                <Button disabled={isSubmitting} type="submit" className="w-full" >
+                <Button
+                  disabled={isSubmitting}
+                  type="submit"
+                  className="w-full"
+                >
                   {actionType === "add" ? "Add Product" : "Edit Product"}
-                  {isSubmitting && <RotateCw className="animate-spin mr-2" size={15} />}
-
+                  {isSubmitting && (
+                    <RotateCw className="animate-spin mr-2" size={15} />
+                  )}
                 </Button>
               </form>
             </Form>{" "}
-
           </DialogDescription>
         </DialogHeader>
       </DialogContent>

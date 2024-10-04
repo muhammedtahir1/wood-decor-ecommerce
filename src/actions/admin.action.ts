@@ -15,6 +15,7 @@ type TFormData = {
   category?: string | undefined;
   image?: string | undefined;
   isFeatured?: boolean | undefined;
+  rating?: number | undefined;
 };
 
 const getProducts = async ({ take, skip }: { take: number; skip: number }) => {
@@ -51,7 +52,6 @@ const getOrders = async ({ take, skip }: { take: number; skip: number }) => {
 };
 
 const addProduct = async (formData: TFormData) => {
-
   try {
     const newProduct = await prisma.product.create({
       data: {
@@ -69,6 +69,7 @@ const addProduct = async (formData: TFormData) => {
         colors: formData.colors as string[],
         variants: formData.variants as string[],
         isFeatured: formData.isFeatured as boolean,
+        rating: formData.rating as number,
       },
     });
   } catch (error) {
@@ -115,6 +116,7 @@ const editProduct = async (id: Product["id"], formData: TFormData) => {
         colors: formData.colors as string[],
         variants: formData.variants as string[],
         isFeatured: formData.isFeatured as boolean,
+        rating: formData.rating as number,
       },
     });
   } catch (error) {

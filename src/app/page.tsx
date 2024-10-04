@@ -12,6 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
+import ReviewPopup from "@/components/review-popup";
 // import ZoomedOnHoverImage from "@/components/zoom-on-hover-img";
 // import dynamic from "next/dynamic";
 // const DynamicHeader = dynamic(() => import("@/components/landingpage/header"));
@@ -62,6 +63,7 @@ export default async function Home() {
         <OfferSection />
         <Faq />
         <Footer />
+        <ReviewPopup />
       </main>
     </>
   );

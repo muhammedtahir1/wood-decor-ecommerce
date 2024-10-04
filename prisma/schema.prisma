@@ -19,10 +19,9 @@ model Product {
   variants        String[]
   colors          String[]
   label           String? // make use of it
+  rating          Float       @default(0)
   isFeatured      Boolean     @default(false)
-  orderId         Int?
-  Order           Order?      @relation(fields: [orderId], references: [id])
-  OrderItem       OrderItem[]
+  OrderItem       OrderItem[] 
 }
 
 model Admin {
@@ -41,7 +40,6 @@ model Order {
   status      String      @default("pending") // SFI -> later we'll make use of it
   createdAt   DateTime    @default(now())
   orderItems  OrderItem[]
-  Product     Product[]
 }
 
 model OrderItem {

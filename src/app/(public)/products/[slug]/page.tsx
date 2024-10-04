@@ -11,10 +11,20 @@ import Image from "next/image";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Product } from "@prisma/client";
 import FormSelector from "./product-form";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { ClockArrowDown, EyeIcon } from "lucide-react";
+import StarRating from "@/components/star-rating";
+import ReviewPopup from "@/components/review-popup";
+import PriceLabel from "./price-label";
 
 type generateMetaDataProps = {
   params: { slug: string };
-}
+};
 
 export async function generateMetadata({
   params,
@@ -51,7 +61,13 @@ const page = async ({ params }: ParamsProps) => {
   if (!product) {
     notFound();
   }
-  console.log(product)
+
+  const date = new Date();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+
+  const fromdeliveryDate = new Date(year, month, date.getDate() + 7);
+  const todeliveryDate = new Date(year, month, date.getDate() + 10);
 
   const similarProduct = await prisma.product.findMany({
     take: 4,
@@ -60,17 +76,16 @@ const page = async ({ params }: ParamsProps) => {
       title: true,
       price: true,
       slug: true,
+      rating: true,
     },
   });
 
-
-
+  // console.log(product.title.slice(0, 20), "- product.rating", product.rating);
   return (
     <>
-      <main className="flex flex-col md:flex-row items-center justify-center gap-10 mt-36 md:mt-32 px-10">
-        <section className="space-y-2">
-          {/* <BreadCrumbComponent slug={product.title} /> */}
-          <div className="max-w-[400px] max-h-[400px] ">
+      <main className="flex flex-col md:flex-row items-start justify-center gap-10 mt-36 md:mt-32 px-10">
+        <section className=" space-y-2 md:sticky md:top-0 md:overflow-hidden md:pt-10">
+          <div className="max-w-[400px] max-h-[400px] relative">
             <Image
               src={product.image}
               alt="sofa"
@@ -78,34 +93,18 @@ const page = async ({ params }: ParamsProps) => {
               height={600}
               className="rounded-xl"
             />
-          </div>
-          <div className="md:space-x-5 space-x-1  mx-auto hidden">
-            <Image
-              src={product.image}
-              alt="sofa"
-              width={112}
-              height={112}
-              className="rounded-lg w-[80px] h-[80px] md:w-[112px] md:h-[112px]"
-            />
-            <Image
-              src={product.image}
-              alt="sofa"
-              width={112}
-              height={112}
-              className="object-bottom grayscale-[50%] rounded-lg w-[80px] h-[80px] md:w-[112px] md:h-[112px]"
-            />
-            {/* add a wrapper div for perfect height */}
-            <Image
-              src={product.image}
-              alt="sofa"
-              width={112}
-              height={112}
-              className="object-bottom grayscale-[70%] rounded-lg w-[80px] h-[80px] md:w-[112px] md:h-[112px]"
-            />
+            {product.label && (
+              <Badge
+                className="absolute left-0 top-0 -rotate-6"
+                variant={"secondary"}
+              >
+                {product.label}
+              </Badge>
+            )}
           </div>
         </section>
 
-        <div className="flex flex-col gap-2 md:max-w-[500px]">
+        <div className="flex flex-col gap-2 md:max-w-[500px] md:overflow-y-auto">
           <Badge
             variant={"default"}
             className="max-w-28 flex items-center justify-center"
@@ -115,46 +114,101 @@ const page = async ({ params }: ParamsProps) => {
           <h1 className="text-2xl md:text-4xl capitalize font-gt">
             {product.title}
           </h1>
-          {/* <p className="text-sm">9.2k Reviews</p> */}
+          <PriceLabel product={product} />
+          <StarRating rating={product.rating > 3 ? product.rating : 4} />
 
-          {product.discountedPrice && product.discountedPrice > 0 ? (
-            <div className="flex items-center gap-2">
-              <h3 className=" scale-90">
-                <span className="font-light opacity-80 relative">
-                  ₹{product.price}
-                  <span className="absolute left-2 bottom-4 -rotate-12 w-20 h-[1px] bg-red-600" />
-                </span>
-              </h3>
-              <p className="font-semibold flex gap-2 scale-105">
-                ₹{product.discountedPrice}
-              </p>
-            </div>
-          ) : (
-            <h2>₹{product.price}</h2>
-          )}
           <h3 className="text-sm md:text-lg">Description</h3>
-          <p className="text-[15px] text-[#1a1a1a]  leading-5 max-w-lg">
-            {product.description}
-          </p>
-          <div className="text-xs">
-            <li>You may select the color & fabric from the mentioned codes and share it with our customer services representative post placing an order with your order id.</li>
-            <li>
-              You may select the color & fabric from the mentioned
-              codes and add the code while placing an order on cart
-              page under &ldquo;SPECIAL SELLER INSTRUCTIONS&ldquo;
+          <div
+            className="scale-90 list-decimal -ml-5"
+            dangerouslySetInnerHTML={{ __html: product.description as string }}
+          />
 
-              <a href={"https://sarom.info/catalogpdf/VELVETO.pdf"} className="font-bold mx-2">
-                Fabrics
-              </a>
+          <Accordion type="single" collapsible className="md:w-96 w-80">
+            <AccordionItem value="item-3">
+              <AccordionTrigger className="text-lg">
+                Colors and Designs
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="text-xs">
+                  <li>
+                    You may select the color & fabric from the mentioned codes
+                    and share it with our customer services representative post
+                    placing an order with your order id.
+                  </li>
+                  <li>
+                    You may select the color & fabric from the mentioned codes
+                    and add the code while placing an order on cart page under
+                    &ldquo;SPECIAL SELLER INSTRUCTIONS&ldquo;
+                    <Link
+                      href={"https://sarom.info/catalogpdf/VELVETO.pdf"}
+                      className="font-bold mx-2  text-blue-500 hover:underline"
+                    >
+                      Fabrics
+                    </Link>
+                    <Link
+                      href={"https://sarom.info/catalogpdf/BENTLEY.pdf"}
+                      className="font-bold mx-2 text-blue-500 hover:underline"
+                    >
+                      Colors
+                    </Link>
+                  </li>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger className="text-lg">Warrenty</AccordionTrigger>
+              <AccordionContent className="scale-90 -ml-5 ">
+                <p className="mb-2">
+                  The warranty begins on the purchase date and is specified on
+                  the product detail page.
+                </p>
 
-              <Link href={"https://sarom.info/catalogpdf/BENTLEY.pdf"} className="font-bold mx-2">
-                Colors
-              </Link>
+                <h3 className="text-lg font-semibold mb-1">Eligibility</h3>
+                <p className="mb-2">
+                  Non-transferable; a valid invoice is required.
+                </p>
 
-            </li>
+                <h3 className="text-lg font-semibold mb-1">Exclusions</h3>
+                <p className="mb-2">Does not cover:</p>
+                <ul className="list-disc list-inside mb-2">
+                  <li>Normal wear and tear</li>
+                  <li>Improper use or maintenance</li>
+                  <li>Damage from abuse or chemicals</li>
+                </ul>
+                <p className="text-sm text-gray-600 mb-4">
+                  Note: Variations in color may occur due to screen differences.
+                </p>
+
+                <Link
+                  href="/warranty"
+                  className="text-blue-500 hover:underline"
+                >
+                  Read more about our warranty policy
+                </Link>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+
+          <FormSelector
+            colors={product.colors}
+            product={product}
+            variants={product.variants}
+          />
+          <div className="flex items-center gap-2">
+            <ClockArrowDown size={18} />
+            <p className="text-sm">
+              Estimated delivery between{" "}
+              <u>{fromdeliveryDate.toDateString()}</u> and{" "}
+              <u>{todeliveryDate.toDateString()}</u>.
+            </p>
           </div>
-          <FormSelector colors={product.colors} product={product} variants={product.variants} />
-
+          {/* {product.rating > 3 && <StarRating rating={5} />} */}
+          <div className="flex items-center gap-2">
+            <EyeIcon size={18} />
+            <p className="text-sm">
+              {Math.floor(Math.random() * 20)} Persons looking for this product
+            </p>
+          </div>
         </div>
       </main>
       {similarProduct.length > 0 && (
@@ -165,42 +219,19 @@ const page = async ({ params }: ParamsProps) => {
               <EachProduct key={product.slug} data={product} />
             ))}
           </section>
-          <Link href={`/categories/${product.category}`}>
-            <Button className="mb-10 md:mb-20" variant={"fullRounded"}>See more ...</Button>
-          </Link>
 
+          <Link href={`/categories/${product.category}`}>
+            <Button className="mb-10 md:mb-20" variant={"fullRounded"}>
+              See more ...
+            </Button>
+          </Link>
         </div>
       )}
-
       <Footer />
+      <ReviewPopup />
     </>
   );
 };
-
-// export function BreadCrumbComponent({ slug }: { slug: string }) {
-//   return (
-//     <Breadcrumb className="my-2">
-//       <BreadcrumbList>
-//         <BreadcrumbItem>
-//           <BreadcrumbLink>
-//             <Link href="/">Home</Link>
-//           </BreadcrumbLink>
-//         </BreadcrumbItem>
-//         <BreadcrumbSeparator />
-//         <BreadcrumbItem>
-//           <BreadcrumbLink>
-//             <Link href={`/products`}>Products</Link>
-//           </BreadcrumbLink>
-//         </BreadcrumbItem>
-//         <BreadcrumbSeparator />
-//         <BreadcrumbItem>
-//           <BreadcrumbPage>{slug}</BreadcrumbPage>
-//         </BreadcrumbItem>
-//       </BreadcrumbList>
-//     </Breadcrumb>
-//   );
-// }
-
 export default page;
 
 function EachProduct({
@@ -211,13 +242,14 @@ function EachProduct({
     title: Product["title"];
     price: Product["price"];
     slug: Product["slug"];
+    rating: Product["rating"];
   };
 }) {
-  const { slug, image, title, price } = data;
+  const { slug, image, title, price, rating } = data;
 
   return (
-    <Card className="w-[145px] rounded-xl md:w-52  h-[230px] md:h-[230px] mx-auto bg-white/40 col-span-1 row-span-1 overflow-hidden justify-normal pb-2 md:pb-4">
-      <CardHeader className="h-[74%] pb-4 pt-0 px-6 items-center overflow-hidden ">
+    <Card className="w-[145px] rounded-xl md:w-52  h-[260px] md:h-[250px] mx-auto bg-white/40 col-span-1 row-span-1 overflow-hidden justify-normal pb-2 md:pb-4">
+      <CardHeader className="h-[74%] py-0 px-6 items-center overflow-hidden ">
         <Link
           href={`/products/${slug}`}
           className="rounded-xl  mb-2 w-[200px] h-[160px] hover:scale-105 transition-all duration-300"
@@ -232,10 +264,14 @@ function EachProduct({
         </Link>
       </CardHeader>
       <CardContent>
-        <div className="mt-3 md:mt-2 p-2">
-          <h3 className="text-base font-gt md:text-lg  truncate text-wrap line-clamp-2 text-center">
-            {title}
+        <div className="px-4 pb-2 mx-auto">
+          <h3 className="text-base font-gt truncate text-wrap line-clamp-2">
+            {title.trim().slice(0, 20)}
           </h3>
+          <StarRating
+            className="-ml-5 md:-ml-7 scale-75"
+            rating={rating > 3 ? rating : 4}
+          />
         </div>
       </CardContent>
     </Card>

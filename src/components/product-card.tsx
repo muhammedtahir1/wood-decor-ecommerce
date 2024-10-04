@@ -10,6 +10,7 @@ import { Button } from "./ui/button";
 import { Product } from "@prisma/client";
 import AddToCartBtn from "./add-to-cart-btn";
 import BuyNowBtn from "./buy-now-btn";
+import StarRating from "./star-rating";
 
 export default function ProductCard({ data }: { data: Product }) {
   const {
@@ -23,6 +24,7 @@ export default function ProductCard({ data }: { data: Product }) {
     price,
     slug,
     title,
+    rating,
   } = data;
 
   console.log(`/products/${slug}`);
@@ -49,10 +51,13 @@ export default function ProductCard({ data }: { data: Product }) {
       <CardContent className="m-0 ">
         <div className="mt-1 items-center px-4 md:px-8">
           <h1 className="text-lg md:text-xl font-bold truncate">{title}</h1>
-          <h2 className="opacity-80 text-lg md:text-3xl">
-            <span className="text-base md:text-xl font-semibold">Rs.</span>
+          <h2 className=" opacity-80 text-lg md:text-3xl">
+            <span className="text-base md:text-xl font-semibold">₹</span>
             {price}
           </h2>
+          
+          <StarRating rating={rating > 3 ? rating : 4} />
+
           {/* <p className="text-xs">More options</p> */}
         </div>
       </CardContent>

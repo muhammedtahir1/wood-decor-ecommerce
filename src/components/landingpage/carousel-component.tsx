@@ -1,44 +1,44 @@
-"use client"
-import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+"use client";
+import Image from "next/image";
+import React, { useState, useEffect } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const images = [
   {
     src: "https://i.pinimg.com/564x/3b/a9/ac/3ba9ac399d39552c23be22b7632f324c.jpg",
     alt: "Wood decor sofa",
-    title: "Sofa & Couches"
+    title: "Sofa & Couches",
   },
   {
     src: "https://i.pinimg.com/564x/02/d0/7b/02d07b599baebabf6e79b966bfab36c5.jpg",
     alt: "Wood decor Beds",
-    title: "Beds"
+    title: "Beds",
   },
   {
     src: "https://i.pinimg.com/564x/40/aa/1a/40aa1ab428fbca251f269b6a91d20352.jpg",
     alt: "Wood decor dining",
-    title: "Dining Set"
+    title: "Dining Set",
   },
   {
     src: "https://i.pinimg.com/564x/ab/4c/af/ab4caf9ad4ffc3dbd25888ba89adc144.jpg",
     alt: "Wood decor dining",
-    title: "Dining Set"
+    title: "Dining Set",
   },
-  
+
   {
     src: "https://i.pinimg.com/564x/ca/f6/a1/caf6a1042c3788be027abfa8666d740a.jpg",
     alt: "Wood decor dining",
-    title: "Dining Set"
+    title: "Dining Set",
   },
   {
     src: "https://i.pinimg.com/564x/71/86/a0/7186a07723093ad20b1c395d08bac032.jpg",
     alt: "Wood decor dining",
-    title: "Dining Set"
+    title: "Dining Set",
   },
   {
     src: "https://i.pinimg.com/564x/3a/2e/f7/3a2ef7198e216027c4d0f754f15d6b9d.jpg",
     alt: "Wood decor dining",
-    title: "Dining Set"
+    title: "Dining Set",
   },
 
   // {
@@ -75,7 +75,9 @@ export default function CarouselComponent() {
   }, []);
 
   const goToPrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
   };
 
   const goToNext = () => {
@@ -89,13 +91,13 @@ export default function CarouselComponent() {
           <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentIndex ? 'opacity-100' : 'opacity-0'
+              index === currentIndex ? "opacity-100" : "opacity-0"
             }`}
           >
             <Image
               src={image.src}
               alt={image.alt}
-              layout="fill"
+              // layout="fill"
               objectFit="cover"
               objectPosition="center"
               priority={index === currentIndex}

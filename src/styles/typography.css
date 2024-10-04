@@ -15,4 +15,7 @@
   p {
     @apply text-lg;
   }
+  /* li {
+    @apply list-disc;
+  } */
 }
