@@ -18,8 +18,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import DeleteProduct from "./admin/products/delete-product";
-import AddProductForm from "./admin/admin-form";
+import DeleteProduct from "./delete-product";
+import AddProductForm from "./admin-form";
 import { getProducts } from "@/actions/admin.action";
 
 const NUMBER_OF_PRODUCTS_TO_FETCH = 8;

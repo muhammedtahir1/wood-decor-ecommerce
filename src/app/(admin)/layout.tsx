@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import AddProductForm from "./admin/admin-form";
+import AddProductForm from "../../components/admin/admin-form";
 import Link from "next/link";
 import { HomeIcon, LogOut, ShoppingBag, ShoppingBasket } from "lucide-react";
 import {
@@ -13,7 +13,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { auth } from "@/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import AdminMenuBar from "@/components/admin/Admin-mobile-hamburger-menu";
+import AdminMenuBar from "@/components/admin/admin-mobile-hamburger-menu";
+
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();

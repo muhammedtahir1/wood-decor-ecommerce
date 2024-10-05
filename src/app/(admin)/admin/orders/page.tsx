@@ -2,7 +2,7 @@
 import prisma from "@/lib/db";
 import React from "react";
 import { AdminBreadCrumbComponent } from "../../layout";
-import OrdersPagination from "./orders-pagination";
+import OrdersPagination from "../../../../components/admin/orders-pagination";
 
 const page = async () => {
   const orders = await prisma.order.findMany({

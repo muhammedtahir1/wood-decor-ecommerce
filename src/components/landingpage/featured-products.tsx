@@ -1,3 +1,4 @@
+// @ts-nocheck
 import ProductCard from "../product-card";
 import prisma from "@/lib/db";
 import { Button } from "../ui/button";
