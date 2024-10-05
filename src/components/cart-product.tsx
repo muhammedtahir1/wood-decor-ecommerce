@@ -35,7 +35,7 @@ export default function CartProduct({ item, removeItemFromCart }: { item: TCartP
 
         <div className="flex justify-between items-center">
           <section className="space-x-1">
-            {price.variant && <Badge>
+            {price.variant && price.variant.toLowerCase() !== "default" && <Badge>
               {price.variant}
             </Badge>}
             {color && <Badge>

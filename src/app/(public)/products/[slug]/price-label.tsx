@@ -71,7 +71,7 @@ const PriceLabel = ({ colors = [], prices, product }: { prices: PriceTypeProps[]
   return (
     <div className="space-y-4">
       <h2 className="text-2xl font-bold">
-        Final Price: ${finalPrice ? finalPrice.price.toFixed(2) : "N/A"}
+        ₹{finalPrice ? finalPrice.price : "N/A"}
       </h2>
       <div className="flex flex-wrap gap-2">
         {prices.map((priceObj, index) => (

@@ -9,7 +9,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import Image from "next/image";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Product } from "@prisma/client";
+import { Product, Variants } from "@prisma/client";
 import FormSelector from "./product-form";
 import {
   Accordion,
@@ -80,10 +80,10 @@ const page = async ({ params }: ParamsProps) => {
       prices: true,
       slug: true,
       rating: true,
+
     },
   });
 
-  // console.log(product.title.slice(0, 20), "- product.rating", product.rating);
   return (
     <>
       <main className="flex flex-col md:flex-row items-start justify-center gap-10 mt-36 md:mt-32 px-10">
@@ -244,7 +244,7 @@ function EachProduct({
   data: {
     image: Product["image"];
     title: Product["title"];
-    // price: Product["prices"];
+    prices: Variants[]
     slug: Product["slug"];
     rating: Product["rating"];
   };

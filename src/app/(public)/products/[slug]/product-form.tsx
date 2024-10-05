@@ -43,7 +43,7 @@ export default function FormSelector({
   colors,
   prices,
   product,
-  mainForm
+  // mainForm
 }: FormSelectorProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -62,7 +62,7 @@ export default function FormSelector({
   ];
   const router = useRouter();
 
-  console.log("prices", mainForm.getValues("prices"))
+  // console.log("prices", mainForm.getValues("prices"))
 
   // Filter default colors based on provided colors
   const finalColors = defaultColors.filter((color) =>

@@ -23,10 +23,10 @@ const Page = () => {
   // })
 
   let finalTotalPrice
-  useEffect(() => {
-    finalTotalPrice = calculateTotalPrice(cartItems)
-    console.log(finalTotalPrice)
-  }, [])
+  finalTotalPrice = calculateTotalPrice(cartItems)
+  console.log(finalTotalPrice)
+  // useEffect(() => {
+  // }, [])
 
   console.log(cartItems)
   return (
