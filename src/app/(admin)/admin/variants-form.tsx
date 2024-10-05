@@ -16,7 +16,9 @@ import { Badge } from "@/components/ui/badge";
 type FormProps = UseFormReturn<
   {
     title: string;
-    price: number;
+    prices: {
+      
+    }[];
     colors: string[];
     description?: string | undefined;
     discountedPrice?: number | undefined;

@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import {
   Dialog,
@@ -30,7 +30,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Product } from "@prisma/client";
 import { ClipboardPen, RotateCw } from "lucide-react";
@@ -42,6 +41,8 @@ import { CATEGORIES } from "@/lib/constants";
 import { addProduct, editProduct } from "@/actions/admin.action";
 import { colors_options } from "@/lib/dummy_data";
 import TiptapEditor from "@/components/tiptap-editor";
+import PriceVariants from "./price-variants";
+
 const variantSchema = z.object({
   variant: z.string().min(1, "Variant name is required"),
   price: z.coerce.number().int().positive("Price must be a positive integer"),
@@ -59,10 +60,6 @@ const formSchema = z.object({
       message: "title must be at least 2 characters.",
     })
     .max(70, { message: "title max length 70 chars" }),
-
-  prices: z
-    .array(z.object(variantSchema))
-    .min(1, { message: "At least one variant is required" }),
   description: z
     .string()
     .min(10, { message: "description must be at least 10 characters." })
@@ -77,6 +74,9 @@ const formSchema = z.object({
   image: z.string().optional(),
   rating: z.number().default(4.2),
   label: z.string().optional(),
+  // prices: z
+  //   .array(variantSchema)
+  //   .min(1, { message: "At least one variant is required" }),
 });
 
 export default function AddProductForm({
@@ -90,7 +90,6 @@ export default function AddProductForm({
   const [editorContent, setEditorContent] = useState(
     data?.description as string
   );
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -102,10 +101,7 @@ export default function AddProductForm({
       image: data?.image || "",
       rating: data?.rating || 0,
       label: data?.label || "",
-      prices:
-        actionType === "edit"
-          ? data?.prices
-          : [{ variant: "Default", price: 0 }],
+      // prices: actionType === "edit" ? data?.prices : [],
     },
   });
 
@@ -113,13 +109,18 @@ export default function AddProductForm({
   const [inputImageUrl, setInputImageUrl] = useState(form.getValues("image"));
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    alert("submitting");
     setIsSubmitting(true);
     const finalValues = { ...values, image: inputImageUrl };
     console.log(finalValues);
 
+    console.log("now work on your actions");
+    return;
     try {
       let response;
       if (actionType === "edit") {
+        // 👇👇 change the way the action takes prompts
+        // @ts-ignore
         response = await editProduct(data!.id, finalValues);
         if (response.success) {
           toast.success("Successfully edited the product");
@@ -128,6 +129,8 @@ export default function AddProductForm({
           toast.error("Something went wrong in editing the product");
         }
       } else {
+        // 👇👇 change the way the action takes prompts
+        // @ts-ignore
         response = await addProduct(finalValues);
         if (response.success) {
           toast.success("Successfully added the product");
@@ -143,7 +146,10 @@ export default function AddProductForm({
       setIsSubmitting(false);
     }
   }
-
+  // const { fields, append, remove } = useFieldArray({
+  //   control: form.control,
+  //   name: "prices",
+  // });
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
@@ -167,6 +173,7 @@ export default function AddProductForm({
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-4"
               >
+                {/* <PriceVariants form={form} /> */}
                 <FormField
                   control={form.control}
                   name="title"
@@ -206,11 +213,10 @@ export default function AddProductForm({
                 />
 
                 <UploadProductImageAdmin
-                  form={form}
                   inputImageUrl={inputImageUrl}
                   setInputImageUrl={setInputImageUrl}
                 />
-                {fields.map((field, index) => (
+                {/* {fields.map((field, index) => (
                   <div key={field.id} className="flex gap-2 items-end">
                     <FormField
                       control={form.control}
@@ -262,7 +268,7 @@ export default function AddProductForm({
                       <Minus size={14} />
                     </Button>
                   </div>
-                ))}
+                ))} */}
                 <FormField
                   control={form.control}
                   name="description"
@@ -336,7 +342,7 @@ export default function AddProductForm({
                   )}
                 />
                 {/* Form field variants which takes input and adds variant form */}
-                <VariantForm form={form} />
+                {/* <VariantForm form={form} /> */}
                 <FormField
                   control={form.control}
                   name="colors"
