@@ -11,6 +11,7 @@ import { Product } from "@prisma/client";
 import AddToCartBtn from "./add-to-cart-btn";
 import BuyNowBtn from "./buy-now-btn";
 import StarRating from "./star-rating";
+import { Badge } from "./ui/badge";
 
 export default function ProductCard({ data }: { data: Product }) {
   const {
@@ -30,7 +31,7 @@ export default function ProductCard({ data }: { data: Product }) {
   console.log(`/products/${slug}`);
 
   return (
-    <Card className="w-40 rounded-xl md:w-72 h-[300px]  md:h-[460px] mx-1  bg-white/30 ">
+    <Card className="w-40 relative rounded-xl md:w-72 h-[300px]  md:h-[460px] mx-1  bg-white/30 ">
       <CardHeader className="h-[50%] md:h-[60%] overflow-hidden p-0">
         <Link
           href={`/products/${slug}`}
@@ -55,8 +56,8 @@ export default function ProductCard({ data }: { data: Product }) {
             <span className="text-base md:text-xl font-semibold">₹</span>
             {price}
           </h2>
-          
-          <StarRating rating={rating > 3 ? rating : 4} />
+
+          <StarRating className="scale-90 mt-1 -ml-2" rating={rating > 3 ? rating : 4} />
 
           {/* <p className="text-xs">More options</p> */}
         </div>
@@ -65,6 +66,7 @@ export default function ProductCard({ data }: { data: Product }) {
         <BuyNowBtn product={{ id, image, price, title }} />
         <AddToCartBtn product={{ id, image, price, title }} />
       </CardFooter>
+      {label && <Badge className="absolute top-0 left-0">{label}</Badge>}
     </Card>
   );
 }

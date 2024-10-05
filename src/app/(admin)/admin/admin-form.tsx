@@ -69,6 +69,7 @@ const formSchema = z.object({
   image: z.string().optional(),
   variants: z.array(z.string()).optional(),
   rating: z.number().default(4.2),
+  label: z.string().optional(),
 });
 
 export default function AddProductForm({
@@ -97,6 +98,7 @@ export default function AddProductForm({
       discountedPrice:
         actionType === "edit" ? Number(data?.discountedPrice) : 0,
       rating: actionType === "edit" ? data?.rating : 4.2,
+      label: actionType === "edit" ? data?.label : "",
     },
   });
 
@@ -354,7 +356,23 @@ export default function AddProductForm({
                     </FormItem>
                   )}
                 />
-
+                <FormField
+                  control={form.control}
+                  name="label"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Label</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="eg: 🎉BestSeller, New Arrival"
+                          {...field}
+                          className="placeholder:opacity-50 focus:placeholder:opacity-0"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 <FormField
                   control={form.control}
                   name="category"

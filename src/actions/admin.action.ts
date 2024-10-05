@@ -16,6 +16,7 @@ type TFormData = {
   image?: string | undefined;
   isFeatured?: boolean | undefined;
   rating?: number | undefined;
+  label?: string | undefined;
 };
 
 const getProducts = async ({ take, skip }: { take: number; skip: number }) => {
@@ -70,6 +71,7 @@ const addProduct = async (formData: TFormData) => {
         variants: formData.variants as string[],
         isFeatured: formData.isFeatured as boolean,
         rating: formData.rating as number,
+        label: formData.label as string,
       },
     });
   } catch (error) {
@@ -117,6 +119,7 @@ const editProduct = async (id: Product["id"], formData: TFormData) => {
         variants: formData.variants as string[],
         isFeatured: formData.isFeatured as boolean,
         rating: formData.rating as number,
+        label: formData.label as string,
       },
     });
   } catch (error) {

@@ -97,9 +97,12 @@ export default function CarouselComponent() {
             <Image
               src={image.src}
               alt={image.alt}
+              width={500}
+              height={980}
+              className="object-contain object-center mx-auto"
               // layout="fill"
-              objectFit="cover"
-              objectPosition="center"
+              // objectFit="cover"
+              // objectPosition="center"
               priority={index === currentIndex}
             />
           </div>

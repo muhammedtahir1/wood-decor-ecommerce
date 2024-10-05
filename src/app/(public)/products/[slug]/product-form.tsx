@@ -19,6 +19,7 @@ import BuyNowBtn from "@/components/buy-now-btn";
 import AddToCartBtn from "@/components/add-to-cart-btn";
 import { Product } from "@prisma/client";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 const formSchema = z.object({
   color: z.string().optional(),
@@ -64,6 +65,9 @@ export default function FormSelector({
 
   return (
     <Form {...form}>
+      <Button onClick={()=>{
+        console.log("Changing")
+      }}>Change</Button>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         {colors.length > 0 && (
           <FormField

@@ -3,7 +3,6 @@
 import { CustomerDataFormSchema } from "@/app/(payments)/checkout/checkout-form";
 import prisma from "@/lib/db";
 import { TCartProduct } from "@/store/cart";
-import { Product } from "@prisma/client";
 import { z } from "zod";
 import { sendConfirmationEmail } from "./email.action";
 
@@ -32,17 +31,34 @@ const BuyNow = async (
         },
       },
       include: {
-        orderItems: true,
+        orderItems: {
+          include: {
+            product: {
+              select: {
+                id: true,
+                image: true,
+                title: true,
+                slug: true,
+                price: true,
+              },
+            },
+          },
+        },
       },
     });
+
+    console.log(
+      "order---->",
+      order.orderItems.map((item) => item.productId)
+    );
 
     await sendConfirmationEmail({
       finalPrice: order.totalAmount,
       name: order.name,
       orders: order.orderItems.map((item) => ({
-        title: "item.product.title",
-        price: 50,
-        image: "item.",
+        title: item.product.title,
+        price: item.product.price,
+        image: item.product.image,
       })),
     });
 

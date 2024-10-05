@@ -8,20 +8,26 @@ datasource db {
 }
 
 model Product {
-  id              Int         @id @default(autoincrement())
-  title           String
-  slug            String      @unique
-  description     String?
+  id          Int         @id @default(autoincrement())
+  title       String
+  slug        String      @unique
+  description String?
+  prices       Variants[]
+  category    String?
+  image       String // SFI: later make it array
+  colors      String[]
+  label       String?
+  rating      Float       @default(0)
+  isFeatured  Boolean     @default(false)
+  OrderItem   OrderItem[]
+}
+
+model Variants {
+  variant         String   @unique
   price           Int
-  discountedPrice Int? // make use of it later
-  category        String?
-  image           String // SFI: later make it array
-  variants        String[]
-  colors          String[]
-  label           String? // make use of it
-  rating          Float       @default(0)
-  isFeatured      Boolean     @default(false)
-  OrderItem       OrderItem[] 
+  discountedPrice Int?
+  Product         Product? @relation(fields: [productId], references: [id])
+  productId       Int?
 }
 
 model Admin {

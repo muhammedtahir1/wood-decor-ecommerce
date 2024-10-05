@@ -38,17 +38,4 @@ function Hero2() {
 }
 
 export default Hero2;
-/*
-  title           ✅
-  slug            ✅
-  description     ✅
-  category        ✅
-  image           ✅
-  label           ✅
-  price           
-  discountedPrice 
-  features        
-  colors          
-  isFeatured        
 
-*/
