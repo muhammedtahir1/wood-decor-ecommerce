@@ -3,9 +3,27 @@ import { Product } from "@prisma/client";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
-export type TCartProduct = Pick<Product, "id" | "title" | "price" | "image"> & {
-  variant?: string;
+export type TCartProduct = Pick<Product, "id" | "title" | "image"> & {
+
+  /*
+  {
+    id: "",
+    title: "", 
+    image: "",
+    color: "",
+    price: {
+      variant: ""
+      price: 0
+    }
+  }
+  */
+  // variant?: string;
   color?: string;
+  price: {
+    variant: string
+    price: number
+    discountedPrice?: number
+  }
 };
 
 type CartStore = {

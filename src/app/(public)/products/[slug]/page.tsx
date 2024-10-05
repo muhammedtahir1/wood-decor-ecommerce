@@ -56,6 +56,9 @@ const page = async ({ params }: ParamsProps) => {
     where: {
       slug,
     },
+    include: {
+      prices: true
+    }
   });
 
   if (!product) {
@@ -74,7 +77,7 @@ const page = async ({ params }: ParamsProps) => {
     select: {
       image: true,
       title: true,
-      price: true,
+      prices: true,
       slug: true,
       rating: true,
     },
@@ -114,7 +117,7 @@ const page = async ({ params }: ParamsProps) => {
           <h1 className="text-2xl md:text-4xl capitalize font-gt">
             {product.title}
           </h1>
-          <PriceLabel product={product} />
+          <PriceLabel prices={product.prices} colors={product.colors} />
           <StarRating rating={product.rating > 3 ? product.rating : 4} />
 
           <h3 className="text-sm md:text-lg">Description</h3>
@@ -188,12 +191,13 @@ const page = async ({ params }: ParamsProps) => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-
+          {/* 
           <FormSelector
             colors={product.colors}
             product={product}
-            variants={product.variants}
-          />
+            // prices={product.prices}
+            mainForm={product.prices}
+          /> */}
           <div className="flex items-center gap-2">
             <ClockArrowDown size={18} />
             <p className="text-sm">
@@ -240,12 +244,12 @@ function EachProduct({
   data: {
     image: Product["image"];
     title: Product["title"];
-    price: Product["price"];
+    // prices: Product["prices"];
     slug: Product["slug"];
     rating: Product["rating"];
   };
 }) {
-  const { slug, image, title, price, rating } = data;
+  const { slug, image, title, rating } = data;
 
   return (
     <Card className="w-[145px] rounded-xl md:w-52  h-[260px] md:h-[250px] mx-auto bg-white/40 col-span-1 row-span-1 overflow-hidden justify-normal pb-2 md:pb-4">
