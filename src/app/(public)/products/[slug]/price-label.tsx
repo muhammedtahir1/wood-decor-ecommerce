@@ -1,7 +1,9 @@
 "use client"
 
+import AddToCartBtn from "@/components/add-to-cart-btn"
 import BuyNowBtn from "@/components/buy-now-btn"
 import { Button } from "@/components/ui/button"
+import { Product } from "@prisma/client"
 import React, { useEffect, useState } from "react"
 
 type PriceTypeProps = {
@@ -14,7 +16,15 @@ type ColorType = {
   class: string
 }
 
-const PriceLabel = ({ colors = [], prices }: { prices: PriceTypeProps[]; colors?: string[] }) => {
+type ResultType = {
+  color: string
+  price: {
+    variant: string
+    price: number
+  } | null
+}
+
+const PriceLabel = ({ colors = [], prices, product }: { prices: PriceTypeProps[]; colors?: string[]; product: Product }) => {
   const defaultColors: ColorType[] = [
     { value: "other", class: "bg-gray-300" },
     { value: "black", class: "bg-black" },
@@ -25,33 +35,37 @@ const PriceLabel = ({ colors = [], prices }: { prices: PriceTypeProps[]; colors?
 
   const [finalPrice, setFinalPrice] = useState<PriceTypeProps | null>(null)
   const [selectedColor, setSelectedColor] = useState<string | null>(null)
+  const [result, setResult] = useState<ResultType>({
+    color: "",
+    price: null,
+  })
 
   useEffect(() => {
-    // Set the initial final price
-    const defaultVariant = prices.find((price) => price.variant === "default")
-    setFinalPrice(defaultVariant || prices[0] || null)
+    const defaultVariant = prices.find((price) => price.variant === "default") || prices[0] || null
+    setFinalPrice(defaultVariant)
+    updateResult(defaultVariant, null)
   }, [prices])
 
   const handleVariantClick = (priceObj: PriceTypeProps) => {
     setFinalPrice(priceObj)
+    updateResult(priceObj, selectedColor)
   }
 
   const handleColorClick = (color: string) => {
     setSelectedColor(color)
+    updateResult(finalPrice, color)
   }
 
-  const handleBuy = () => {
-    const result = {
-      color: selectedColor || "",
-      price: finalPrice
+  const updateResult = (price: PriceTypeProps | null, color: string | null) => {
+    setResult({
+      color: color || "",
+      price: price
         ? {
-          variant: finalPrice.variant,
-          price: finalPrice.price,
+          variant: price.variant,
+          price: price.price,
         }
         : null,
-    }
-    console.log(result)
-    // You can perform additional actions here, like sending the data to a server
+    })
   }
 
   return (
@@ -89,27 +103,36 @@ const PriceLabel = ({ colors = [], prices }: { prices: PriceTypeProps[]; colors?
           )}
         </div>
       )}
-      <Button onClick={handleBuy}>buy2</Button>
 
-      {/* <div className="flex gap-x-4 mt-4">
+      {/* <Button onClick={() => {
+        console.log(result.price?.price || 0,
+          result.price?.variant || "",
+          result.color,)
+      }}>sdfsd</Button> */}
+
+      <div className="flex gap-x-4 mt-4">
         <BuyNowBtn
           product={{
             ...product,
-            variant: form.getValues("variant"),
-            color: form.getValues("color"),
+            price: {
+              price: result.price?.price || 0,
+              variant: result.price?.variant || "",
+            },
+            color: result.color,
           }}
         />
         <AddToCartBtn
           product={{
             ...product,
-            variant: form.getValues("variant"),
-            color: form.getValues("color"),
-            // 👇👇👇
-            price: product.discountedPrice || product.price,
+            price: {
+              price: result.price?.price || 0,
+              variant: result.price?.variant || "",
+            },
+            color: result.color,
           }}
         />
-      </div> */}
-    </div>
+      </div>
+    </div >
   )
 }
 

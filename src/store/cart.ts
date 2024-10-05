@@ -17,7 +17,6 @@ export type TCartProduct = Pick<Product, "id" | "title" | "image"> & {
     }
   }
   */
-  // variant?: string;
   color?: string;
   price: {
     variant: string
@@ -57,10 +56,12 @@ const useCartStore = create<CartStore>()(
               {
                 id: product.id,
                 image: product.image,
-                price: product.price,
+                price: {
+                  price: product.price.price,
+                  variant: product.price.variant,
+                },
                 title: product.title,
                 color: product.color,
-                variant: product.variant,
               },
             ],
           };

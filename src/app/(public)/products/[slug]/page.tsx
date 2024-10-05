@@ -117,7 +117,7 @@ const page = async ({ params }: ParamsProps) => {
           <h1 className="text-2xl md:text-4xl capitalize font-gt">
             {product.title}
           </h1>
-          <PriceLabel prices={product.prices} colors={product.colors} />
+          <PriceLabel prices={product.prices} colors={product.colors} product={product} />
           <StarRating rating={product.rating > 3 ? product.rating : 4} />
 
           <h3 className="text-sm md:text-lg">Description</h3>
@@ -244,7 +244,7 @@ function EachProduct({
   data: {
     image: Product["image"];
     title: Product["title"];
-    price: Product["prices"];
+    // price: Product["prices"];
     slug: Product["slug"];
     rating: Product["rating"];
   };

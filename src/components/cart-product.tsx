@@ -8,7 +8,7 @@ import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 
 export default function CartProduct({ item, removeItemFromCart }: { item: TCartProduct, removeItemFromCart: any }) {
-  const { image, title, price, id, color, variant } = item;
+  const { image, title, price, id, color } = item;
   return (
     <div className="px-4 flex  gap-4 items-center mr-2 mt-6 md:mt-10 border py-4  rounded-xl h-32 text-black bg-white/50">
       <div className="max-size-[100px] border rounded-xl">
@@ -29,14 +29,14 @@ export default function CartProduct({ item, removeItemFromCart }: { item: TCartP
             {title}
           </h1>
           <p className="font-semibold text-lg md:text-xl opacity-70 text-end">
-            ₹{price}
+            ₹{price.price}
           </p>
         </div>
 
         <div className="flex justify-between items-center">
           <section className="space-x-1">
-            {variant && <Badge>
-              {variant}
+            {price.variant && <Badge>
+              {price.variant}
             </Badge>}
             {color && <Badge>
               {color}
