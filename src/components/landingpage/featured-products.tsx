@@ -3,10 +3,12 @@ import prisma from "@/lib/db";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { searchProductByKeyword } from "@/lib/server-utils";
-import { Product } from "@prisma/client";
+import { Product, Variants } from "@prisma/client";
 import { ReactNode } from "react";
 
 export default async function Featured({ query, title, desc, seeMore = false }: { query?: string, seeMore?: boolean, title?: string, desc?: string }) {
+
+  type ProductWithVariants = Product & { prices: Variants }
 
   let products = [];
 
@@ -16,6 +18,9 @@ export default async function Featured({ query, title, desc, seeMore = false }: 
       where: {
         isFeatured: true,
       },
+      include: {
+        prices: true
+      }
     });
   }
   else {

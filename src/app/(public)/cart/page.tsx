@@ -6,17 +6,29 @@ import { Button } from "@/components/ui/button";
 import useCartStore, { TCartProduct } from "@/store/cart";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 const Page = () => {
   function calculateTotalPrice(products: TCartProduct[]) {
     let totalPrice = 0;
     for (const product of products) {
-      totalPrice += product.price;
+      totalPrice += product.price.price;
     }
     return totalPrice;
   }
   const { cartItems, removeItemFromCart, } = useCartStore();
+  // console.log("0000000 ", cartItems[0].price.price)
+  // cartItems.map(i => {
+  //   console.log(i)
+  // })
+
+  let finalTotalPrice
+  finalTotalPrice = calculateTotalPrice(cartItems)
+  console.log(finalTotalPrice)
+  // useEffect(() => {
+  // }, [])
+
+  console.log(cartItems)
   return (
     <main className="mt-32  md:px-10">
       <h1 className="my-2 ml-10 font-gt">Cart</h1>
@@ -47,7 +59,7 @@ const Page = () => {
             </div>
             <Link href={"/checkout"} className="flex items-centerw gap-3">
               <Button className="w-full flex items-center gap-2">
-                Proceed to buy <ArrowRight size={16} className="mt-1"/>
+                Proceed to buy <ArrowRight size={16} className="mt-1" />
               </Button>
             </Link>
           </div>

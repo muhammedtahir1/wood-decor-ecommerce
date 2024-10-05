@@ -10,7 +10,7 @@ const BuyNowBtn = ({ product }: { product: TCartProduct }) => {
   const router = useRouter();
   return (
     <Button
-    variant={"fullRounded"}
+      variant={"fullRounded"}
       onClick={() => {
         addItemToCart(product);
         router.push("/cart");

@@ -16,7 +16,7 @@ const AddToCartBtn = ({ product }: { product: TCartProduct }) => {
       }}
       variant={"outline"}
     >
-      {isAddingToCart ? <span >Added <CircleCheck className="inline-block"/></span> : "Add to cart"}
+      {isAddingToCart ? <span >Added <CircleCheck className="inline-block" /></span> : "Add to cart"}
     </Button>
   );
 };

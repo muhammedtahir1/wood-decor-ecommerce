@@ -26,16 +26,24 @@ const formSchema = z.object({
   variant: z.string().optional(),
 });
 
+type PriceTypeProps = {
+  variant: string,
+  price: number,
+  discountedPrice?: number
+}
+
 type FormSelectorProps = {
   colors: string[];
-  variants: string[];
+  prices: PriceTypeProps[];
   product: Product;
+  form: any
 };
 
 export default function FormSelector({
   colors,
-  variants,
+  prices,
   product,
+  // mainForm
 }: FormSelectorProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -54,6 +62,8 @@ export default function FormSelector({
   ];
   const router = useRouter();
 
+  // console.log("prices", mainForm.getValues("prices"))
+
   // Filter default colors based on provided colors
   const finalColors = defaultColors.filter((color) =>
     colors.includes(color.value)
@@ -63,11 +73,16 @@ export default function FormSelector({
     console.log(values);
   }
 
+  const [finalPrice, setFinalPrice] = React.useState<number>()
+
   return (
     <Form {...form}>
-      <Button onClick={()=>{
+      {/* <Button onClick={() => {
         console.log("Changing")
-      }}>Change</Button>
+      }}>Change</Button> */}
+
+      RS{finalPrice}
+
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         {colors.length > 0 && (
           <FormField
@@ -121,14 +136,14 @@ export default function FormSelector({
           />
         )}
         {/* Variant Selection */}
-        {variants.length > 0 && (
+        {prices.length > 0 && (
           <FormField
             control={form.control}
             name="variant"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="text-base font-medium">
-                  Variants
+                  prices
                 </FormLabel>
                 <FormControl>
                   <RadioGroup
@@ -142,34 +157,34 @@ export default function FormSelector({
                     }}
                     className="flex min-h-10 space-x-2 items-center"
                   >
-                    {variants.map((variant) => (
+                    {prices.map((variant) => (
                       <FormItem
-                        key={variant}
+                        key={variant.price}
                         className="flex flex-col items-center"
                       >
                         <FormControl>
                           <RadioGroupItem
-                            value={variant}
-                            id={variant}
+                            value={variant.variant}
+                            id={variant.variant}
                             className="sr-only"
                           />
                         </FormControl>
-                        <FormLabel htmlFor={variant}>
+                        <FormLabel htmlFor={variant.variant}>
                           <div
                             className={cn(
                               `px-2 py-3 cursor-pointer transition-all duration-200 ease-in-out border hover:ring-2 hover:ring-offset-2 hover:ring-black relative`,
                               {
-                                "ring-2 ring-black": field.value === variant,
+                                "ring-2 ring-black": field.value === variant.variant,
                               }
                             )}
                           >
-                            {field.value === variant && (
+                            {field.value === variant.variant && (
                               <Check
                                 size={12}
                                 className="absolute left-1/3 top-1/3 text-white"
                               />
                             )}
-                            {variant}
+                            {variant.variant}
                           </div>
                         </FormLabel>
                       </FormItem>
@@ -180,7 +195,7 @@ export default function FormSelector({
             )}
           />
         )}
-        <div className="flex gap-x-4 mt-4">
+        {/* <div className="flex gap-x-4 mt-4">
           <BuyNowBtn
             product={{
               ...product,
@@ -194,10 +209,10 @@ export default function FormSelector({
               variant: form.getValues("variant"),
               color: form.getValues("color"),
               // 👇👇👇
-              price: product.discountedPrice || product.price, 
+              price: product.discountedPrice || product.price,
             }}
           />
-        </div>
+        </div> */}
       </form>
     </Form>
   );

@@ -19,7 +19,7 @@ import ReviewPopup from "@/components/review-popup";
 
 export default async function Home() {
   return (
-    <>
+    <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -65,6 +65,6 @@ export default async function Home() {
         <Footer />
         <ReviewPopup />
       </main>
-    </>
+    </div>
   );
 }

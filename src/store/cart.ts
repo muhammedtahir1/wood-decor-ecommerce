@@ -3,9 +3,26 @@ import { Product } from "@prisma/client";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
-export type TCartProduct = Pick<Product, "id" | "title" | "price" | "image"> & {
-  variant?: string;
+export type TCartProduct = Pick<Product, "id" | "title" | "image"> & {
+
+  /*
+  {
+    id: "",
+    title: "", 
+    image: "",
+    color: "",
+    price: {
+      variant: ""
+      price: 0
+    }
+  }
+  */
   color?: string;
+  price: {
+    variant: string
+    price: number
+    discountedPrice?: number
+  }
 };
 
 type CartStore = {
@@ -39,10 +56,12 @@ const useCartStore = create<CartStore>()(
               {
                 id: product.id,
                 image: product.image,
-                price: product.price,
+                price: {
+                  price: product.price.price,
+                  variant: product.price.variant,
+                },
                 title: product.title,
                 color: product.color,
-                variant: product.variant,
               },
             ],
           };
