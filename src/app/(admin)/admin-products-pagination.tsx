@@ -72,7 +72,7 @@ const AdminProductsPagination = ({ initialProducts }: { initialProducts: Product
         <TableHeader>
           <TableRow>
             <TableHead className="w-[300px]">Name</TableHead>
-            <TableHead>Price</TableHead>
+            {/* <TableHead>Price</TableHead> */}
             <TableHead>Category</TableHead>
             <TableHead className="text-right">Actions</TableHead>
           </TableRow>
@@ -83,7 +83,7 @@ const AdminProductsPagination = ({ initialProducts }: { initialProducts: Product
               <TableCell className="font-medium w-96">
                 {product.title}
               </TableCell>
-              <TableCell>{product.price}</TableCell>
+              {/* <TableCell>{product.}</TableCell> */}
               <TableCell>{product.slug}</TableCell>
               <TableCell className="text-right flex">
                 <Popover>

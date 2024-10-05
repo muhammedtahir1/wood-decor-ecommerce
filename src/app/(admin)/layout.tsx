@@ -52,7 +52,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
       <div className="md:min-h-screen w-full px-5 md:px-10">
         <header className="flex justify-between border-b mb-5 py-3 items-center md:px-10">
           <AdminMenuBar />
-          <AddProductForm actionType="add" />
+          {/* <AddProductForm actionType="add" /> */}
         </header>
         {children}
       </div>

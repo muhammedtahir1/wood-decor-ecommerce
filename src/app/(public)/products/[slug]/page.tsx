@@ -240,7 +240,7 @@ function EachProduct({
   data: {
     image: Product["image"];
     title: Product["title"];
-    price: Product["price"];
+    price: Product["prices"];
     slug: Product["slug"];
     rating: Product["rating"];
   };
