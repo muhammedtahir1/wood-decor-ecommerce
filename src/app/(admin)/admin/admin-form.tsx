@@ -40,11 +40,17 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { CATEGORIES } from "@/lib/constants";
 import { addProduct, editProduct } from "@/actions/admin.action";
-import Image from "next/image";
-import { validateUrl } from "@/lib/utils";
 import { colors_options } from "@/lib/dummy_data";
 import TiptapEditor from "@/components/tiptap-editor";
-import { Slider } from "@/components/ui/slider";
+const variantSchema = z.object({
+  variant: z.string().min(1, "Variant name is required"),
+  price: z.coerce.number().int().positive("Price must be a positive integer"),
+  discountedPrice: z.coerce
+    .number()
+    .int()
+    .positive("Discounted price must be a positive integer")
+    .optional(),
+});
 
 const formSchema = z.object({
   title: z
@@ -53,21 +59,22 @@ const formSchema = z.object({
       message: "title must be at least 2 characters.",
     })
     .max(70, { message: "title max length 70 chars" }),
-  price: z.coerce.number().int().positive(),
+
+  prices: z
+    .array(z.object(variantSchema))
+    .min(1, { message: "At least one variant is required" }),
   description: z
     .string()
     .min(10, { message: "description must be at least 10 characters." })
     .max(500, { message: "description max length 500 chars" })
     .optional(),
   // how do we include 0 as a valid value?
-  discountedPrice: z.coerce.number().int().min(0).optional(),
   isFeatured: z.boolean().optional(),
   colors: z.array(z.string()).refine((value) => value.some((item) => item), {
     message: "You have to select at least one item.",
   }),
   category: z.string().optional(),
   image: z.string().optional(),
-  variants: z.array(z.string()).optional(),
   rating: z.number().default(4.2),
   label: z.string().optional(),
 });
@@ -87,18 +94,18 @@ export default function AddProductForm({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: actionType === "edit" ? data?.title : "",
-      price: actionType === "edit" ? data?.price : 0,
-      description: actionType === "edit" ? (data?.description as string) : ``,
-      isFeatured: actionType === "edit" ? data?.isFeatured : false,
-      colors: actionType === "edit" ? data?.colors : [],
-      variants: actionType === "edit" ? data?.variants : [],
-      category: actionType === "edit" ? (data?.category as string) : "",
-      image: actionType === "edit" ? data?.image : "",
-      discountedPrice:
-        actionType === "edit" ? Number(data?.discountedPrice) : 0,
-      rating: actionType === "edit" ? data?.rating : 4.2,
-      label: actionType === "edit" ? data?.label : "",
+      title: data?.title || "",
+      description: data?.description || "",
+      isFeatured: data?.isFeatured || false,
+      colors: data?.colors || [],
+      category: data?.category || "",
+      image: data?.image || "",
+      rating: data?.rating || 0,
+      label: data?.label || "",
+      prices:
+        actionType === "edit"
+          ? data?.prices
+          : [{ variant: "Default", price: 0 }],
     },
   });
 
@@ -203,34 +210,59 @@ export default function AddProductForm({
                   inputImageUrl={inputImageUrl}
                   setInputImageUrl={setInputImageUrl}
                 />
-                <div className="flex w-full justify-between">
-                  <FormField
-                    control={form.control}
-                    name="price"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Price</FormLabel>
-                        <FormControl>
-                          <Input {...field} type="number" />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="discountedPrice"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Discounted Price</FormLabel>
-                        <FormControl>
-                          <Input {...field} type="number" />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
+                {fields.map((field, index) => (
+                  <div key={field.id} className="flex gap-2 items-end">
+                    <FormField
+                      control={form.control}
+                      name={`prices.${index}.variant`}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Variant</FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              placeholder="e.g., Small, Medium, Large"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name={`prices.${index}.price`}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Price</FormLabel>
+                          <FormControl>
+                            <Input {...field} type="number" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name={`prices.${index}.discountedPrice`}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Discounted Price</FormLabel>
+                          <FormControl>
+                            <Input {...field} type="number" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      onClick={() => remove(index)}
+                    >
+                      <Minus size={14} />
+                    </Button>
+                  </div>
+                ))}
                 <FormField
                   control={form.control}
                   name="description"
