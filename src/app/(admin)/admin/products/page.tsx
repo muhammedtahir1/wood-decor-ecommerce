@@ -3,6 +3,7 @@ import React from "react";
 import { AdminBreadCrumbComponent } from "../../layout";
 import AdminProductsPagination from "../../admin-products-pagination";
 import { validateUrl } from "@/lib/utils";
+import ProductVariantManager from "../product-variant-manager";
 
 const page = async () => {
   console.log(
@@ -15,7 +16,7 @@ const page = async () => {
       prices: true,
     },
   });
-  products.map((product) => console.log("🎉🎉🎉🎉", product));
+  // products.map((product) => console.log("🎉🎉🎉🎉", product));
   // console.log(products);
   return (
     <main>
@@ -23,7 +24,8 @@ const page = async () => {
         <AdminBreadCrumbComponent slug="Products" />
         <h1 className="mt-2">All Products</h1>
         hi
-        <AdminProductsPagination initialProducts={products} />
+        {/* <ProductVariantManager /> */}
+        {/* <AdminProductsPagination initialProducts={products} /> */}
       </section>
     </main>
   );

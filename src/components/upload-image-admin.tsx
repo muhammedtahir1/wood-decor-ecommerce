@@ -8,30 +8,30 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 
 export default function UploadProductImageAdmin({
-  form,
+  // form,
   inputImageUrl,
   setInputImageUrl,
 }: {
-  form: UseFormReturn<
-    {
-      title: string;
-      price: number;
-      colors: string[];
-      image?: string | undefined;
-      description?: string | undefined;
-      discountedPrice?: number | undefined;
-      isFeatured?: boolean | undefined;
-      category?: string | undefined;
-      variants?: string[] | undefined;
-      rating?: number | undefined;
-    },
-    any,
-    undefined
-  >;
+  // form: UseFormReturn<
+  //   {
+  //     title: string;
+  //     // price: number;
+  //     colors: string[];
+  //     image?: string | undefined;
+  //     description?: string | undefined;
+  //     discountedPrice?: number | undefined;
+  //     isFeatured?: boolean | undefined;
+  //     category?: string | undefined;
+  //     variants?: string[] | undefined;
+  //     rating?: number | undefined;
+  //   },
+  //   any,
+  //   undefined
+  // >;
   setInputImageUrl: Dispatch<SetStateAction<string | undefined>>;
   inputImageUrl: string | undefined;
 }) {
-  console.log("hi", form.getValues("image"));
+  // console.log("hi", form.getValues("image"));
 
   return (
     <div>
