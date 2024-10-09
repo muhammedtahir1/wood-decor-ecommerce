@@ -2,8 +2,9 @@
 
 import React from "react";
 import { Button } from "./ui/button";
-import useCartStore, { TCartProduct } from "@/store/cart";
+import useCartStore from "@/store/cart";
 import { useRouter } from "next/navigation";
+import { TCartProduct } from "@/types/cart";
 
 const BuyNowBtn = ({ product }: { product: TCartProduct }) => {
   const { addItemToCart } = useCartStore();

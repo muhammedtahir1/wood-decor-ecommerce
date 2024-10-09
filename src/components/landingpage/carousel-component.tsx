@@ -85,7 +85,7 @@ export default function CarouselComponent() {
   };
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto h-[700px] sm:h-[800px] md:h-[900px] lg:h-[1000px] overflow-hidden rounded-xl mt-16 md:mt-10">
+    <div className="relative w-full max-w-6xl mx-auto h-[700px] sm:h-[800px] md:h-[900px] lg:h-[1000px] md:w-[1280px] overflow-hidden rounded-xl mt-16 md:mt-10">
       <div className="relative w-full h-full">
         {images.map((image, index) => (
           <div

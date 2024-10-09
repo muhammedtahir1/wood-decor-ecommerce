@@ -1,11 +1,10 @@
 import React, { ReactNode } from "react";
 import AddProductForm from "../../components/admin/admin-form";
 import Link from "next/link";
-import { HomeIcon, LogOut, ShoppingBag, ShoppingBasket } from "lucide-react";
+import { LogOut, ShoppingBag, ShoppingBasket } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -13,8 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { auth } from "@/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import AdminMenuBar from "@/components/admin/admin-mobile-hamburger-menu";
-
+import AdminMenuBar from "@/components/admin/Admin-mobile-hamburger-menu";
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
@@ -27,13 +25,25 @@ const Layout = async ({ children }: { children: ReactNode }) => {
             <h3 className="text-center mb-5 mt-2">Admin</h3>
             <LogOut size={16} />
           </div>
-          <Link href={"/admin/products"} className="flex w-full items-center gap-2">
-            <Button className="flex items-center justify-start gap-2 w-full" variant={"ghost"}>
+          <Link
+            href={"/admin/products"}
+            className="flex w-full items-center gap-2"
+          >
+            <Button
+              className="flex items-center justify-start gap-2 w-full"
+              variant={"ghost"}
+            >
               <ShoppingBag size={20} /> Products
             </Button>
           </Link>
-          <Link href={"/admin/orders"} className="flex items-center w-full gap-2">
-            <Button className="flex items-center justify-start w-full gap-2" variant={"ghost"}>
+          <Link
+            href={"/admin/orders"}
+            className="flex items-center w-full gap-2"
+          >
+            <Button
+              className="flex items-center justify-start w-full gap-2"
+              variant={"ghost"}
+            >
               <ShoppingBasket size={20} /> Order
             </Button>
           </Link>

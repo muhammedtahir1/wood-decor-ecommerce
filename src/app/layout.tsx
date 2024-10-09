@@ -3,7 +3,7 @@ import { Inter, Roboto_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import "@/styles/typography.css";
 import { Toaster } from "@/components/ui/sonner";
-import localFont from "@next/font/local";
+import localFont from "next/font/local";
 import { siteConfig } from "@/lib/site";
 // import callFont from "./CalSans-SemiBold.woff2";
 
@@ -44,7 +44,6 @@ export const metadata: Metadata = {
   description: "A Store for all your wood needs",
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -61,16 +60,15 @@ export default function RootLayout({
         <meta property="og:url" content={siteConfig.url} />
         <meta property="og:type" content="website" />
 
-        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "name": siteConfig.name,
-              "url": siteConfig.url
-            })
+              name: siteConfig.name,
+              url: siteConfig.url,
+            }),
           }}
         />
       </head>

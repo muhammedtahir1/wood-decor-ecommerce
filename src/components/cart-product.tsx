@@ -3,9 +3,9 @@ import Image from "next/image";
 import { BsDashCircle } from "react-icons/bs";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
-import { TCartProduct } from "@/store/cart";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
+import { TCartProduct } from "@/types/cart";
 
 export default function CartProduct({ item, removeItemFromCart }: { item: TCartProduct, removeItemFromCart: any }) {
   const { image, title, price, id, color } = item;

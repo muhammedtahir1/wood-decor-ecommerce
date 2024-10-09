@@ -1,16 +1,21 @@
-// @ts-nocheck
 import ProductCard from "../product-card";
 import prisma from "@/lib/db";
-import { Button } from "../ui/button";
 import Link from "next/link";
 import { searchProductByKeyword } from "@/lib/server-utils";
 import { Product, Variants } from "@prisma/client";
 import { ReactNode } from "react";
 
-export default async function Featured({ query, title, desc, seeMore = false }: { query?: string, seeMore?: boolean, title?: string, desc?: string }) {
-
-  type ProductWithVariants = Product & { prices: Variants }
-
+export default async function Featured({
+  query,
+  title,
+  desc,
+  seeMore = false,
+}: {
+  query?: string;
+  seeMore?: boolean;
+  title?: string;
+  desc?: string;
+}) {
   let products = [];
 
   if (!query) {
@@ -20,14 +25,12 @@ export default async function Featured({ query, title, desc, seeMore = false }: 
         isFeatured: true,
       },
       include: {
-        prices: true
-      }
+        prices: true,
+      },
     });
+  } else {
+    products = await searchProductByKeyword(query, 4, 0);
   }
-  else {
-    products = await searchProductByKeyword(query, 4, 0)
-  }
-
 
   return (
     <section
@@ -36,29 +39,35 @@ export default async function Featured({ query, title, desc, seeMore = false }: 
     >
       <div className="text-center capitalize">
         <h1 className="uppercase">{title ? title : "Featured products"}</h1>
-        <p className="text-sm md:text-base opacity-80">{desc ? desc : "Impressive collection for your dream home"}</p>
+        <p className="text-sm md:text-base opacity-80">
+          {desc ? desc : "Impressive collection for your dream home"}
+        </p>
       </div>
 
       <div className="flex flex-wrap max-w-[1280px] gap-x-1 gap-y-3 md:gap-4 mt-8 md:mt-10 mb-4 md:mb-12 justify-center md:justify-normal">
-
-        {products.length > 0 ? products?.map((item, i) => (
-          <ProductCard key={i} data={item} />
-        )) : <div>No products in category</div>}
+        {products.length > 0 ? (
+          products?.map((item, i) => <ProductCard key={i} data={item} />)
+        ) : (
+          <div>No products in category</div>
+        )}
       </div>
-      {seeMore &&
+      {seeMore && (
         <Link href={`/search?q=${query || ""}`}>
           {/* <Button className="mt-2 md:mt-2 mb-8 md:mb-14" variant={"fullRounded"}>See more ...</Button> */}
-          <SwigglyButton>
-            See more ...
-          </SwigglyButton>
+          <SwigglyButton>See more ...</SwigglyButton>
         </Link>
-      }
+      )}
     </section>
   );
 }
 
-
-
 const SwigglyButton = ({ children }: { children?: ReactNode }) => {
-  return <button role="link" className="relative underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-gray-500 hover:underline">{children}</button>
-}
+  return (
+    <button
+      role="link"
+      className="relative underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-gray-500 hover:underline"
+    >
+      {children}
+    </button>
+  );
+};

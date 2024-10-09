@@ -1,6 +1,4 @@
 import Header from "@/components/landingpage/header";
-import Hero from "@/components/landingpage/hero";
-import Category from "@/components/landingpage/category";
 import Featured from "@/components/landingpage/featured-products";
 import Footer from "@/components/landingpage/footer";
 import OfferSection from "@/components/landingpage/offer-section";
@@ -26,9 +24,9 @@ export default async function Home() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebSite",
-            "name": "Your Website Name",
-            "url": "https://yourdomain.com"
-          })
+            name: "Your Website Name",
+            url: "https://yourdomain.com",
+          }),
         }}
       />
       <main className="relative">
@@ -38,10 +36,21 @@ export default async function Home() {
         {/* <Category /> */}
 
         <Featured seeMore={true} />
-        <Featured title="SECTIONAL SOFA" desc={"All the luxury sofa"} query="sofa" />
+        <Featured
+          title="SECTIONAL SOFA"
+          desc={"All the luxury sofa"}
+          query="sofa"
+        />
         <Featured title="Beds" desc={"All the luxury beds"} query="bed" />
-        <Featured title="Dining" desc={"All the luxury Dining"} query="dining" />
-        <Link href={"/search?q="} className="mx-5 rounded-2xl px-5  overflow-hidden">
+        <Featured
+          title="Dining"
+          desc={"All the luxury Dining"}
+          query="dining"
+        />
+        <Link
+          href={"/search?q="}
+          className="mx-5 rounded-2xl px-5  overflow-hidden"
+        >
           <Image
             src={"/Web-Banner.png"}
             alt="sofa banner"

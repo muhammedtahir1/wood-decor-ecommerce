@@ -2,16 +2,12 @@
 import Razorpay from "razorpay";
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
+import { TcreateOrderProps } from "@/types/validations";
 
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID!,
   key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
-
-type TcreateOrderProps = {
-  amount: string;
-  currency?: string;
-};
 
 const createOrder = async ({ amount, currency }: TcreateOrderProps) => {
   try {

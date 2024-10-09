@@ -6,9 +6,13 @@ import { LoaderCircle } from "lucide-react";
 import { Button } from "./ui/button";
 import useCartStore from "@/store/cart";
 import { BuyNow } from "@/actions/customer.action";
-import { CheckoutForm, CustomerDataFormSchema } from "@/app/(payments)/checkout/checkout-form";
+import {
+  CheckoutForm,
+  CustomerDataFormSchema,
+} from "@/app/(payments)/checkout/checkout-form";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
+import { calculateTotalPrice } from "@/lib/utils";
 
 interface RazorpayResponse {
   razorpay_payment_id: string;
@@ -26,7 +30,7 @@ interface VerificationData {
 const CheckoutWithRazorpayAndAdmin: React.FC = () => {
   const { cartItems, clearCart } = useCartStore();
   const [loading, setLoading] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
 
   const createOrderId = async (amount: number): Promise<string> => {
     try {
@@ -70,9 +74,12 @@ const CheckoutWithRazorpayAndAdmin: React.FC = () => {
     }
   };
 
-  const handlePayment = async (customerData: z.infer<typeof CustomerDataFormSchema>) => {
+  const handlePayment = async (
+    customerData: z.infer<typeof CustomerDataFormSchema>
+  ) => {
     setLoading(true);
-    const amount = cartItems.reduce((acc, curr) => acc + curr.price, 0);
+    // const amount = cartItems.reduce((acc, curr) => acc + curr.price, 0);
+    const amount = calculateTotalPrice(cartItems);
 
     try {
       const orderId = await createOrderId(amount);
@@ -97,10 +104,9 @@ const CheckoutWithRazorpayAndAdmin: React.FC = () => {
           if (isVerified) {
             const res = await BuyNow(cartItems, customerData);
             if (res) {
-
               toast.success("Payment successful!");
               clearCart();
-              router.push("/success")
+              router.push("/success");
             }
           } else {
             toast.error("Payment verification failed. Please contact support.");
@@ -109,11 +115,11 @@ const CheckoutWithRazorpayAndAdmin: React.FC = () => {
         prefill: {
           name: "",
           email: "customer@example.com",
-          address: ""
+          address: "",
         },
         notes: {
           address: "lafl;jsdflkj",
-          addres2: "lafl;jsdflkj"
+          addres2: "lafl;jsdflkj",
         },
         theme: {
           color: "#FAFAF1",
@@ -140,11 +146,9 @@ const CheckoutWithRazorpayAndAdmin: React.FC = () => {
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
 
-
-      <div className="w-full" >
+      <div className="w-full">
         <CheckoutForm action={handlePayment} loading={loading} />
         {/* Buy now */}
-
       </div>
     </>
   );

@@ -80,7 +80,6 @@ const page = async ({ params }: ParamsProps) => {
       prices: true,
       slug: true,
       rating: true,
-
     },
   });
 

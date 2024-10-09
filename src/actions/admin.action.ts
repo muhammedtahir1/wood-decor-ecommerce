@@ -1,17 +1,16 @@
 "use server";
 
 import prisma from "@/lib/db";
-import { Product } from "@prisma/client";
+import { Product, Variants } from "@prisma/client";
 import { revalidatePath } from "next/cache";
-import { toast } from "sonner";
 
 type TFormData = {
   title: string;
-  price: number;
+  // price: number;
   colors: string[];
-  variants?: string[];
+  variants?: Variants[];
   description?: string | undefined;
-  discountedPrice?: number | undefined;
+  // discountedPrice?: number | undefined;
   category?: string | undefined;
   image?: string | undefined;
   isFeatured?: boolean | undefined;
@@ -24,6 +23,9 @@ const getProducts = async ({ take, skip }: { take: number; skip: number }) => {
   const products = await prisma.product.findMany({
     take,
     skip,
+    include: {
+      prices: true,
+    },
   });
   return products;
 };
@@ -33,21 +35,11 @@ const getOrders = async ({ take, skip }: { take: number; skip: number }) => {
     take,
     skip,
     include: {
-      orderItems: {
-        include: {
-          product: {
-            select: {
-              id: true,
-              image: true,
-              title: true,
-              slug: true,
-              price: true,
-            },
-          },
-        },
-      },
+      orderItems: true,
     },
   });
+
+  console.log("order---", orders);
 
   return orders;
 };
@@ -57,7 +49,6 @@ const addProduct = async (formData: TFormData) => {
     const newProduct = await prisma.product.create({
       data: {
         title: formData.title as string,
-        price: formData.price,
         description: formData.description as string,
         slug: (formData.title as string)
           .toLowerCase()
@@ -65,10 +56,10 @@ const addProduct = async (formData: TFormData) => {
           .replace(/[^a-zA-Z0-9 ]/g, "")
           .replaceAll(" ", "-"),
         category: formData.category as string,
-        discountedPrice: formData.discountedPrice,
         image: formData.image as string,
         colors: formData.colors as string[],
-        variants: formData.variants as string[],
+        // TODO: work here.
+        // prices: {}
         isFeatured: formData.isFeatured as boolean,
         rating: formData.rating as number,
         label: formData.label as string,
@@ -110,13 +101,12 @@ const editProduct = async (id: Product["id"], formData: TFormData) => {
       },
       data: {
         title: formData.title as string,
-        price: formData.price,
         description: formData.description as string,
         category: formData.category as string,
-        discountedPrice: formData.discountedPrice,
         image: formData.image as string,
         colors: formData.colors as string[],
-        variants: formData.variants as string[],
+        // TODO: work here
+        // prices:
         isFeatured: formData.isFeatured as boolean,
         rating: formData.rating as number,
         label: formData.label as string,

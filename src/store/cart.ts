@@ -1,40 +1,7 @@
 "use client";
-import { Product } from "@prisma/client";
+import { CartStore } from "@/types/cart";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-
-export type TCartProduct = Pick<Product, "id" | "title" | "image"> & {
-
-  /*
-  {
-    id: "",
-    title: "", 
-    image: "",
-    color: "",
-    price: {
-      variant: ""
-      price: 0
-    }
-  }
-  */
-  color?: string;
-  price: {
-    variant: string
-    price: number
-    discountedPrice?: number
-  }
-};
-
-type CartStore = {
-  cartItems: TCartProduct[];
-  addItemToCart: (product: TCartProduct) => void;
-  removeItemFromCart: (productId: TCartProduct["id"]) => void;
-  updateCartItemQuantity: (
-    productId: TCartProduct["id"],
-    quantity: number
-  ) => void;
-  clearCart: () => void;
-};
 
 const isServer = typeof window === "undefined";
 

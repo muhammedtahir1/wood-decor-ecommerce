@@ -15,12 +15,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { signIn } from "@/auth";
-import { signInAction } from "@/lib/actions";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useFormStatus } from "react-dom";
 import { CircleArrowLeft } from "lucide-react";
 import { useActionState } from "react";
+import { signInAction } from "@/actions/auth.actions";
 
 const FormSchema = z.object({
   email: z.string().min(2, {
@@ -60,7 +60,10 @@ export function InputForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-4 max-w-96">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="w-2/3 space-y-4 max-w-96"
+      >
         <FormField
           control={form.control}
           name="email"
@@ -87,7 +90,9 @@ export function InputForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full mt-2">Submit</Button>
+        <Button type="submit" className="w-full mt-2">
+          Submit
+        </Button>
       </form>
     </Form>
   );

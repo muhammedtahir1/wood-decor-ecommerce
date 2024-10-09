@@ -1,6 +1,5 @@
 "use server";
 
-import prisma from "@/lib/db";
 import { searchProductByKeyword } from "@/lib/server-utils";
 
 const getSearchProducts = async ({
@@ -13,8 +12,7 @@ const getSearchProducts = async ({
   skip?: number;
 }) => {
   // query to get products which include the search query
-  const products = searchProductByKeyword(query, take, skip)
-
+  const products = searchProductByKeyword(query, take, skip);
 
   return products;
 };

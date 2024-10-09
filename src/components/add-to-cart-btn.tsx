@@ -1,7 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import useCartStore, { TCartProduct } from "@/store/cart";
-import { CircleCheck, TicketCheckIcon } from "lucide-react";
+import useCartStore from "@/store/cart";
+import { TCartProduct } from "@/types/cart";
+import { CircleCheck } from "lucide-react";
 import React from "react";
 
 const AddToCartBtn = ({ product }: { product: TCartProduct }) => {
@@ -16,7 +17,13 @@ const AddToCartBtn = ({ product }: { product: TCartProduct }) => {
       }}
       variant={"outline"}
     >
-      {isAddingToCart ? <span >Added <CircleCheck className="inline-block" /></span> : "Add to cart"}
+      {isAddingToCart ? (
+        <span>
+          Added <CircleCheck className="inline-block" />
+        </span>
+      ) : (
+        "Add to cart"
+      )}
     </Button>
   );
 };

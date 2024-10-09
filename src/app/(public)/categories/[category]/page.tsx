@@ -19,6 +19,10 @@ const page = async ({ params }: { params: { category: string } }) => {
     where: {
       category,
     },
+
+    include: {
+      prices: true,
+    },
     // take: 10,
   });
   if (products.length === 0) {

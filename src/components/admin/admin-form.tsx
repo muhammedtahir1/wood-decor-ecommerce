@@ -39,9 +39,8 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { CATEGORIES } from "@/lib/constants";
 import { addProduct, editProduct } from "@/actions/admin.action";
-import { colors_options } from "@/lib/dummy_data";
+import { colors_options } from "@/lib/constants";
 import TiptapEditor from "@/components/tiptap-editor";
-
 
 const variantSchema = z.object({
   variant: z.string().min(1, "Variant name is required"),
@@ -371,14 +370,14 @@ export default function AddProductForm({
                                     onCheckedChange={(checked) => {
                                       return checked
                                         ? field.onChange([
-                                          ...field.value,
-                                          color.id,
-                                        ])
+                                            ...field.value,
+                                            color.id,
+                                          ])
                                         : field.onChange(
-                                          field.value?.filter(
-                                            (value) => value !== color.id
-                                          )
-                                        );
+                                            field.value?.filter(
+                                              (value) => value !== color.id
+                                            )
+                                          );
                                     }}
                                   />
                                 </FormControl>
