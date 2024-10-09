@@ -148,7 +148,6 @@ const CheckoutWithRazorpayAndAdmin: React.FC = () => {
 
       <div className="w-full">
         <CheckoutForm action={handlePayment} loading={loading} />
-        {/* Buy now */}
       </div>
     </>
   );

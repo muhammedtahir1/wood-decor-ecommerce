@@ -23,9 +23,8 @@ const page = async () => {
       <section className="max-w-5xl mx-auto">
         <AdminBreadCrumbComponent slug="Products" />
         <h1 className="mt-2">All Products</h1>
-        hi
         {/* <ProductVariantManager /> */}
-        {/* <AdminProductsPagination initialProducts={products} /> */}
+        <AdminProductsPagination initialProducts={products} />
       </section>
     </main>
   );

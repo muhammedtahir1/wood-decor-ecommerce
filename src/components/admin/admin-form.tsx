@@ -41,10 +41,15 @@ import { CATEGORIES } from "@/lib/constants";
 import { addProduct, editProduct } from "@/actions/admin.action";
 import { colors_options } from "@/lib/constants";
 import TiptapEditor from "@/components/tiptap-editor";
+import PriceVariants from "./price-variants";
 
 const variantSchema = z.object({
-  variant: z.string().min(1, "Variant name is required"),
-  price: z.coerce.number().int().positive("Price must be a positive integer"),
+  variant: z.string().min(1, "Variant name is required").optional(),
+  price: z.coerce
+    .number()
+    .int()
+    .positive("Price must be a positive integer")
+    .optional(),
   discountedPrice: z.coerce
     .number()
     .int()
@@ -73,9 +78,9 @@ const formSchema = z.object({
   image: z.string().optional(),
   rating: z.number().default(4.2),
   label: z.string().optional(),
-  // prices: z
-  //   .array(variantSchema)
-  //   .min(1, { message: "At least one variant is required" }),
+  prices: z
+    .array(variantSchema)
+    .min(1, { message: "At least one variant is required" }),
 });
 
 export default function AddProductForm({
@@ -100,7 +105,11 @@ export default function AddProductForm({
       image: data?.image || "",
       rating: data?.rating || 0,
       label: data?.label || "",
-      // prices: actionType === "edit" ? data?.prices : [],
+      // prices:
+      //   actionType === "edit"
+      //     ? // data?.prices
+      //       []
+      //     : [],
     },
   });
 
@@ -109,12 +118,12 @@ export default function AddProductForm({
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     alert("submitting");
-    setIsSubmitting(true);
     const finalValues = { ...values, image: inputImageUrl };
     console.log(finalValues);
 
     console.log("now work on your actions");
     return;
+    setIsSubmitting(true);
     try {
       let response;
       if (actionType === "edit") {
@@ -172,7 +181,7 @@ export default function AddProductForm({
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-4"
               >
-                {/* <PriceVariants form={form} /> */}
+                <PriceVariants form={form} />
                 <FormField
                   control={form.control}
                   name="title"

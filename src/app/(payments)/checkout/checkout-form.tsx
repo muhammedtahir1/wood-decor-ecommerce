@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -23,10 +22,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import CheckoutWithRazorpayAndAdmin from "@/components/checkout-razorpay";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { LoaderCircle } from "lucide-react";
 import { indianStates } from "@/lib/constants";
+import useCartStore from "@/store/cart";
 
 export const CustomerDataFormSchema = z.object({
   name: z.string().min(2, {
@@ -61,6 +60,8 @@ export function CheckoutForm({
 }) {
   const [isSubmitting, setIsSubmitting] = useState(false); // State for loading indicator
 
+  const { cartItems } = useCartStore();
+
   const form = useForm<z.infer<typeof CustomerDataFormSchema>>({
     resolver: zodResolver(CustomerDataFormSchema),
     defaultValues: {
@@ -76,7 +77,8 @@ export function CheckoutForm({
 
   function onSubmit(data: z.infer<typeof CustomerDataFormSchema>) {
     console.log("You submitted the following values:", data);
-
+    console.log("cart --->", cartItems);
+    // return;
     setIsSubmitting(true); // Set loading indicator for submission
     console.log("You submitted the following values:", data);
 
