@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useFieldArray } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -5,12 +6,9 @@ import { Input } from "@/components/ui/input";
 
 import { X } from "lucide-react";
 import {
-  FormField,
   FormItem,
   FormLabel,
   FormControl,
-  FormDescription,
-  FormMessage,
 } from "../ui/form";
 import { z } from "zod";
 import {

@@ -65,7 +65,7 @@ export default function ProductCard({ data }: { data: ProductCardProps }) {
           />
         </div>
       </CardContent>
-      <CardFooter className="md:space-x-4 px-1 md:px-8 mt-4 md:mt-6">
+      <CardFooter className="md:space-x-1 px-1 md:px-8 mt-4 md:mt-6">
         <BuyNowBtn
           product={{
             id,

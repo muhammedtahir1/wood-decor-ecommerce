@@ -15,7 +15,7 @@ const AddToCartBtn = ({ product }: { product: TCartProduct }) => {
         addItemToCart(product);
         setIsAddingToCart(true);
       }}
-      variant={"outline"}
+      variant={"secondary"}
     >
       {isAddingToCart ? (
         <span>
