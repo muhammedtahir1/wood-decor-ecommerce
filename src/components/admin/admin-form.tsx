@@ -75,13 +75,13 @@ export default function AddProductForm({
     },
   });
 
-  if (actionType === "edit") console.log(data);
+  // if (actionType === "edit") console.log(data);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [inputImageUrl, setInputImageUrl] = useState(form.getValues("image"));
   const [variants, setVariants] = useState<VariantType[]>([]);
 
   async function onSubmit(values: z.infer<typeof addProductFormSchema>) {
-    alert("submitting");
+    // alert("submitting");
     const finalValues = { ...values, image: inputImageUrl };
 
     // console.log("now work on your actions");
@@ -92,7 +92,7 @@ export default function AddProductForm({
       if (actionType === "edit") {
         // 👇👇 change the way the action takes prompts
 
-        console.log("----", finalValues, variants);
+        // console.log("----", finalValues, variants);
 
         // return;
         response = await editProduct(data!.id, { ...finalValues, variants });
