@@ -1,9 +1,9 @@
 import prisma from "@/lib/db";
 import React from "react";
-import { AdminBreadCrumbComponent } from "../../layout";
 import AdminProductsPagination from "@/components/admin/admin-products-pagination";
 import { validateUrl } from "@/lib/utils";
 import { ProductWithVariants } from "@/types/validations";
+import AdminBreadCrumbComponent from "@/components/admin/admin-breadcrumb";
 
 const page = async () => {
   console.log(

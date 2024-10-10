@@ -9,11 +9,9 @@ import CarouselComponent from "./carousel-component";
 
 function Hero2() {
   return (
-    <main
-      className={`h-[70vh] md:h-[100vh] mt-16 md:mt-24 flex flex-col items-center justify-center w-full relative md:px-24  gap-4 backdrop-blur-md text-center	`}
-    >
+    <main className={`h-[70vh] md:h-[75vh] mt-16 md:mt-24 flex flex-col items-center justify-center w-full relative md:px-24  gap-4 backdrop-blur-md text-center	`}>
       <CarouselComponent />
-      {/* 
+{/* 
       <section className="flex flex-col md:flex-row items-center lg:w-[1100px] md:py-8 justify-between">
         <h2 className="font-gt z-10 text-5xl font-normal  text-brand-text-DEFALUT md:w-[50%] capitalize text-balance text-start">
           All in one furniture needs
@@ -36,7 +34,7 @@ function Hero2() {
         </div>
       </section> */}
     </main>
-  );
+  ); 
 }
 
 export default Hero2;

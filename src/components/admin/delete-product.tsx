@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
 import { deleteProduct } from "@/actions/admin.action";
 import { Product } from "@prisma/client";
+import { toast } from "sonner";
 
 const DeleteProduct = ({ id }: { id: Product["id"] }) => {
   return (
@@ -37,10 +38,14 @@ const DeleteProduct = ({ id }: { id: Product["id"] }) => {
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
-
               onClick={async () => {
                 console.log("delete");
-                await deleteProduct(id);
+                const res = await deleteProduct(id);
+                if (res.success) {
+                  toast.success("Successfully deleted the product");
+                } else {
+                  toast.warning("Failed to delete the product");
+                }
               }}
             >
               Continue

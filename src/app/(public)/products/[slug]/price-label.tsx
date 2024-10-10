@@ -110,7 +110,7 @@ const PriceLabel = ({ colors = [], prices, product }: { prices: PriceTypeProps[]
           result.color,)
       }}>sdfsd</Button> */}
 
-      <div className="flex gap-x-4 mt-4">
+      <div className="flex md:gap-x-2 mt-4">
         <BuyNowBtn
           product={{
             ...product,

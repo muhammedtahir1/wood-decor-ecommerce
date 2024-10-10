@@ -1,14 +1,7 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import AddProductForm from "../../components/admin/admin-form";
 import Link from "next/link";
 import { LogOut, ShoppingBag, ShoppingBasket } from "lucide-react";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { auth } from "@/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -72,19 +65,3 @@ const Layout = async ({ children }: { children: ReactNode }) => {
 };
 
 export default Layout;
-
-export function AdminBreadCrumbComponent({ slug }: { slug: string }) {
-  return (
-    <Breadcrumb>
-      <BreadcrumbList>
-        <BreadcrumbItem>
-          <Link href="/admin">Admin</Link>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbPage>{slug}</BreadcrumbPage>
-        </BreadcrumbItem>
-      </BreadcrumbList>
-    </Breadcrumb>
-  );
-}

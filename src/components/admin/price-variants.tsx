@@ -5,11 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 import { X } from "lucide-react";
-import {
-  FormItem,
-  FormLabel,
-  FormControl,
-} from "../ui/form";
+import { FormItem, FormLabel, FormControl } from "../ui/form";
 import { z } from "zod";
 import {
   ProductWithVariants,

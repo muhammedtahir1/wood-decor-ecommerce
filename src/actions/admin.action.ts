@@ -97,16 +97,29 @@ const addProduct = async (
 
 const deleteProduct = async (id: Product["id"]) => {
   try {
-    await prisma.product.delete({
-      where: {
-        id: id,
-      },
+    await prisma.$transaction(async (tx) => {
+      // Delete related Variants
+      await tx.variants.deleteMany({
+        where: { productId: id },
+      });
+
+      // Delete related OrderItems
+      await tx.orderItem.deleteMany({
+        where: { productId: id },
+      });
+
+      // Finally, delete the Product
+      await tx.product.delete({
+        where: { id: id },
+      });
     });
   } catch (error) {
     console.error(error);
+    return { success: false };
   }
 
   revalidatePath("/admin");
+  return { success: true };
 };
 
 const editProduct = async (

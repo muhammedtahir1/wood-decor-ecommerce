@@ -16,7 +16,7 @@ const BuyNowBtn = ({ product }: { product: TCartProduct }) => {
         addItemToCart(product);
         router.push("/cart");
       }}
-      className="w-full px-1 py-0 md:px-3 md:py-2 text-xs md:text-sm scale-90 md:scale-100"
+      className="w-2/3 px-1 py-0 md:px-3 md:py-2 text-xs md:text-sm scale-90 md:scale-100"
     >
       Buy Now
     </Button>

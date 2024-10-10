@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import useCartStore from "@/store/cart";
@@ -19,11 +19,32 @@ import {
 } from "@/components/ui/dialog"
 
 const Header = () => {
-  const [open, setOpen] = React.useState(false)
+  
+  const [isOpen, setIsOpen] = useState(false)
+  const searchBarRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchBarRef.current && !searchBarRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [isOpen])
+
+
+
   const { cartItems } = useCartStore();
   return (
     <>
-      <header className="h-32 md:h-24 flex flex-col items-center w-full fixed left-0 right-0 top-0   z-50  border-b border-black/10 bg-[#FAFAF1]">
+      <header className="h-36 md:h-24 flex flex-col items-center w-full fixed left-0 right-0 top-0   z-50  border-b border-black/10 bg-[#FAFAF1]">
         <div className="flex-col md:flex-row md:justify-evenly bg-purple-900 text-brand-bg-DEFALUT h-28 md:h-24 text-xs text-center w-full flex items-center justify-center py-1 gap-2">
           <div>
             <Link
@@ -40,8 +61,18 @@ const Header = () => {
           </div>
         </div>
         <section className="flex justify-between py-4 md:px-10 px-3 w-full h-16 items-center">
-          <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger >        <Search />
+          
+
+          <Logo type="full" />
+          <div className="hidden md:block">
+            <NavBarlinksMenu />
+          </div>
+
+          <div className="flex items-center gap-3">
+
+          {/* <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger >        
+              <Search />
             </DialogTrigger>
             <DialogContent className="">
               <DialogHeader>
@@ -51,14 +82,31 @@ const Header = () => {
                 </DialogDescription>
               </DialogHeader>
             </DialogContent>
-          </Dialog>
+          </Dialog> */}
 
-          <Logo type="full" />
-          <div className="hidden md:block">
-            <NavBarlinksMenu />
+<div className="relative">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="rounded-full"
+        onClick={() => setIsOpen(true)}
+      >
+        <Search className="h-6 w-6" />
+        <span className="sr-only">Open search</span>
+      </Button>
+
+      {isOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
+          <div
+            ref={searchBarRef}
+            className="w-full bg-white shadow-lg animate-slide-down"
+          >
+            <SearchBar setDialogOpen={setIsOpen} />
           </div>
-
-          <div className="flex items-center gap-2">
+          <div className="h-full" onClick={() => setIsOpen(false)}></div>
+        </div>
+      )}
+    </div>
 
             <Link href={"/cart"} className="md:flex relative">
               <Button size={"icon"} variant={"link"}>

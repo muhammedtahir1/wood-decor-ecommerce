@@ -57,8 +57,8 @@ const page = async ({ params }: ParamsProps) => {
       slug,
     },
     include: {
-      prices: true
-    }
+      prices: true,
+    },
   });
 
   if (!product) {
@@ -85,7 +85,7 @@ const page = async ({ params }: ParamsProps) => {
 
   return (
     <>
-      <main className="flex flex-col md:flex-row items-start justify-center gap-10 mt-36 md:mt-32 px-10">
+      <main className="flex flex-col md:flex-row items-start justify-center gap-10 mt-36 md:mt-32 px-5 md:px-10">
         <section className=" space-y-2 md:sticky md:top-0 md:overflow-hidden md:pt-10">
           <div className="max-w-[400px] max-h-[400px] relative">
             <Image
@@ -116,7 +116,11 @@ const page = async ({ params }: ParamsProps) => {
           <h1 className="text-2xl md:text-4xl capitalize font-gt">
             {product.title}
           </h1>
-          <PriceLabel prices={product.prices} colors={product.colors} product={product} />
+          <PriceLabel
+            prices={product.prices}
+            colors={product.colors}
+            product={product}
+          />
           <StarRating rating={product.rating > 3 ? product.rating : 4} />
 
           <h3 className="text-sm md:text-lg">Description</h3>
@@ -190,13 +194,6 @@ const page = async ({ params }: ParamsProps) => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-          {/* 
-          <FormSelector
-            colors={product.colors}
-            product={product}
-            // prices={product.prices}
-            mainForm={product.prices}
-          /> */}
           <div className="flex items-center gap-2">
             <ClockArrowDown size={18} />
             <p className="text-sm">
@@ -243,7 +240,7 @@ function EachProduct({
   data: {
     image: Product["image"];
     title: Product["title"];
-    prices: Variants[]
+    prices: Variants[];
     slug: Product["slug"];
     rating: Product["rating"];
   };
