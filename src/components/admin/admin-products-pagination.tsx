@@ -17,43 +17,55 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 import DeleteProduct from "./delete-product";
 import AddProductForm from "./admin-form";
 import { getProducts } from "@/actions/admin.action";
+import { ProductWithVariants } from "@/types/validations";
 
 const NUMBER_OF_PRODUCTS_TO_FETCH = 8;
 
-const AdminProductsPagination = ({ initialProducts }: { initialProducts: Product[] }) => {
-  const [products, setProducts] = useState<Product[]>(initialProducts);
+const AdminProductsPagination = ({
+  initialProducts,
+}: {
+  initialProducts: ProductWithVariants[];
+}) => {
+  const [products, setProducts] =
+    useState<ProductWithVariants[]>(initialProducts);
   const [offset, setOffset] = useState(NUMBER_OF_PRODUCTS_TO_FETCH);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      setLoading(true);
-      try {
-        const apiProducts = await getProducts({ take: NUMBER_OF_PRODUCTS_TO_FETCH, skip: 0 });
-        console.log("Fetched products:", apiProducts);
-        setProducts(apiProducts);
-        setOffset(NUMBER_OF_PRODUCTS_TO_FETCH);
-        setHasMore(apiProducts.length === NUMBER_OF_PRODUCTS_TO_FETCH);
-      } catch (error) {
-        console.error("Failed to load products", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProducts();
-  }, []); // Remove offset from the dependency array
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const apiProducts = await getProducts({
+  //         take: NUMBER_OF_PRODUCTS_TO_FETCH,
+  //         skip: 0,
+  //       });
+  //       console.log("Fetched products:", apiProducts);
+  //       setProducts(apiProducts);
+  //       setOffset(NUMBER_OF_PRODUCTS_TO_FETCH);
+  //       setHasMore(apiProducts.length === NUMBER_OF_PRODUCTS_TO_FETCH);
+  //     } catch (error) {
+  //       console.error("Failed to load products", error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchProducts();
+  // }, []); // Remove offset from the dependency array
 
   const loadMoreProducts = async () => {
     if (!hasMore) return;
 
     setLoading(true);
     try {
-      const apiProducts = await getProducts({ take: NUMBER_OF_PRODUCTS_TO_FETCH, skip: offset });
+      const apiProducts = await getProducts({
+        take: NUMBER_OF_PRODUCTS_TO_FETCH,
+        skip: offset,
+      });
       if (apiProducts.length < NUMBER_OF_PRODUCTS_TO_FETCH) {
         setHasMore(false);
       }
@@ -87,7 +99,9 @@ const AdminProductsPagination = ({ initialProducts }: { initialProducts: Product
               <TableCell>{product.slug}</TableCell>
               <TableCell className="text-right flex">
                 <Popover>
-                  <PopoverTrigger><Ellipsis /></PopoverTrigger>
+                  <PopoverTrigger>
+                    <Ellipsis />
+                  </PopoverTrigger>
                   <PopoverContent className="w-36 bg-transparent space-y-2 border-none">
                     <DeleteProduct id={product.id} />
                     <AddProductForm actionType="edit" data={product} />
@@ -105,7 +119,9 @@ const AdminProductsPagination = ({ initialProducts }: { initialProducts: Product
       )}
 
       {!loading && hasMore && (
-        <Button onClick={loadMoreProducts} className="mb-10 md:mb-20">Load More...</Button>
+        <Button onClick={loadMoreProducts} className="mb-10 md:mb-20">
+          Load More...
+        </Button>
       )}
     </div>
   );

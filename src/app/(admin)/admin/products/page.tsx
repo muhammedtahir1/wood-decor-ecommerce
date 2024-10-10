@@ -1,9 +1,9 @@
 import prisma from "@/lib/db";
 import React from "react";
 import { AdminBreadCrumbComponent } from "../../layout";
-import AdminProductsPagination from "../../../../components/admin/admin-products-pagination";
+import AdminProductsPagination from "@/components/admin/admin-products-pagination";
 import { validateUrl } from "@/lib/utils";
-import ProductVariantManager from "../../../../components/admin/product-variant-manager";
+import { ProductWithVariants } from "@/types/validations";
 
 const page = async () => {
   console.log(
@@ -11,12 +11,12 @@ const page = async () => {
       "https://utfs.io/f/2e1b285a-804f-443b-b1b9-bbea6deda5c5-r016zg.jpg"
     )
   );
-  const products = await prisma.product.findMany({
+  const products: ProductWithVariants[] = await prisma.product.findMany({
     include: {
       prices: true,
     },
   });
-  // products.map((product) => console.log("🎉🎉🎉🎉", product));
+  products.map((product) => console.log("🎉🎉🎉🎉", product));
   // console.log(products);
   return (
     <main>

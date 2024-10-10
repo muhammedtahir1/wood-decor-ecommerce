@@ -1,14 +1,15 @@
 "use server";
 
 import prisma from "@/lib/db";
-import { Product, Variants } from "@prisma/client";
+import { VariantType } from "@/types/validations";
+import { Product } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
 type TFormData = {
   title: string;
   // price: number;
   colors: string[];
-  variants?: Variants[];
+  // variants?: Variants[];
   description?: string | undefined;
   // discountedPrice?: number | undefined;
   category?: string | undefined;
@@ -27,6 +28,7 @@ const getProducts = async ({ take, skip }: { take: number; skip: number }) => {
       prices: true,
     },
   });
+
   return products;
 };
 
@@ -39,12 +41,20 @@ const getOrders = async ({ take, skip }: { take: number; skip: number }) => {
     },
   });
 
-  console.log("order---", orders);
+  // console.log("order---", orders);
 
   return orders;
 };
 
-const addProduct = async (formData: TFormData) => {
+const addProduct = async (
+  formData: TFormData & { variants: VariantType[] }
+) => {
+  /*
+  TODO: NEW approach
+  newProduct = create the product
+  use the newProduct.id to create variants
+  */
+
   try {
     const newProduct = await prisma.product.create({
       data: {
@@ -59,7 +69,13 @@ const addProduct = async (formData: TFormData) => {
         image: formData.image as string,
         colors: formData.colors as string[],
         // TODO: work here.
-        // prices: {}
+        prices: {
+          create: formData.variants.map((variant) => ({
+            price: variant.price,
+            variant: variant.variant,
+            discountedPrice: variant.discountedPrice,
+          })),
+        },
         isFeatured: formData.isFeatured as boolean,
         rating: formData.rating as number,
         label: formData.label as string,
@@ -93,8 +109,20 @@ const deleteProduct = async (id: Product["id"]) => {
   revalidatePath("/admin");
 };
 
-const editProduct = async (id: Product["id"], formData: TFormData) => {
+const editProduct = async (
+  id: Product["id"],
+  formData: TFormData & { variants: VariantType[] }
+) => {
+  /*
+  TODO: NEW approach
+    1. handle different variations, refer gpt @warandrule
+
+  */
+
+  console.log("id, formData");
+  console.log(id, formData);
   try {
+    // Part 1 ✅
     await prisma.product.update({
       where: {
         id: id,
@@ -105,11 +133,55 @@ const editProduct = async (id: Product["id"], formData: TFormData) => {
         category: formData.category as string,
         image: formData.image as string,
         colors: formData.colors as string[],
-        // TODO: work here
-        // prices:
+
         isFeatured: formData.isFeatured as boolean,
         rating: formData.rating as number,
         label: formData.label as string,
+      },
+    });
+    //Part 2
+
+    // Step 2: Handle variants (add, update, delete)
+    const dbVariants = await prisma.variants.findMany({
+      where: { productId: id },
+    });
+    const existingVariantIds = dbVariants.map((v) => v.id);
+
+    for (const variant of formData.variants) {
+      if (!variant.id) {
+        // Case 1: New variant (no variantId present)
+        await prisma.variants.create({
+          data: {
+            price: variant.price,
+            productId: id, // associate with product
+            variant: variant.variant,
+            discountedPrice: variant.discountedPrice || 0,
+          },
+        });
+      } else if (existingVariantIds.includes(variant.id)) {
+        // Case 2: Update existing variant
+        await prisma.variants.update({
+          where: { id: variant.id },
+          data: {
+            price: variant.price,
+            variant: variant.variant,
+            discountedPrice: variant.discountedPrice || 0,
+          },
+        });
+      }
+    }
+    // Step 3: Delete variants that were removed
+    const variantIdsInForm = formData.variants
+      .map((v) => v.id)
+      .filter((id) => id); // only non-null variantIds
+
+    const variantsToDelete = dbVariants.filter(
+      (v) => !variantIdsInForm.includes(v.id)
+    );
+
+    await prisma.variants.deleteMany({
+      where: {
+        id: { in: variantsToDelete.map((v) => v.id) },
       },
     });
   } catch (error) {

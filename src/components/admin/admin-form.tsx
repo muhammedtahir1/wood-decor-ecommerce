@@ -33,7 +33,6 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Product } from "@prisma/client";
 import { ClipboardPen, RotateCw } from "lucide-react";
-import VariantForm from "./variants-form";
 import UploadProductImageAdmin from "@/components/upload-image-admin";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -42,94 +41,61 @@ import { addProduct, editProduct } from "@/actions/admin.action";
 import { colors_options } from "@/lib/constants";
 import TiptapEditor from "@/components/tiptap-editor";
 import PriceVariants from "./price-variants";
+import {
+  addProductFormSchema,
+  ProductWithVariants,
+  VariantType,
+} from "@/types/validations";
+import { Slider } from "../ui/slider";
 
-const variantSchema = z.object({
-  variant: z.string().min(1, "Variant name is required").optional(),
-  price: z.coerce
-    .number()
-    .int()
-    .positive("Price must be a positive integer")
-    .optional(),
-  discountedPrice: z.coerce
-    .number()
-    .int()
-    .positive("Discounted price must be a positive integer")
-    .optional(),
-});
-
-const formSchema = z.object({
-  title: z
-    .string()
-    .min(2, {
-      message: "title must be at least 2 characters.",
-    })
-    .max(70, { message: "title max length 70 chars" }),
-  description: z
-    .string()
-    .min(10, { message: "description must be at least 10 characters." })
-    .max(500, { message: "description max length 500 chars" })
-    .optional(),
-  // how do we include 0 as a valid value?
-  isFeatured: z.boolean().optional(),
-  colors: z.array(z.string()).refine((value) => value.some((item) => item), {
-    message: "You have to select at least one item.",
-  }),
-  category: z.string().optional(),
-  image: z.string().optional(),
-  rating: z.number().default(4.2),
-  label: z.string().optional(),
-  prices: z
-    .array(variantSchema)
-    .min(1, { message: "At least one variant is required" }),
-});
+type addProductFormProps = {
+  actionType: "add" | "edit";
+  data?: ProductWithVariants;
+};
 
 export default function AddProductForm({
   actionType,
   data,
-}: {
-  actionType: "add" | "edit";
-  data?: Product;
-}) {
+}: addProductFormProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [editorContent, setEditorContent] = useState(
     data?.description as string
   );
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof addProductFormSchema>>({
+    resolver: zodResolver(addProductFormSchema),
     defaultValues: {
-      title: data?.title || "",
-      description: data?.description || "",
+      title: data?.title || "testing",
+      description: data?.description || "asdfadsfasdf",
       isFeatured: data?.isFeatured || false,
       colors: data?.colors || [],
       category: data?.category || "",
       image: data?.image || "",
-      rating: data?.rating || 0,
+      rating: data?.rating || 3,
       label: data?.label || "",
-      // prices:
-      //   actionType === "edit"
-      //     ? // data?.prices
-      //       []
-      //     : [],
     },
   });
 
+  if (actionType === "edit") console.log(data);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [inputImageUrl, setInputImageUrl] = useState(form.getValues("image"));
+  const [variants, setVariants] = useState<VariantType[]>([]);
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof addProductFormSchema>) {
     alert("submitting");
     const finalValues = { ...values, image: inputImageUrl };
-    console.log(finalValues);
 
-    console.log("now work on your actions");
-    return;
+    // console.log("now work on your actions");
+
     setIsSubmitting(true);
     try {
       let response;
       if (actionType === "edit") {
         // 👇👇 change the way the action takes prompts
-        // @ts-ignore
-        response = await editProduct(data!.id, finalValues);
+
+        console.log("----", finalValues, variants);
+
+        // return;
+        response = await editProduct(data!.id, { ...finalValues, variants });
         if (response.success) {
           toast.success("Successfully edited the product");
           setIsOpen(false);
@@ -137,9 +103,9 @@ export default function AddProductForm({
           toast.error("Something went wrong in editing the product");
         }
       } else {
-        // 👇👇 change the way the action takes prompts
-        // @ts-ignore
-        response = await addProduct(finalValues);
+        // TODO: check if it contains "default" field, if missing then throw error
+
+        response = await addProduct({ ...finalValues, variants });
         if (response.success) {
           toast.success("Successfully added the product");
           form.reset();
@@ -154,10 +120,7 @@ export default function AddProductForm({
       setIsSubmitting(false);
     }
   }
-  // const { fields, append, remove } = useFieldArray({
-  //   control: form.control,
-  //   name: "prices",
-  // });
+
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
@@ -181,7 +144,14 @@ export default function AddProductForm({
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-4"
               >
-                <PriceVariants form={form} />
+                <PriceVariants
+                  variants={variants}
+                  setVariants={setVariants}
+                  form={form}
+                  data={data}
+                  actionType={actionType}
+                />
+
                 <FormField
                   control={form.control}
                   name="title"
@@ -224,59 +194,7 @@ export default function AddProductForm({
                   inputImageUrl={inputImageUrl}
                   setInputImageUrl={setInputImageUrl}
                 />
-                {/* {fields.map((field, index) => (
-                  <div key={field.id} className="flex gap-2 items-end">
-                    <FormField
-                      control={form.control}
-                      name={`prices.${index}.variant`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Variant</FormLabel>
-                          <FormControl>
-                            <Input
-                              {...field}
-                              placeholder="e.g., Small, Medium, Large"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name={`prices.${index}.price`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Price</FormLabel>
-                          <FormControl>
-                            <Input {...field} type="number" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name={`prices.${index}.discountedPrice`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Discounted Price</FormLabel>
-                          <FormControl>
-                            <Input {...field} type="number" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <Button
-                      type="button"
-                      variant="destructive"
-                      onClick={() => remove(index)}
-                    >
-                      <Minus size={14} />
-                    </Button>
-                  </div>
-                ))} */}
+
                 <FormField
                   control={form.control}
                   name="description"
@@ -303,7 +221,7 @@ export default function AddProductForm({
                     <FormItem className="flex items-center gap-5">
                       <FormLabel>Ratings ⭐</FormLabel>
                       <FormControl>
-                        {/* <Slider
+                        <Slider
                           // {...field}
                           onValueChange={(e) => {
                             // console.log(typeof e[0], e, field);
@@ -314,9 +232,9 @@ export default function AddProductForm({
                           defaultValue={[3]}
                           max={5}
                           step={0.5}
-                        /> */}
+                        />
 
-                        <Input
+                        {/* <Input
                           {...field}
                           onChange={(e) => {
                             field.onChange(Number(e.target.value));
@@ -325,7 +243,7 @@ export default function AddProductForm({
                           step={0.5}
                           max={5}
                           min={1}
-                        />
+                        /> */}
                       </FormControl>
                       <FormMessage />
                       <p>{field.value}</p>
