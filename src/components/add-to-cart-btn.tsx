@@ -10,7 +10,7 @@ const AddToCartBtn = ({ product }: { product: TCartProduct }) => {
   const [isAddingToCart, setIsAddingToCart] = React.useState(false);
   return (
     <Button
-      className="flex-1 md:flex-none transition-all duration-300 px-1 py-1 md:px-4 rounded-full scale-90 md:scale-100 ml-0 md:py-4 text-xs md:text-sm bg-slate-500/20 border md:w-52 w-32"
+      className="flex-1 md:flex-none transition-all duration-300 px-1 py-1 md:px-4 rounded-full scale-90 md:scale-100 ml-0 md:py-4 text-xs md:text-sm bg-slate-500/20 border md:min-w-32 w-32"
       onClick={() => {
         addItemToCart(product);
         setIsAddingToCart(true);
