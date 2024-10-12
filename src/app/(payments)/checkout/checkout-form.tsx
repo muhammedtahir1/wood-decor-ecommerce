@@ -75,24 +75,28 @@ export function CheckoutForm({
     },
   });
 
-  function onSubmit(data: z.infer<typeof CustomerDataFormSchema>) {
-    console.log("You submitted the following values:", data);
-    console.log("cart --->", cartItems);
+  async function onSubmit(data: z.infer<typeof CustomerDataFormSchema>) {
+    // console.log("You submitted the following values:", data);
+    // console.log("cart --->", cartItems);
     // return;
     setIsSubmitting(true); // Set loading indicator for submission
-    console.log("You submitted the following values:", data);
-
-    setIsSubmitting(false); // Clear loading indicator after simulation
+    // console.log("You submitted the following values:", data);
 
     // Here you would typically send this data to your server or payment processor
 
     localStorage.setItem("checkoutData", JSON.stringify(data));
 
-    action(data); // Trigger action (e.g., redirect to confirmation page)
+    await action(data); // Trigger action (e.g., redirect to confirmation page)
+    setIsSubmitting(false); // Clear loading indicator after simulation
   }
 
   return (
     <Form {...form}>
+      {isSubmitting && (
+        <div className="absolute top-1/2 right-1/2">
+          <LoaderCircle className="ml-2 animate-spin" />
+        </div>
+      )}
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full max-w-2xl space-y-6"

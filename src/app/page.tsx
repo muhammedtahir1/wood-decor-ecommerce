@@ -11,6 +11,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
 import ReviewPopup from "@/components/review-popup";
+import DesignConsultationForm from "@/components/design-consultation-form";
 // import ZoomedOnHoverImage from "@/components/zoom-on-hover-img";
 // import dynamic from "next/dynamic";
 // const DynamicHeader = dynamic(() => import("@/components/landingpage/header"));
@@ -41,7 +42,11 @@ export default async function Home() {
           desc={"Snuggle Up in Style with a Sectional Sofa's"}
           query="sofa"
         />
-        <Featured title="Beds" desc={"Add Luxury to your Bed Room"} query="bed" />
+        <Featured
+          title="Beds"
+          desc={"Add Luxury to your Bed Room"}
+          query="bed"
+        />
         <Featured
           title="Dining Area"
           desc={"Feast with loved ones at the grand dining table"}
@@ -52,7 +57,7 @@ export default async function Home() {
           desc={"Add Luxury to your Bed Room"}
           query="upholstery"
         />
-        <Link
+        {/* <Link
           href={"/search?q="}
           className="mx-5 rounded-2xl px-5  overflow-hidden"
         >
@@ -64,7 +69,8 @@ export default async function Home() {
             height={300}
             className="rounded-xl mx-auto my-10  w-[370px]  sm:w-[600px] md:w-[1000px]"
           />
-        </Link>
+        </Link> */}
+        <DesignConsultationForm />
         <GridDesign />
         <Link href={"#testimonils"}>
           <Button className="-rotate-90 flex items-center gap-1 fixed top-1/2 -right-8">
