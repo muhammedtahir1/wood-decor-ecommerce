@@ -108,7 +108,7 @@ const OrdersPagination = ({
                         <Link href={`/products/`} key={p.id}>
                           <div className="py-1 px-2 flex justify-between items-center gap-3">
                             {p.product?.image && (
-                              <div className="max-size-[100px] border rounded-xl">
+                              <Link href={`/products/${p.product.slug}`} className="max-size-[100px] border rounded-xl">
                                 <Image
                                   src={p.product?.image as string}
                                   alt="cart-image"
@@ -121,12 +121,12 @@ const OrdersPagination = ({
                                     minWidth: "100px",
                                   }}
                                 />
-                              </div>
+                              </Link>
                             )}
                             <div className="flex flex-col justify-between items-start w-full">
-                              <p className="font-semibold text-lg md:text-xl opacity-70 text-end">
+                              {/* <p className="font-semibold text-lg md:text-xl opacity-70 text-end">
                                 {p.id}
-                              </p>
+                              </p> */}
                               <h1 className="text-base md:text-lg font-gt font-bold text-ellipsis overflow-hidden max-w-52 whitespace-nowrap text-left">
                                 {p.product?.title}
                               </h1>

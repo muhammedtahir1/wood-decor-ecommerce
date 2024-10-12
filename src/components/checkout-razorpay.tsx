@@ -30,7 +30,6 @@ interface VerificationData {
 const CheckoutWithRazorpayAndAdmin: React.FC = () => {
   const { cartItems, clearCart } = useCartStore();
   const [loading, setLoading] = useState(false);
-  const [paymentLoading, setPaymentLoading] = useState(false);
   const router = useRouter();
 
   const createOrderId = async (amount: number): Promise<string> => {
@@ -99,21 +98,18 @@ const CheckoutWithRazorpayAndAdmin: React.FC = () => {
             razorpayOrderId: response.razorpay_order_id,
             razorpaySignature: response.razorpay_signature,
           };
+
           const isVerified = await verifyPayment(verificationData);
 
           if (isVerified) {
-            setPaymentLoading(false);
-
             const res = await BuyNow(cartItems, customerData);
             if (res) {
               toast.success("Payment successful!");
               clearCart();
               router.push("/success");
-              setPaymentLoading(false);
             }
           } else {
             toast.error("Payment verification failed. Please contact support.");
-            setPaymentLoading(false);
           }
         },
         prefill: {
@@ -149,15 +145,10 @@ const CheckoutWithRazorpayAndAdmin: React.FC = () => {
         id="razorpay-checkout-js"
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
-      {paymentLoading ? (
-        <div className="w-full">
-          <CheckoutForm action={handlePayment} loading={loading} />
-        </div>
-      ) : (
-        <div className="min-h-[50vh] flex items-center justify-center">
-          <LoaderCircle className="animate-spin text-10" />
-        </div>
-      )}
+
+      <div className="w-full">
+        <CheckoutForm action={handlePayment} loading={loading} />
+      </div>
     </>
   );
 };

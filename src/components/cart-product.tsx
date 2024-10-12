@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { BsDashCircle } from "react-icons/bs";
 import { IoIosAddCircleOutline } from "react-icons/io";
@@ -7,7 +7,13 @@ import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { TCartProduct } from "@/types/cart";
 
-export default function CartProduct({ item, removeItemFromCart }: { item: TCartProduct, removeItemFromCart: any }) {
+export default function CartProduct({
+  item,
+  removeItemFromCart,
+}: {
+  item: TCartProduct;
+  removeItemFromCart: any;
+}) {
   const { image, title, price, id, color } = item;
   return (
     <div className="px-4 flex  gap-4 items-center mr-2 mt-6 md:mt-10 border py-4  rounded-xl h-32 text-black bg-white/50">
@@ -19,7 +25,7 @@ export default function CartProduct({ item, removeItemFromCart }: { item: TCartP
           width={100}
           height={100}
           className="rounded-xl object-cover size-[100px]"
-          style={{ objectFit: 'contain', minWidth: "100px" }}
+          style={{ objectFit: "contain", minWidth: "100px" }}
         />
       </div>
 
@@ -35,19 +41,20 @@ export default function CartProduct({ item, removeItemFromCart }: { item: TCartP
 
         <div className="flex justify-between items-center">
           <section className="space-x-1">
-            {price.variant && price.variant.toLowerCase() !== "default" && <Badge>
-              {price.variant}
-            </Badge>}
-            {color && <Badge>
-              {color}
-            </Badge>}
+            {price.variant && price.variant.toLowerCase() !== "default" && (
+              <Badge>{price.variant}</Badge>
+            )}
+            {color && <Badge>{color}</Badge>}
           </section>
           <div className="flex items-center gap-2">
-            <Button onClick={() => removeItemFromCart(id)} variant={"secondary"} className="rounded-full" size={"icon"}>
-
+            <Button
+              onClick={() => removeItemFromCart(id)}
+              variant={"secondary"}
+              className="rounded-full"
+              size={"icon"}
+            >
               <MdDelete className="text-red-500" size={18} />
             </Button>
-
           </div>
         </div>
       </div>
