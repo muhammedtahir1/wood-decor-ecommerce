@@ -37,15 +37,20 @@ export default async function Home() {
 
         <Featured seeMore={true} />
         <Featured
-          title="SECTIONAL SOFA"
-          desc={"All the luxury sofa"}
+          title="Living room"
+          desc={"Snuggle Up in Style with a Sectional Sofa's"}
           query="sofa"
         />
-        <Featured title="Beds" desc={"All the luxury beds"} query="bed" />
+        <Featured title="Beds" desc={"Add Luxury to your Bed Room"} query="bed" />
         <Featured
-          title="Dining"
-          desc={"All the luxury Dining"}
+          title="Dining Area"
+          desc={"Feast with loved ones at the grand dining table"}
           query="dining"
+        />
+        <Featured
+          title="upholstery BEDS"
+          desc={"Add Luxury to your Bed Room"}
+          query="upholstery"
         />
         <Link
           href={"/search?q="}

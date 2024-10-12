@@ -18,7 +18,7 @@ type A = MenuItem & {
 const menuItems: MenuItem[] = [
   {
     id: "1",
-    label: "SOFAS",
+    label: "LIVING ROOM",
     children: [
       {
         id: "1-1",
@@ -46,7 +46,7 @@ const menuItems: MenuItem[] = [
   },
   {
     id: "3",
-    label: "BEDS",
+    label: "BEDROOM",
     children: [
       { id: "3-1", label: "Wooden Beds", href: "/categories/wooden beds" },
       {
@@ -58,7 +58,7 @@ const menuItems: MenuItem[] = [
   },
   {
     id: "4",
-    label: "DINING",
+    label: "DINING AREA",
     children: [
       { id: "4-1", label: "Wooden Dinings", href: "/categories/wooden dining" },
 

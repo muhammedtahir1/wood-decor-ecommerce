@@ -91,6 +91,7 @@ const BuyNow = async (
     await sendConfirmationEmail({
       finalPrice: order.totalAmount,
       name: order.name,
+      email: customerData.email,
       orders: products.map((item) => ({
         title: item.title,
         price: item.price.discountedPrice || item.price.price,

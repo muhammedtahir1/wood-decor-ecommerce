@@ -41,23 +41,38 @@ const images = [
   //   title: "Dining Set",
   // },
 
+  // {
+  //   src: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  //   alt: "Wood decor sofa",
+  //   title: "Sofa & Couches",
+  // },
+  // {
+  //   src: "https://plus.unsplash.com/premium_photo-1661962495669-d72424626bdc?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  //   alt: "Wood decor Beds",
+  //   title: "Beds",
+  // },
+  // {
+  //   src: "https://images.unsplash.com/photo-1704040686487-a39bb894fc93?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  //   alt: "Wood decor dining",
+  //   title: "Dining Set",
+  // },
+  // {
+  //   src: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=1776&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  //   alt: "Wood decor Interiors",
+  //   title: "Interiors",
+  // },
   {
-    src: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    alt: "Wood decor sofa",
-    title: "Sofa & Couches",
-  },
-  {
-    src: "https://plus.unsplash.com/premium_photo-1661962495669-d72424626bdc?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    alt: "Wood decor Beds",
-    title: "Beds",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1704040686487-a39bb894fc93?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "https://utfs.io/f/65BTcHbcs1gk0RUyzeQCkdWXROPxD7ZT4lEhJ6F0am9Lpybq",
     alt: "Wood decor dining",
     title: "Dining Set",
   },
   {
-    src: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=1776&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "https://github.com/user-attachments/assets/5927dfe0-233d-4dab-bd36-fcb87ac551dc",
+    alt: "Wood decor dining",
+    title: "Dining Set",
+  },
+  {
+    src: "https://utfs.io/f/65BTcHbcs1gksn8QZaFePL7xk4t8hJHKOuwR2svqfy6GaNpr",
     alt: "Wood decor Interiors",
     title: "Interiors",
   },
@@ -69,7 +84,7 @@ export default function CarouselComponent() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 4000);
+    }, 6000);
 
     return () => clearInterval(timer);
   }, []);

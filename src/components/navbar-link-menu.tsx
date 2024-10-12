@@ -71,7 +71,7 @@ export function NavBarlinksMenu() {
       <NavigationMenuList className="bg-brand-bg-DEFALUT/50">
         <NavigationMenuItem className="bg-brand-bg-DEFALUT/50">
           <NavigationMenuTrigger className="bg-transparent">
-            Sofa
+            Living Room
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
@@ -130,7 +130,7 @@ export function NavBarlinksMenu() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuTrigger className="bg-transparent hover:scale-105 hover:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent">
-            Beds
+            Bedroom
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[380px] md:grid-rows-2">
@@ -147,7 +147,7 @@ export function NavBarlinksMenu() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuTrigger className="bg-transparent hover:scale-105 hover:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent">
-            Dining
+            Dining Area
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[380px] md:grid-rows-2">

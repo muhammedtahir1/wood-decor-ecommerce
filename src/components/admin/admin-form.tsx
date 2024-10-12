@@ -64,8 +64,8 @@ export default function AddProductForm({
   const form = useForm<z.infer<typeof addProductFormSchema>>({
     resolver: zodResolver(addProductFormSchema),
     defaultValues: {
-      title: data?.title || "testing",
-      description: data?.description || "asdfadsfasdf",
+      title: data?.title || "",
+      description: data?.description || "",
       isFeatured: data?.isFeatured || false,
       colors: data?.colors || [],
       category: data?.category || "",
@@ -144,14 +144,6 @@ export default function AddProductForm({
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-4"
               >
-                <PriceVariants
-                  variants={variants}
-                  setVariants={setVariants}
-                  form={form}
-                  data={data}
-                  actionType={actionType}
-                />
-
                 <FormField
                   control={form.control}
                   name="title"
@@ -168,6 +160,14 @@ export default function AddProductForm({
                       <FormMessage />
                     </FormItem>
                   )}
+                />
+
+                <PriceVariants
+                  variants={variants}
+                  setVariants={setVariants}
+                  form={form}
+                  data={data}
+                  actionType={actionType}
                 />
                 <FormField
                   control={form.control}

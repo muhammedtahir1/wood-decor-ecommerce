@@ -14,12 +14,9 @@ import StarRating from "./star-rating";
 import { Badge } from "./ui/badge";
 import { ProductCardProps } from "@/types/validations";
 
-
-
 export default function ProductCard({ data }: { data: ProductCardProps }) {
   const { id, image, label, slug, title, rating, prices } = data;
 
-  console.log("---", prices);
 
   function findPriceInfo(priceData: Variants[]): Variants | null {
     // Find the 'default' variant or the first variant if 'default' is not found
@@ -36,7 +33,7 @@ export default function ProductCard({ data }: { data: ProductCardProps }) {
   // console.log("price🎯🎯", prices, typeof prices.map(v => v.variant.toLowerCase() === "default"))
 
   return (
-    <Card className="w-40 relative rounded-xl md:w-72 h-[300px]  md:h-[460px] mx-1  bg-white/30 ">
+    <Card className="w-40 relative rounded-xl md:w-72 h-[290px]  md:h-[440px] mx-1  bg-white/30 ">
       <CardHeader className="h-[50%] md:h-[60%] overflow-hidden p-0">
         <Link
           href={`/products/${slug}`}
@@ -54,18 +51,30 @@ export default function ProductCard({ data }: { data: ProductCardProps }) {
       <CardContent className="m-0 ">
         <div className="mt-1 items-center px-4 md:px-8">
           <h1 className="text-lg md:text-xl font-bold truncate">{title}</h1>
-          <h2 className=" opacity-80 text-lg md:text-3xl">
-            <span className="text-base md:text-xl font-semibold">₹</span>
-            {prices.find((v) => v.variant.toLowerCase() == "default")?.price || "NA"}
-          </h2>
+          
+          <div className="">
+            {priceInfo?.discountedPrice && priceInfo.discountedPrice > 0 ? (
+              <h2 className="flex items-center gap-2 text-lg md:text-xl">
+                <span className="text-base md:text-lg font-light line-through opacity-80 relative">
+                  ₹{priceInfo.price}
+                </span>
+                <span className="font-semibold">
+                  ₹{priceInfo.discountedPrice}
+                </span>
+              </h2>
+            ) : (
+              <h2 className=" text-lg md:text-xl">₹{priceInfo?.price}</h2>
+            )}
+          </div>
 
           <StarRating
-            className="scale-90 mt-1 -ml-2"
+            className="scale-75  -ml-5 md:-ml-8"
             rating={rating > 3 ? rating : 4}
           />
+
         </div>
       </CardContent>
-      <CardFooter className="md:space-x-1 px-1 md:px-8 mt-4 md:mt-6">
+      <CardFooter className="md:space-x-1 px-1 md:px-8 mt-2 md:mt-5">
         <BuyNowBtn
           product={{
             id,

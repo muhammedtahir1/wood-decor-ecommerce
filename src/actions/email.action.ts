@@ -14,15 +14,17 @@ const sendConfirmationEmail = async ({
   orders,
   finalPrice,
   name,
+  email,
 }: {
   orders: Order[];
   finalPrice: number;
   name: string;
+  email: string;
 }) => {
   try {
     const { data, error } = await resend.emails.send({
-      from: "Acme <onboarding@resend.dev>",
-      to: ["delivered@resend.dev"],
+      from: "info@wooddecor.in",
+      to: [email, "wooddecor1984@gmail.com"],
       subject: `Order Confirmed ${name}`,
       react: OrderConfirmedEmail({ name, orders, finalPrice }),
     });

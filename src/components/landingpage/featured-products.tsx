@@ -4,6 +4,7 @@ import Link from "next/link";
 import { searchProductByKeyword } from "@/lib/server-utils";
 import { Product, Variants } from "@prisma/client";
 import { ReactNode } from "react";
+import { Button } from "../ui/button";
 
 export default async function Featured({
   query,
@@ -38,7 +39,7 @@ export default async function Featured({
       className="flex flex-col items-center justify-center mt-8 md:mt-16 mb-16 md:mb-14"
     >
       <div className="text-center capitalize">
-        <h1 className="uppercase">{title ? title : "Featured products"}</h1>
+        <h1 className="text-3xl md:text-4xl uppercase">{title ? title : "Featured products"}</h1>
         <p className="text-sm md:text-base opacity-80">
           {desc ? desc : "Impressive collection for your dream home"}
         </p>
@@ -54,7 +55,7 @@ export default async function Featured({
       {seeMore && (
         <Link href={`/search?q=${query || ""}`}>
           {/* <Button className="mt-2 md:mt-2 mb-8 md:mb-14" variant={"fullRounded"}>See more ...</Button> */}
-          <SwigglyButton>See more ...</SwigglyButton>
+          <Button variant={"default"}>See more</Button>
         </Link>
       )}
     </section>
