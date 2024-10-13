@@ -6,7 +6,6 @@ import Hero2 from "@/components/landingpage/hero2";
 import GridDesign from "@/components/landingpage/grid-design";
 import Faq from "@/components/landingpage/faq";
 import Testimonials from "@/components/landingpage/testimonials";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
@@ -70,6 +69,12 @@ export default async function Home() {
             className="rounded-xl mx-auto my-10  w-[370px]  sm:w-[600px] md:w-[1000px]"
           />
         </Link> */}
+        <div className="text-center capitalize">
+          <h1 className="text-3xl md:text-4xl uppercase">Interiors</h1>
+          <p className="text-sm md:text-base opacity-80">
+          Book A Free Design Consultation
+          </p>
+        </div>
         <DesignConsultationForm />
         <GridDesign />
         <Link href={"#testimonils"}>

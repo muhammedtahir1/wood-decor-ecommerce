@@ -50,7 +50,8 @@ export default function DesignConsultationForm() {
     e.preventDefault();
     const whatsappNumber = "9341817975";
     const message = encodeURIComponent(
-      `I'm interested in your interiors for sale\n
+      `Hi WoodDecor
+      I'm interested in interior design\n
       Property Type: ${formData.propertyType}\n
       Location: ${formData.location}\n
       Name: ${formData.name}\n
@@ -66,127 +67,140 @@ export default function DesignConsultationForm() {
         {/* <Button variant="outline">Get a free design consultation</Button>
          */}
         <Image
-          src={"/Web-Banner.png"}
+          src={"/Web-Banner2.png"}
           alt="sofa banner"
           // sizes="(max-width: 488px) 50vw, (max-width: 1200px) 50vw, 33vw"
-          width={950}
-          height={300}
-          className="rounded-xl mx-auto my-10  w-[370px]  sm:w-[600px] md:w-[1000px]"
+          width={750}
+          height={200}
+          className="rounded-xl mx-auto my-10  w-[370px]  sm:w-[600px] md:w-[700px]"
         />
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle className="text-xl font-bold">
-            Get a free design consultation
-          </DialogTitle>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-4 top-4"
-            onClick={() => setIsOpen(false)}
-          >
-            <X className="h-4 w-4" />
-          </Button>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <Label>Property type</Label>
-            <RadioGroup
-              name="propertyType"
-              value={formData.propertyType}
-              onValueChange={(value) =>
-                handleSelectChange("propertyType", value)
-              }
-              className="flex flex-wrap gap-2 mt-1"
+      <DialogContent className="md:max-w-[700px] flex flex-col-reverse md:flex-row ">
+        <section>
+          <Image
+            src={"/banner_ad_left.png"}
+            alt="sofa banner"
+            // sizes="(max-width: 488px) 50vw, (max-width: 1200px) 50vw, 33vw"
+            width={450}
+            height={100}
+            className="rounded-xl mx-auto my-10  w-[370px]  sm:w-[600px] md:w-[700px]"
+          />
+        </section>
+        <section className="md:min-w-80">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold">
+              Get a free design consultation
+            </DialogTitle>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute right-4 top-4"
+              onClick={() => setIsOpen(false)}
             >
-              {["1 BHK", "2 BHK", "3 BHK", "4+ BHK / Duplex"].map((type) => (
-                <div key={type} className="flex items-center space-x-2">
-                  <RadioGroupItem value={type} id={type} />
-                  <Label htmlFor={type}>{type}</Label>
-                </div>
-              ))}
-            </RadioGroup>
-          </div>
-          <div>
-            <Label htmlFor="location">Property Location</Label>
-            <Select
-              name="location"
-              value={formData.location}
-              onValueChange={(value) => handleSelectChange("location", value)}
-            >
-              <SelectTrigger id="location">
-                <SelectValue placeholder="Select location" />
-              </SelectTrigger>
-              <SelectContent>
-              {indianStates.map((state) => (
-                      <SelectItem
-                        key={state.name}
-                        value={state.name.replaceAll(" ", "-").toLowerCase()}
-                      >
-                        {state.name}
-                      </SelectItem>
-                    ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <Label htmlFor="name">Name</Label>
-            <Input
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              placeholder="Your name"
-            />
-          </div>
-          <div>
-            <Label htmlFor="mobileNumber">Mobile Number</Label>
-            <div className="flex">
-              <Select defaultValue="+91" disabled>
-                <SelectTrigger className="w-[70px]">
-                  <SelectValue placeholder="+91" />
+              <X className="h-4 w-4" />
+            </Button>
+          </DialogHeader>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <Label>Property type</Label>
+              <RadioGroup
+                name="propertyType"
+                value={formData.propertyType}
+                onValueChange={(value) =>
+                  handleSelectChange("propertyType", value)
+                }
+                className="flex flex-wrap gap-2 mt-1"
+              >
+                {["1 BHK", "2 BHK", "3 BHK", "4+ BHK / Duplex"].map((type) => (
+                  <div key={type} className="flex items-center space-x-2">
+                    <RadioGroupItem value={type} id={type} />
+                    <Label htmlFor={type}>{type}</Label>
+                  </div>
+                ))}
+              </RadioGroup>
+            </div>
+            <div>
+              <Label htmlFor="location">Property Location</Label>
+              <Select
+                name="location"
+                value={formData.location}
+                onValueChange={(value) => handleSelectChange("location", value)}
+              >
+                <SelectTrigger id="location">
+                  <SelectValue placeholder="Select location" />
                 </SelectTrigger>
+                <SelectContent>
+                  {indianStates.map((state) => (
+                    <SelectItem
+                      key={state.name}
+                      value={state.name.replaceAll(" ", "-").toLowerCase()}
+                    >
+                      {state.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
               </Select>
+            </div>
+            <div>
+              <Label htmlFor="name">Name</Label>
               <Input
-                id="mobileNumber"
-                name="mobileNumber"
-                value={formData.mobileNumber}
+                id="name"
+                name="name"
+                value={formData.name}
                 onChange={handleInputChange}
-                placeholder="Mobile Number"
-                className="flex-1 ml-2"
+                placeholder="Your name"
               />
             </div>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox
-              id="whatsappUpdates"
-              name="whatsappUpdates"
-              checked={formData.whatsappUpdates}
-              onCheckedChange={(checked) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  whatsappUpdates: checked as boolean,
-                }))
-              }
-            />
-            <Label htmlFor="whatsappUpdates" className="text-sm">
-              Yes, send me updates via WhatsApp.
-            </Label>
-          </div>
-          <Button type="submit" className="w-full bg-red-700 hover:bg-red-800">
-            Book a Free Consultation
-          </Button>
-          <p className="text-xs text-center text-gray-500">
-            By submitting, you consent to our{" "}
-            <a href="#" className="text-blue-500">
-              privacy policy
-            </a>{" "}
-            and{" "}
-            <a href="#" className="text-blue-500">
-              terms of use
-            </a>
-          </p>
-        </form>
+            <div>
+              <Label htmlFor="mobileNumber">Mobile Number</Label>
+              <div className="flex">
+                {/* <Select defaultValue="+91">
+                  <SelectValue placeholder="+91" />
+                </Select> */}
+                <Input
+                  id="mobileNumber"
+                  name="mobileNumber"
+                  value={formData.mobileNumber}
+                  onChange={handleInputChange}
+                  placeholder="xxxxxxxx34"
+                  className="flex-1 ml-2"
+                />
+              </div>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="whatsappUpdates"
+                name="whatsappUpdates"
+                checked={formData.whatsappUpdates}
+                onCheckedChange={(checked) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    whatsappUpdates: checked as boolean,
+                  }))
+                }
+              />
+              <Label htmlFor="whatsappUpdates" className="text-sm">
+                Yes, send me updates via WhatsApp.
+              </Label>
+            </div>
+            <Button
+              type="submit"
+              className="w-full bg-red-700 hover:bg-red-800"
+            >
+              Book a Free Consultation
+            </Button>
+            <p className="text-xs text-center text-gray-500">
+              By submitting, you consent to our{" "}
+              <a href="#" className="text-blue-500">
+                privacy policy
+              </a>{" "}
+              and{" "}
+              <a href="#" className="text-blue-500">
+                terms of use
+              </a>
+            </p>
+          </form>
+        </section>
       </DialogContent>
     </Dialog>
   );
