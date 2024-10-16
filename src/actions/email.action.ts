@@ -22,15 +22,12 @@ const sendConfirmationEmail = async ({
   email: string;
 }) => {
   try {
-    console.log("email..... sending");
     const { data, error } = await resend.emails.send({
-      from: "info@support.wooddecor.in",
-      to: [email, "wooddecor1984@gmail.com"],
+      from: "Wood Decor  <info@wooddecor.in>",
+      to: [email, process.env.ADMIN_EMAIL as string],
       subject: `Order Confirmed ${name}`,
       react: OrderConfirmedEmail({ name, orders, finalPrice }),
     });
-    console.log("data", data);
-    console.log("error", error);
 
     if (error) {
       return [{ error }, { status: 500 }];

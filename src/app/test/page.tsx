@@ -2,38 +2,42 @@ import { sendConfirmationEmail } from "@/actions/email.action";
 import React from "react";
 
 const page = async () => {
-  const products = [
-    {
-      title: "product1",
-      price: {
-        discountedPrice: 1000,
-        price: 3000,
-      },
-      image:
-        "http://localhost:3000/_next/image?url=https%3A%2F%2Fi.pinimg.com%2F564x%2F63%2Fd0%2Fd9%2F63d0d99654d048bf3c5c68ea8015694a.jpg&w=384&q=75",
-    },
-    {
-      title: "product2",
-      price: {
-        discountedPrice: 2000,
-        price: 3000,
-      },
-      image:
-        "http://localhost:3000/_next/image?url=https%3A%2F%2Fi.pinimg.com%2F564x%2F63%2Fd0%2Fd9%2F63d0d99654d048bf3c5c68ea8015694a.jpg&w=384&q=75",
-    },
-  ];
+  // const products = [
+  //   {
+  //     title: "Chair set Luxury",
+  //     price: {
+  //       discountedPrice: 1000,
+  //       price: 3000,
+  //     },
+  //     image:
+  //       "https://utfs.io/f/2e1b285a-804f-443b-b1b9-bbea6deda5c5-r016zg.jpg",
+  //   },
+  //   {
+  //     title: "Chair yellow bed",
+  //     price: {
+  //       discountedPrice: 2440,
+  //       price: 3000,
+  //     },
+  //     image:
+  //       "https://i.pinimg.com/564x/b6/ae/2d/b6ae2d30687b590536c94e29be9cb8bc.jpg",
+  //   },
+  // ];
 
-  await sendConfirmationEmail({
-    finalPrice: 5000,
-    name: "Tahir",
-    email: "maverick65080@gmail.com",
-    orders: products.map((item) => ({
-      title: item.title,
-      price: item.price.discountedPrice || item.price.price,
-      image: item.image,
-    })),
-  });
+  // await sendConfirmationEmail({
+  //   finalPrice: 5000,
+  //   name: "Faizan",
+  //   email: "warandrule@gmail.com",
+  //   orders: products.map((item) => ({
+  //     title: item.title,
+  //     price: item.price.discountedPrice || item.price.price,
+  //     image: item.image,
+  //   })),
+  // });
+
+  // console.log(process.env.ADMIN_EMAIL);
   return <div>page</div>;
 };
+
+
 
 export default page;

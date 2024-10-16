@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Phone, Mail } from "lucide-react";
 import Logo from "./logo";
+import { FaInstagram, FaPhone, FaWhatsapp } from "react-icons/fa";
+import { MdPhone } from "react-icons/md";
 
 const Footer = () => {
   return (
@@ -13,8 +15,32 @@ const Footer = () => {
             <p className="text-sm text-gray-400">
               Crafting beautiful wood decor for your home and office.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 items-center">
               {/* Add your social media icons here */}
+              <Link
+                href="https://www.instagram.com/wooddecor.in/"
+                target="_blank"
+                className="text-gray-400 hover:text-white transition"
+              >
+                <FaInstagram size={28} />
+              </Link>
+              <Link
+                href="https://api.whatsapp.com/send?phone=9845811388"
+                target="_blank"
+                className="text-gray-400 hover:text-white transition"
+              >
+              <FaWhatsapp size={28} />
+
+              </Link>
+              <Link
+                href="tel:+%20919341817975"
+                target="_blank"
+                className="text-gray-400 hover:text-white transition"
+              >
+              <MdPhone size={28} />
+
+              </Link>
+              
             </div>
           </div>
 
