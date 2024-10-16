@@ -76,11 +76,8 @@ export function CheckoutForm({
   });
 
   async function onSubmit(data: z.infer<typeof CustomerDataFormSchema>) {
-    // console.log("You submitted the following values:", data);
-    // console.log("cart --->", cartItems);
-    // return;
+    
     setIsSubmitting(true); // Set loading indicator for submission
-    // console.log("You submitted the following values:", data);
 
     // Here you would typically send this data to your server or payment processor
 

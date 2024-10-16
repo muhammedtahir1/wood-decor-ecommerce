@@ -16,8 +16,7 @@ const page = async () => {
       prices: true,
     },
   });
-  products.map((product) => console.log("🎉🎉🎉🎉", product));
-  // console.log(products);
+  
   return (
     <main>
       <section className="max-w-5xl mx-auto">

@@ -31,7 +31,6 @@ export default function UploadProductImageAdmin({
   setInputImageUrl: Dispatch<SetStateAction<string | undefined>>;
   inputImageUrl: string | undefined;
 }) {
-  // console.log("hi", form.getValues("image"));
 
   return (
     <div>

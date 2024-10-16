@@ -13,13 +13,13 @@ const page = async () => {
         },
       },
     },
+    orderBy: {
+      createdAt: "desc",
+    }
   });
 
-  console.log("orders 👋👋👋");
-  // console.log(orders[1].orderItems[0].product.image);
   // how to write the type for above query from prisma client
   const serializedOrders: TOrdersProps[] = JSON.parse(JSON.stringify(orders));
-  // console.log(serializedOrders[0].orderItems[0].product?.image);
   return (
     <div>
       <AdminBreadCrumbComponent slug="orders" />

@@ -75,7 +75,6 @@ export default function AddProductForm({
     },
   });
 
-  // if (actionType === "edit") console.log(data);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [inputImageUrl, setInputImageUrl] = useState(form.getValues("image"));
   const [variants, setVariants] = useState<VariantType[]>([]);
@@ -84,17 +83,11 @@ export default function AddProductForm({
     // alert("submitting");
     const finalValues = { ...values, image: inputImageUrl };
 
-    // console.log("now work on your actions");
-
     setIsSubmitting(true);
     try {
       let response;
       if (actionType === "edit") {
-        // 👇👇 change the way the action takes prompts
 
-        // console.log("----", finalValues, variants);
-
-        // return;
         response = await editProduct(data!.id, { ...finalValues, variants });
         if (response.success) {
           toast.success("Successfully edited the product");
@@ -224,7 +217,6 @@ export default function AddProductForm({
                         <Slider
                           // {...field}
                           onValueChange={(e) => {
-                            // console.log(typeof e[0], e, field);
                             // field.onChange(e[0]);
                             form.setValue("rating", e[0]);
                           }}

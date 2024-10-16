@@ -14,11 +14,6 @@ const BuyNow = async (
   try {
     const totalAmount = calculateTotalPrice(products);
 
-    console.log("--------------");
-    console.log("Total Price", totalAmount);
-    console.log("customerData", customerData);
-    console.log("products", products);
-
     // Total Price 56500
     // customerData {
     //   name: 'Mohd faizan',
@@ -83,10 +78,6 @@ const BuyNow = async (
       },
     });
 
-    console.log(
-      "order---->",
-      order.orderItems.map((item) => item.productId)
-    );
 
     await sendConfirmationEmail({
       finalPrice: order.totalAmount,

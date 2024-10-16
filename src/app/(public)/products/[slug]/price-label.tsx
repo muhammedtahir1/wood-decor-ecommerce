@@ -132,11 +132,6 @@ const PriceLabel = ({
         </div>
       )}
 
-      {/* <Button onClick={() => {
-        console.log(result.price?.price || 0,
-          result.price?.variant || "",
-          result.color,)
-      }}>sdfsd</Button> */}
 
       <div className="flex md:gap-x-2 mt-4">
         <BuyNowBtn

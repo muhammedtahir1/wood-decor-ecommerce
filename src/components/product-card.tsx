@@ -27,10 +27,6 @@ export default function ProductCard({ data }: { data: ProductCardProps }) {
   }
 
   const priceInfo = findPriceInfo(prices);
-  // console.log("--- ", priceInfo); // Output: { variant: 'default', price: 5000, discountedPrice: 4699 }
-
-  // console.log(`/products/${slug}`);
-  // console.log("price🎯🎯", prices, typeof prices.map(v => v.variant.toLowerCase() === "default"))
 
   return (
     <Card className="w-40 relative rounded-xl md:w-72 h-[290px]  md:h-[440px] mx-1  bg-white/30 ">

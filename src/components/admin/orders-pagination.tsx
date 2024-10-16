@@ -44,9 +44,6 @@ const OrdersPagination = ({
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
-  // console.log("Initial orders:", initialOrders);
-  // console.log("Current orders state:", orders);
-
   const loadMoreProducts = async () => {
     if (!hasMore) return;
 
@@ -68,7 +65,6 @@ const OrdersPagination = ({
     }
   };
 
-  // console.log(orders);
 
   return (
     <div>

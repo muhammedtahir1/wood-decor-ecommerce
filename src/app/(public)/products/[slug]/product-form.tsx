@@ -62,8 +62,6 @@ export default function FormSelector({
   ];
   const router = useRouter();
 
-  // console.log("prices", mainForm.getValues("prices"))
-
   // Filter default colors based on provided colors
   const finalColors = defaultColors.filter((color) =>
     colors.includes(color.value)
@@ -149,7 +147,6 @@ export default function FormSelector({
                   <RadioGroup
                     value={field.value}
                     onValueChange={() => {
-                      console.log("👉👉👉", field);
                       // router.replace(
                       //   `/products/${product.slug}?variant=${field.value}`
                       // );

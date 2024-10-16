@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 export default auth((req) => {
   // To redirect the user if not authenticated
 
-  // console.log(req.url);
   // if (req.url === "/upholstery-beds") {
   //   return NextResponse.redirect(new URL("/", req.url));
   // }

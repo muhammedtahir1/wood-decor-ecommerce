@@ -14,7 +14,6 @@ const page = async ({ params }: { params: { category: string } }) => {
   const INITIAL_NUMBER_OF_USERS = 6;
 
   category = decodeURIComponent(category);
-  // console.log(category)
   const products = await prisma.product.findMany({
     where: {
       category,

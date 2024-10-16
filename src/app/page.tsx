@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
 import ReviewPopup from "@/components/review-popup";
 import DesignConsultationForm from "@/components/design-consultation-form";
+import { BsWhatsapp } from "react-icons/bs";
 // import ZoomedOnHoverImage from "@/components/zoom-on-hover-img";
 // import dynamic from "next/dynamic";
 // const DynamicHeader = dynamic(() => import("@/components/landingpage/header"));
@@ -72,7 +73,7 @@ export default async function Home() {
         <div className="text-center capitalize">
           <h1 className="text-3xl md:text-4xl uppercase">Interiors</h1>
           <p className="text-sm md:text-base opacity-80">
-          Book A Free Design Consultation
+            Book A Free Design Consultation
           </p>
         </div>
         <DesignConsultationForm />
@@ -89,6 +90,13 @@ export default async function Home() {
         <Faq />
         <Footer />
         <ReviewPopup />
+        {/* <div className="hidden md:fixed md:bottom-5 md:right-5 rounded-full ">
+          <Link href={""}>
+            <Button variant={"secondary"} size={"icon"} className="">
+              <BsWhatsapp size={28} className="text-green-800" />
+            </Button>
+          </Link>
+        </div> */}
       </main>
     </div>
   );

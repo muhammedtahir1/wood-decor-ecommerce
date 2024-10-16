@@ -39,7 +39,6 @@ const DeleteProduct = ({ id }: { id: Product["id"] }) => {
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={async () => {
-                console.log("delete");
                 const res = await deleteProduct(id);
                 if (res.success) {
                   toast.success("Successfully deleted the product");

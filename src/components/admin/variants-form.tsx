@@ -67,7 +67,6 @@ const VariantForm = ({ form }: { form: FormProps }) => {
                   <Button
                     type="button"
                     onClick={() => {
-                      console.log("----------", newVariant);
                       if (newVariant.name == "" || newVariant.price == "")
                         return;
                       if (Array.isArray(field.value)) {
@@ -77,7 +76,6 @@ const VariantForm = ({ form }: { form: FormProps }) => {
                         ]);
                       }
                       setNewVariant({ name: "", price: "" });
-                      console.log("field.value", field.value);
                     }}
                   >
                     <Plus />

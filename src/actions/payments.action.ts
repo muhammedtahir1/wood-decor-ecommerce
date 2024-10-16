@@ -17,7 +17,6 @@ const createOrder = async ({ amount, currency }: TcreateOrderProps) => {
       receipt: "rcp1",
     };
     const order = await razorpay.orders.create(options);
-    console.log(order);
 
     return { orderId: order.id, status: 200, success: true };
   } catch (error) {

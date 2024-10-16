@@ -28,9 +28,7 @@ const PriceVariants = ({
   actionType: "add" | "edit";
 }) => {
   function remove(index: number) {
-   // console.log("removing index", index);
     setVariants((prev) => prev.filter((_, i) => index !== i));
-    //console.log("after removing", variants);
   }
   const [newVariant, setNewVariant] = useState({
     variant: "",
@@ -51,16 +49,12 @@ const PriceVariants = ({
           : 0,
       };
       setVariants((prev) => [...prev, data]);
-      // console.log("appending", data);
-      // console.log("fields", variants);
 
       setNewVariant({ variant: "", price: "", discountedPrice: "" });
     }
-   // console.log("fields", variants);
   };
 
   function onSubmit(data: any) {
-  //  console.log("Form submitted with data:", data);
   }
   return (
     <section>
