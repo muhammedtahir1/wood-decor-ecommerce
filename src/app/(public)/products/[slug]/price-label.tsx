@@ -9,7 +9,7 @@ import React, { useEffect, useState } from "react";
 type PriceTypeProps = {
   variant: string;
   price: number;
-  discountedPrice?: number | null;
+  discountedPrice: number | null;
 };
 
 type ColorType = {
@@ -72,7 +72,10 @@ const PriceLabel = ({
       price: price
         ? {
             variant: price.variant,
-            price: price.price,
+            price:
+              price.discountedPrice !== null
+                ? price.discountedPrice
+                : price.price,
           }
         : null,
     });
@@ -131,7 +134,6 @@ const PriceLabel = ({
           )}
         </div>
       )}
-
 
       <div className="flex md:gap-x-2 mt-4">
         <BuyNowBtn
