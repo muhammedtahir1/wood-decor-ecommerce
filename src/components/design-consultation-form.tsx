@@ -70,9 +70,9 @@ export default function DesignConsultationForm() {
           src={"/Web-Banner2.png"}
           alt="sofa banner"
           // sizes="(max-width: 488px) 50vw, (max-width: 1200px) 50vw, 33vw"
-          width={750}
-          height={200}
-          className="rounded-xl mx-auto my-10  w-[370px]  sm:w-[600px] md:w-[700px]"
+          width={950}
+          height={400}
+          className="rounded-xl mx-auto my-10  w-[370px]  sm:w-[600px] md:w-[1000px]"
         />
       </DialogTrigger>
       <DialogContent className="md:max-w-[700px] flex flex-col-reverse md:flex-row ">
