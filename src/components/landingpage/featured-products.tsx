@@ -5,6 +5,7 @@ import { searchProductByKeyword } from "@/lib/server-utils";
 import { Product, Variants } from "@prisma/client";
 import { ReactNode } from "react";
 import { Button } from "../ui/button";
+import Heading from "./h1-style";
 
 export default async function Featured({
   query,
@@ -39,7 +40,8 @@ export default async function Featured({
       className="flex flex-col items-center justify-center mt-8 md:mt-16 mb-16 md:mb-14"
     >
       <div className="text-center capitalize">
-        <h1 className="text-3xl md:text-4xl uppercase">{title ? title : "Featured products"}</h1>
+        {/* <h1 className="text-3xl md:text-4xl uppercase">{title ? title : "Featured products"}</h1> */}
+        <Heading text={title || "Featured products"}/>
         <p className="text-sm md:text-base opacity-80">
           {desc ? desc : "Impressive collection for your dream home"}
         </p>
