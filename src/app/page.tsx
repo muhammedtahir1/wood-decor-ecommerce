@@ -12,6 +12,7 @@ import { Star } from "lucide-react";
 import ReviewPopup from "@/components/review-popup";
 import DesignConsultationForm from "@/components/design-consultation-form";
 import { BsWhatsapp } from "react-icons/bs";
+import OurStory from "@/components/landingpage/our-story";
 // import ZoomedOnHoverImage from "@/components/zoom-on-hover-img";
 // import dynamic from "next/dynamic";
 // const DynamicHeader = dynamic(() => import("@/components/landingpage/header"));
@@ -77,7 +78,7 @@ export default async function Home() {
           </p>
         </div>
         <DesignConsultationForm />
-        <GridDesign />
+        {/* <GridDesign /> */}
         <Link href={"#testimonils"}>
           <Button className="-rotate-90 flex items-center gap-1 fixed top-1/2 -right-8">
             <Star size={14} className="fill-white" />
@@ -86,6 +87,9 @@ export default async function Home() {
         </Link>
 
         <Testimonials />
+        
+        <OurStory/>
+
         <OfferSection />
         <Faq />
         <Footer />
