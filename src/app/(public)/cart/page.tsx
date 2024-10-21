@@ -33,7 +33,7 @@ const Page = () => {
           {/* <h1 className="mt-2 font-gt text-center">Your Cart</h1> */}
           <Heading text="Your Cart"/>
         <div className="flex  flex-col px-5 md:flex-row md:gap-10 md:px-10 max-w-5xl mx-auto justify-between">
-          <div>
+          <div className="flex-1">
             {cartItems.map((item, i) => (
               <CartProduct
                 item={item}

@@ -6,6 +6,7 @@ import { MdDelete } from "react-icons/md";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { TCartProduct } from "@/types/cart";
+import { X } from "lucide-react";
 
 export default function CartProduct({
   item,
@@ -50,10 +51,11 @@ export default function CartProduct({
             <Button
               onClick={() => removeItemFromCart(id)}
               variant={"secondary"}
-              className="rounded-full"
+              className="rounded-full size-8 hover:bg-gray-300 transition-all"
               size={"icon"}
             >
-              <MdDelete className="text-red-500" size={18} />
+              {/* <MdDelete className="text-red-500" size={18} /> */}
+              <X  size={18}/>
             </Button>
           </div>
         </div>
