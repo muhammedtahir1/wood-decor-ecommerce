@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import { Star } from "lucide-react";
+import Heading from "./h1-style";
 
 const testimonialsData = [
   {
@@ -46,10 +47,11 @@ const testimonialsData = [
 const Testimonials = () => {
   return (
     <section className="py-10 md:py-20 px-8 md:px-16 my-10 md:my-20 border-t-2" id="testimonils">
-      <h3 className="text-brand-text2 font-semibold text-3xl text-center mb-8 md:mb-12 font-gt capitalize">
-        Reviews
-      </h3>
-      <div className=" flex flex-col md:flex-row gap-2">
+      {/* <h3 className="text-brand-text2 font-semibold text-3xl text-center mb-8 md:mb-12 font-gt capitalize">
+        Testimonials
+      </h3> */}
+      <Heading text="Testimonials" />
+      <div className=" flex flex-col md:flex-row gap-2  mt-8 md:mt-12">
         {testimonialsData.map((testimonial, index) => (
           <Testimonial key={index} data={testimonial} />
         ))}

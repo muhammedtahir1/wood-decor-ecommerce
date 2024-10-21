@@ -13,6 +13,8 @@ import ReviewPopup from "@/components/review-popup";
 import DesignConsultationForm from "@/components/design-consultation-form";
 import { BsWhatsapp } from "react-icons/bs";
 import OurStory from "@/components/landingpage/our-story";
+import Heading from "@/components/landingpage/h1-style";
+import Testimonials2 from "@/components/landingpage/testimonials2";
 // import ZoomedOnHoverImage from "@/components/zoom-on-hover-img";
 // import dynamic from "next/dynamic";
 // const DynamicHeader = dynamic(() => import("@/components/landingpage/header"));
@@ -72,7 +74,8 @@ export default async function Home() {
           />
         </Link> */}
         <div className="text-center capitalize">
-          <h1 className="text-3xl md:text-4xl uppercase">Interiors</h1>
+          {/* <h1 className="text-3xl md:text-4xl uppercase">Interiors</h1> */}
+          <Heading text="Interiors"/>
           <p className="text-sm md:text-base opacity-80">
             Book A Free Design Consultation
           </p>
@@ -86,7 +89,8 @@ export default async function Home() {
           </Button>
         </Link>
 
-        <Testimonials />
+        {/* <Testimonials /> */}
+        <Testimonials2/>
         
         <OurStory/>
 
