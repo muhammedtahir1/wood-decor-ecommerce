@@ -66,14 +66,25 @@ export default function DesignConsultationForm() {
       <DialogTrigger asChild>
         {/* <Button variant="outline">Get a free design consultation</Button>
          */}
+         <>
+         
         <Image
           src={"/Web-Banner2.png"}
           alt="sofa banner"
           // sizes="(max-width: 488px) 50vw, (max-width: 1200px) 50vw, 33vw"
           width={950}
           height={650}
-          className=" my-10  mx-auto w-full"
-        />
+          className=" my-10  mx-auto md:w-[80vw] hidden sm:block"
+          />
+        <Image
+            src={"/banner_ad_left.png"}
+            alt="sofa banner"
+            // sizes="(max-width: 488px) 50vw, (max-width: 1200px) 50vw, 33vw"
+            width={450}
+            height={100}
+            className=" mx-auto my-10  w-full  sm:hidden"
+            />
+            </>
       </DialogTrigger>
       <DialogContent className="md:max-w-[700px] flex flex-col-reverse md:flex-row ">
         <section>

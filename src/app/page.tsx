@@ -83,7 +83,7 @@ export default async function Home() {
         <DesignConsultationForm />
         {/* <GridDesign /> */}
         <Link href={"#testimonils"}>
-          <Button className="-rotate-90 flex items-center gap-1 fixed top-1/2 -right-8">
+          <Button className="-rotate-90 flex items-center gap-1 fixed top-1/2 -right-8 z-30">
             <Star size={14} className="fill-white" />
             Reviews
           </Button>

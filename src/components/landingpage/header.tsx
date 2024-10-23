@@ -48,7 +48,7 @@ const Header = () => {
     <>
       <header className="h-32 md:h-24 flex flex-col items-center w-full fixed left-0 right-0 top-0  z-50  border-b border-black/10 bg-[#FAFAF1]">
         
-        <div className="font-semibold flex-col-reverse md:flex-row-reverse md:justify-between px-11 bg-primary text-white h-16 md:h-24 text-xs text-center w-full flex items-center justify-center py-0 md:py-2 gap-1 md:gap-2">
+        <div className="font-semibold flex-col md:flex-row-reverse md:justify-between px-11 bg-primary text-white h-16 md:h-24 text-xs text-center w-full flex items-center justify-center py-0 md:py-2 gap-1 md:gap-2">
           <div>
             <Link
               href={"tel:+%20919341817975"}
