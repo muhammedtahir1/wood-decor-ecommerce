@@ -17,7 +17,7 @@ export default function Component() {
 			<div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4 sm:px-6 lg:px-8">
 				<h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">OUR STORY</h1>
 				<p className="max-w-3xl mx-auto text-sm sm:text-base md:text-lg mb-8">
-					We believe that every piece of furniture should tell a story. That's why we handcraft each item with
+					We believe that every piece of furniture should tell a story. That&apos;s why we handcraft each item with
 					precision and care, using only the finest materials and attention to detail. From classic designs
 					that stand the test of time to innovative creations that inspire and elevate your decor, our
 					collection offers a diverse range of options to suit every taste and preference.
