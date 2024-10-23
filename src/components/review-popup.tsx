@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { X } from "lucide-react";
 import Image from "next/image";
 
@@ -14,7 +14,7 @@ interface Review {
 
 const reviews: Review[] = [
   {
-    name: "Rahul S.",
+    name: "Rithesh S.",
     // location: "Bengaluru, Karnataka",
     rating: 5,
     comment:
@@ -74,9 +74,18 @@ const reviews: Review[] = [
     product: "Adjustable Study Table",
   },
   {
+    name: "Jenny D'souza",
+    // location: "Hassan, Karnataka",
+    rating: 4.5,
+    comment:
+      "Quality looks great .if you are looking for furniture customisation .you must visit there website .they will also help you to get your required product.thank you team",
+    product: "Lounger Sofa",
+    image: "https://i.pinimg.com/736x/22/43/73/224373276a9448ff42b262d6291c7ee3.jpg"
+  },
+  {
     name: "Anjali M.",
     // location: "Davangere, Karnataka",
-    rating: 4,
+    rating: 5,
     comment:
       "Dining chair bahut hi stylish hai aur comfortable bhi. (The dining chair is very stylish and comfortable.)",
     product: "Modern Dining Chair",
@@ -97,39 +106,77 @@ const reviews: Review[] = [
       "Coffee table bahut hi stylish hai aur ghar ka decor bhi badhiya ho gaya hai. (The coffee table is very stylish and has improved the home decor.)",
     product: "Glass Coffee Table",
   },
+  {
+    name: "Rishi K.",
+    // location: "Hassan, Karnataka",
+    rating: 4.5,
+    comment:
+      "This couch is absulutely stunning ,highly recommed to buy furniture from the wood decor. Thanks Team",
+    product: "Daze Chester Sofa",
+    image: "https://i.pinimg.com/564x/41/26/50/412650fa7421f7bc2ac9995f22b71253.jpg"
+  },
+  {
+    name: "Shreyas M.V",
+    // location: "Hassan, Karnataka",
+    rating: 5,
+    comment:
+    "good product .i can give 10/10 for quality... little delay in delivery.good team work",
+    product: "Upholstered Bed ",
+  },
+  {
+    name: "Amaira Ahmed",
+    // location: "Hassan, Karnataka",
+    rating: 5,
+    comment:
+    "After an extensive search, we found an online store that tailored a fantastic product to our needs, providing excellent quality. you can purchase here without risk",
+    product: "Fabric Sofa",
+  },
+  {
+    name: "Surya J",
+    // location: "Hassan, Karnataka",
+    rating: 5,
+    comment: 
+    "The product is exceptional. It looks even more stunning in person than in the images. Thank you, Wood Decor.",
+    product: "Upholstered Bed with Storage",
+  },
+  
 ];
 
 export default function ReviewPopup() {
-  const [currentReview, setCurrentReview] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [currentReview, setCurrentReview] = useState<Review | null>(null)
+  const [isVisible, setIsVisible] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+
+  const getRandomReview = useCallback(() => {
+    const randomIndex = Math.floor(Math.random() * reviews.length)
+    return reviews[randomIndex]
+  }, [])
 
   useEffect(() => {
     // Delay the initial popup by 3 seconds
     const initialDelay = setTimeout(() => {
-      setIsVisible(true);
-    }, 3000);
+      setCurrentReview(getRandomReview())
+      setIsVisible(true)
+    }, 3000)
 
-    return () => clearTimeout(initialDelay);
-  }, []);
+    return () => clearTimeout(initialDelay)
+  }, [getRandomReview])
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible) return
 
     const interval = setInterval(() => {
-      setIsTransitioning(true);
+      setIsTransitioning(true)
       setTimeout(() => {
-        setCurrentReview((prev) => (prev + 1) % reviews.length);
-        setIsTransitioning(false);
-      }, 500); // Half of the transition duration
-    }, 5000); // Change review every 5 seconds
+        setCurrentReview(getRandomReview())
+        setIsTransitioning(false)
+      }, 500) // Half of the transition duration
+    }, 5000) // Change review every 5 seconds
 
-    return () => clearInterval(interval);
-  }, [isVisible]);
+    return () => clearInterval(interval)
+  }, [isVisible, getRandomReview])
 
-  if (!isVisible) return null;
-
-  const review = reviews[currentReview];
+  if (!isVisible || !currentReview) return null
 
   return (
     <div
@@ -148,11 +195,11 @@ export default function ReviewPopup() {
         <X size={16} />
       </button>
       <div className="flex items-start mb-2">
-        {review.image && (
+        {currentReview.image && (
           <div className="mr-3 flex-shrink-0">
             <Image
-              src={review.image}
-              alt={review.product}
+              src={currentReview.image}
+              alt={currentReview.product}
               width={80}
               height={80}
               className="rounded-md"
@@ -162,17 +209,17 @@ export default function ReviewPopup() {
         <div>
           <div className="flex items-center mb-1">
             <div className="text-yellow-400 mr-1">
-              {"★".repeat(review.rating)}
-              {"☆".repeat(5 - review.rating)}
+              {"★".repeat(currentReview.rating)}
+              {"☆".repeat(5 - currentReview.rating)}
             </div>
-            <span className="text-sm font-semibold">{review.name}</span>
+            <span className="text-sm font-semibold">{currentReview.name}</span>
           </div>
           <p className="text-sm text-gray-600 mb-1">
-            &quot;{review.comment}&quot;
+            &quot;{currentReview.comment}&quot;
           </p>
-          <p className="text-xs text-gray-500">{review.product}</p>
+          <p className="text-xs text-gray-500">{currentReview.product}</p>
         </div>
       </div>
     </div>
-  );
+  )
 }

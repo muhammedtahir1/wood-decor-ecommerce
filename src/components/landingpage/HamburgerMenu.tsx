@@ -118,7 +118,7 @@ export default function EnhancedProfessionalHamburgerMenu() {
   return (
     <div className="relative bg-white border-none" ref={menuRef}>
       <Button
-        className="bg-white border-none hover:bg-gray-100"
+        className="bg-brand-bg-DEFALUT border-none hover:bg-gray-100"
         variant="outline"
         size="icon"
         onClick={() => setIsOpen(!isOpen)}

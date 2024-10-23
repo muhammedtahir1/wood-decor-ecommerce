@@ -103,7 +103,7 @@ export const addProductFormSchema = z.object({
   description: z
     .string()
     .min(10, { message: "description must be at least 10 characters." })
-    .max(500, { message: "description max length 500 chars" })
+    .max(2000, { message: "description max length 2000 characters" })
     .optional(),
   // how do we include 0 as a valid value?
   isFeatured: z.boolean().optional(),

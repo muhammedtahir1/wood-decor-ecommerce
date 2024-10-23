@@ -66,14 +66,25 @@ export default function DesignConsultationForm() {
       <DialogTrigger asChild>
         {/* <Button variant="outline">Get a free design consultation</Button>
          */}
+         <>
+         
         <Image
           src={"/Web-Banner2.png"}
           alt="sofa banner"
           // sizes="(max-width: 488px) 50vw, (max-width: 1200px) 50vw, 33vw"
           width={950}
-          height={400}
-          className="rounded-xl mx-auto my-10  w-[370px]  sm:w-[600px] md:w-[1000px]"
-        />
+          height={650}
+          className=" my-10  mx-auto md:w-[80vw] hidden sm:block"
+          />
+        <Image
+            src={"/banner_ad_left.png"}
+            alt="sofa banner"
+            // sizes="(max-width: 488px) 50vw, (max-width: 1200px) 50vw, 33vw"
+            width={450}
+            height={100}
+            className=" mx-auto my-10  w-full  sm:hidden"
+            />
+            </>
       </DialogTrigger>
       <DialogContent className="md:max-w-[700px] flex flex-col-reverse md:flex-row ">
         <section>
@@ -96,11 +107,11 @@ export default function DesignConsultationForm() {
               size="icon"
               className="absolute right-4 top-4"
               onClick={() => setIsOpen(false)}
-            >
+              >
               <X className="h-4 w-4" />
             </Button>
           </DialogHeader>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 mt-2">
             <div>
               <Label>Property type</Label>
               <RadioGroup

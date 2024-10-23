@@ -29,14 +29,14 @@ export default function ProductCard({ data }: { data: ProductCardProps }) {
   const priceInfo = findPriceInfo(prices);
 
   return (
-    <Card className="w-40 relative rounded-xl md:w-72 h-[290px]  md:h-[440px] mx-1  bg-white/30 ">
+    <Card className="w-40 relative md:w-72 h-[290px]  md:h-[440px] mx-1  bg-white/30 ">
       <CardHeader className="h-[50%] md:h-[60%] overflow-hidden p-0">
         <Link
           href={`/products/${slug}`}
-          className="rounded-xl md:mb-2 w-full h-[150px] md:h-[260px] hover:scale-105 transition-all duration-300"
+          className="md:mb-2 w-full h-[150px] md:h-[260px] hover:scale-105 transition-all duration-300"
         >
           <Image
-            className="h-full w-full object-cover rounded-t-xl"
+            className="h-full w-full object-cover "
             width={270}
             height={260}
             src={image}

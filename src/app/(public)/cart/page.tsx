@@ -1,6 +1,7 @@
 "use client";
 
 import CartProduct from "@/components/cart-product";
+import Heading from "@/components/landingpage/h1-style";
 import { Button } from "@/components/ui/button";
 import { calculateTotalPrice } from "@/lib/utils";
 import useCartStore from "@/store/cart";
@@ -14,7 +15,7 @@ const Page = () => {
   let finalTotalPrice = calculateTotalPrice(cartItems);
 
   return (
-    <main className="mt-32  md:px-10">
+    <main className="mt-36 md:mt-32  md:px-10">
       
       {cartItems.length === 0 ? (
         <div className="flex flex-col items-center justify-center p-4 min-h-[70vh]">
@@ -28,10 +29,11 @@ const Page = () => {
       </div>
 
       ) : (
-        
+        <>
+          {/* <h1 className="mt-2 font-gt text-center">Your Cart</h1> */}
+          <Heading text="Your Cart"/>
         <div className="flex  flex-col px-5 md:flex-row md:gap-10 md:px-10 max-w-5xl mx-auto justify-between">
-          <h1 className="mt-2 font-gt">Cart</h1>
-          <div>
+          <div className="flex-1">
             {cartItems.map((item, i) => (
               <CartProduct
                 item={item}
@@ -70,6 +72,7 @@ const Page = () => {
             </div>
           </section>
         </div>
+        </>
       )}
     </main>
   );

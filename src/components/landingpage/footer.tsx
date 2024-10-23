@@ -41,7 +41,7 @@ const Footer = () => {
 
               </Link>
               
-            </div>
+            </div> 
           </div>
 
           <div>
@@ -128,10 +128,10 @@ const Footer = () => {
               <li className="flex items-center">
                 <Mail className="mr-2 h-4 w-4" />
                 <Link
-                  href="mailto:md.azmath84@gmail.com"
+                  href="mailto:info@wooddecor.in"
                   className="text-gray-400 hover:text-white transition"
                 >
-                  md.azmath84@gmail.com
+                  info@wooddecor.in
                 </Link>
               </li>
               <li className="flex items-start">
