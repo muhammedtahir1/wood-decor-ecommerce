@@ -40,13 +40,24 @@ export default async function Home() {
         {/* <Category /> */}
 
         <Featured seeMore={true} />
+
+        <div className="text-center capitalize">
+          {/* <h1 className="text-3xl md:text-4xl uppercase">Interiors</h1> */}
+          <Heading text="Interiors"/>
+          <p className="text-sm md:text-base opacity-80">
+            Book A Free Design Consultation
+          </p>
+        </div>
+        <DesignConsultationForm />
+
+
         <Featured
           title="Living room"
           desc={"Snuggle Up in Style with a Sectional Sofa's"}
           query="sofa"
         />
         <Featured
-          title="Beds"
+          title="Wooden Beds"
           desc={"Add Luxury to your Bed Room"}
           query="bed"
         />
@@ -73,14 +84,7 @@ export default async function Home() {
             className="rounded-xl mx-auto my-10  w-[370px]  sm:w-[600px] md:w-[1000px]"
           />
         </Link> */}
-        <div className="text-center capitalize">
-          {/* <h1 className="text-3xl md:text-4xl uppercase">Interiors</h1> */}
-          <Heading text="Interiors"/>
-          <p className="text-sm md:text-base opacity-80">
-            Book A Free Design Consultation
-          </p>
-        </div>
-        <DesignConsultationForm />
+        
         {/* <GridDesign /> */}
         <Link href={"#testimonils"}>
           <Button className="-rotate-90 flex items-center gap-1 fixed top-1/2 -right-8 z-30">

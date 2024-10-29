@@ -46,7 +46,7 @@ export default function ProductCard({ data }: { data: ProductCardProps }) {
       </CardHeader>
       <CardContent className="m-0 ">
         <div className="mt-1 items-center px-4 md:px-8">
-          <h1 className="text-lg md:text-xl font-bold truncate">{title}</h1>
+          <h1 className="text-lg md:text-xl font-medium truncate">{title}</h1>
           
           <div className="">
             {priceInfo?.discountedPrice && priceInfo.discountedPrice > 0 ? (
