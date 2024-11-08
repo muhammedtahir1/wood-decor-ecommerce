@@ -17,7 +17,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-const components: { title: string; category: string, href: string }[] = [
+const components: { title: string; category: string; href: string }[] = [
   {
     title: "Modular Kitchen",
     category: "interiors",
@@ -88,7 +88,6 @@ export function NavBarlinksMenu() {
                       src={
                         "https://plus.unsplash.com/premium_photo-1683141389818-77fd3485334b?q=80&w=1538&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                       }
-
                       alt="Sofa set"
                     />
                     {/* <Icons.logo className="h-6 w-6" /> */}
@@ -101,10 +100,30 @@ export function NavBarlinksMenu() {
                   </Link>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/categories/lounger sofa" title="Lounger Sofa"></ListItem>
-              <ListItem href="/categories/wooden sofa" title="Wooden Sofa"></ListItem>
-              <ListItem href="/categories/3+2 sofa" title="3 + 2 Sofa"></ListItem>
-              <ListItem href="/categories/wing chairs" title="Wing Chairs"></ListItem>
+              <ListItem
+                href="/categories/lounger sofa"
+                title="Lounger Sofa"
+              ></ListItem>
+              <ListItem
+                href="/categories/wooden sofa"
+                title="Wooden Sofa"
+              ></ListItem>
+              <ListItem
+                href="/categories/3+2 sofa"
+                title="3 + 2 Sofa"
+              ></ListItem>
+              <ListItem
+                href="/categories/wing chairs"
+                title="Wing Chairs"
+              ></ListItem>
+              <ListItem
+                href="/categories/sofa cum beds"
+                title="Sofa Cum beds"
+              ></ListItem>
+              <ListItem
+                href="/categories/recliners"
+                title="Recliners"
+              ></ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -118,7 +137,6 @@ export function NavBarlinksMenu() {
 
               {interiorComponents.map((component, i) => (
                 <Link href={component.href} key={i}>
-
                   <ListItem
                     key={component.title}
                     title={component.title}

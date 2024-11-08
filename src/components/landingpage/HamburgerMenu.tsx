@@ -20,11 +20,13 @@ const menuItems: MenuItem[] = [
     id: "1",
     label: "LIVING ROOM",
     children: [
-      { id: "1-1", label: "Corner Sofa", href: "/categories/corner-sofa" },
-      { id: "1-2", label: "Lounger Sofa", href: "/categories/lounger-sofa" },
-      { id: "1-3", label: "Wooden Sofa", href: "/categories/wooden-sofa" },
-      { id: "1-4", label: "3 + 2 Sofa", href: "/categories/3-2-sofa" },
-      { id: "1-5", label: "Wing Chairs", href: "/categories/wing-chairs" },
+      { id: "1-1", label: "Corner Sofa", href: "/categories/corner sofa" },
+      { id: "1-2", label: "Lounger Sofa", href: "/categories/lounger sofa" },
+      { id: "1-3", label: "Wooden Sofa", href: "/categories/wooden sofa" },
+      { id: "1-4", label: "3 + 2 Sofa", href: "/categories/3+2 sofa" },
+      { id: "1-5", label: "Wing Chairs", href: "/categories/wing chairs" },
+      { id: "1-6", label: "Recliners", href: "/categories/recliners" },
+      { id: "1-6", label: "Sofa Cum beds", href: "/categories/sofa cum beds" },
     ],
   },
   {
@@ -33,15 +35,15 @@ const menuItems: MenuItem[] = [
     children: [
       { id: "2-1", label: "Modular Kitchen", href: "/categories/modular-kitchen" },
       { id: "2-2", label: "Wardrobes", href: "/categories/wardrobes" },
-      { id: "2-3", label: "TV Units", href: "/categories/tv-units" },
+      { id: "2-3", label: "TV Units", href: "/categories/tv units" },
     ],
   },
   {
     id: "3",
     label: "BEDROOM",
     children: [
-      { id: "3-1", label: "Wooden Beds", href: "/categories/wooden-beds" },
-      { id: "3-2", label: "Upholstery Beds", href: "/categories/upholstery-beds" },
+      { id: "3-1", label: "Wooden Beds", href: "/categories/wooden beds" },
+      { id: "3-2", label: "Upholstery Beds", href: "/categories/upholstery beds" },
     ],
   },
   {

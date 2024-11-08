@@ -11,12 +11,14 @@ export default async function Featured({
   query,
   title,
   desc,
+  viewAll,
   seeMore = false,
 }: {
   query?: string;
   seeMore?: boolean;
   title?: string;
   desc?: string;
+  viewAll?: string;
 }) {
   let products = [];
 
@@ -41,7 +43,7 @@ export default async function Featured({
     >
       <div className="text-center capitalize">
         {/* <h1 className="text-3xl md:text-4xl uppercase">{title ? title : "Featured products"}</h1> */}
-        <Heading text={title || "Featured products"}/>
+        <Heading text={title || "Featured products"} />
         <p className="text-sm md:text-base opacity-80">
           {desc ? desc : "Impressive collection for your dream home"}
         </p>
@@ -58,6 +60,12 @@ export default async function Featured({
         <Link href={`/search?q=${query || ""}`}>
           {/* <Button className="mt-2 md:mt-2 mb-8 md:mb-14" variant={"fullRounded"}>See more ...</Button> */}
           <Button variant={"default"}>See more</Button>
+        </Link>
+      )}
+      {viewAll && (
+        <Link href={`/categories/${viewAll || ""}`}>
+          {/* <Button className="mt-2 md:mt-2 mb-8 md:mb-14" variant={"fullRounded"}>See more ...</Button> */}
+          <Button variant={"default"}>View All</Button>
         </Link>
       )}
     </section>

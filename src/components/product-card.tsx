@@ -17,7 +17,6 @@ import { ProductCardProps } from "@/types/validations";
 export default function ProductCard({ data }: { data: ProductCardProps }) {
   const { id, image, label, slug, title, rating, prices } = data;
 
-
   function findPriceInfo(priceData: Variants[]): Variants | null {
     // Find the 'default' variant or the first variant if 'default' is not found
     return (
@@ -47,17 +46,27 @@ export default function ProductCard({ data }: { data: ProductCardProps }) {
       <CardContent className="m-0 ">
         <div className="mt-1 items-center px-4 md:px-8">
           <h1 className="text-lg md:text-xl font-medium truncate">{title}</h1>
-          
+
           <div className="">
             {priceInfo?.discountedPrice && priceInfo.discountedPrice > 0 ? (
-              <h2 className="flex items-center gap-2 text-lg md:text-xl">
-                <span className="text-base md:text-lg font-light line-through opacity-80 relative">
-                  ₹{priceInfo.price}
-                </span>
-                <span className="font-semibold">
-                  ₹{priceInfo.discountedPrice}
-                </span>
-              </h2>
+              <div className="flex justify-between items-center">
+                <h2 className="flex items-center gap-2 text-lg md:text-xl">
+                  <span className="text-base md:text-lg font-light line-through opacity-80 relative text-red-500">
+                    ₹{priceInfo.price}
+                  </span>
+                  <span className="font-normal">
+                    ₹{priceInfo.discountedPrice}
+                  </span>
+                </h2>
+                <Badge variant="default"  className="ml-2 scale-[80%]">
+                  {Math.round(
+                    ((priceInfo.price - priceInfo.discountedPrice) /
+                      priceInfo.price) *
+                      100
+                  )}
+                  % OFF
+                </Badge>
+              </div>
             ) : (
               <h2 className=" text-lg md:text-xl">₹{priceInfo?.price}</h2>
             )}
@@ -67,7 +76,6 @@ export default function ProductCard({ data }: { data: ProductCardProps }) {
             className="scale-75  -ml-5 md:-ml-8"
             rating={rating > 3 ? rating : 4}
           />
-
         </div>
       </CardContent>
       <CardFooter className="md:space-x-1 px-1 md:px-8 mt-2 md:mt-5">

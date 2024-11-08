@@ -43,23 +43,25 @@ export default async function Home() {
 
         <div className="text-center capitalize">
           {/* <h1 className="text-3xl md:text-4xl uppercase">Interiors</h1> */}
-          <Heading text="Interiors"/>
+          <Heading text="Interiors" />
           <p className="text-sm md:text-base opacity-80">
             Book A Free Design Consultation
           </p>
         </div>
         <DesignConsultationForm />
 
-
         <Featured
           title="Living room"
           desc={"Snuggle Up in Style with a Sectional Sofa's"}
-          query="sofa"
+          viewAll="3+2 sofa"
+          query="3+2 sofa"
         />
+
         <Featured
-          title="Wooden Beds"
+          title="upholstery BEDS"
           desc={"Add Luxury to your Bed Room"}
-          query="bed"
+          query="upholstery"
+          viewAll=""
         />
         <Featured
           title="Dining Area"
@@ -67,9 +69,9 @@ export default async function Home() {
           query="dining"
         />
         <Featured
-          title="upholstery BEDS"
+          title="Wooden Beds"
           desc={"Add Luxury to your Bed Room"}
-          query="upholstery"
+          query="bed"
         />
         {/* <Link
           href={"/search?q="}
@@ -84,7 +86,7 @@ export default async function Home() {
             className="rounded-xl mx-auto my-10  w-[370px]  sm:w-[600px] md:w-[1000px]"
           />
         </Link> */}
-        
+
         {/* <GridDesign /> */}
         <Link href={"#testimonils"}>
           <Button className="-rotate-90 flex items-center gap-1 fixed top-1/2 -right-8 z-30">
@@ -94,9 +96,9 @@ export default async function Home() {
         </Link>
 
         {/* <Testimonials /> */}
-        <Testimonials2/>
-        
-        <OurStory/>
+        <Testimonials2 />
+
+        <OurStory />
 
         <OfferSection />
         <Faq />

@@ -4,6 +4,8 @@ export const CATEGORIES = [
   { label: "Wooden sofa", value: "wooden sofa" },
   { label: "3 + 2 sofa", value: "3+2 sofa" },
   { label: "Wing chairs", value: "wing chairs" },
+  { label: "Recliners", value: "recliners" },
+  { label: "Sofa cum beds", value: "sofa cum beds" },
   { label: "Wooden Beds", value: "wooden beds" },
   { label: "Upholstery Bed", value: "upholstery bed" },
   { label: "Modular kitchen", value: "modular kitchen" },

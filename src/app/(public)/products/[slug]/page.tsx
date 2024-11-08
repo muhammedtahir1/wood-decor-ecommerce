@@ -21,6 +21,7 @@ import { ClockArrowDown, EyeIcon } from "lucide-react";
 import StarRating from "@/components/star-rating";
 import ReviewPopup from "@/components/review-popup";
 import PriceLabel from "./price-label";
+import TruncatedText from "@/components/truncated-text";
 
 type generateMetaDataProps = {
   params: { slug: string };
@@ -95,6 +96,7 @@ const page = async ({ params }: ParamsProps) => {
               height={600}
               className="rounded-xl"
             />
+
             {product.label && (
               <Badge
                 className="absolute left-0 top-0 -rotate-6"
@@ -103,6 +105,12 @@ const page = async ({ params }: ParamsProps) => {
                 {product.label}
               </Badge>
             )}
+          </div>
+          <div className="flex items-center gap-2">
+            <EyeIcon size={18} />
+            <p className="text-sm">
+              {Math.floor(Math.random() * 20)} Persons looking for this product
+            </p>
           </div>
         </section>
 
@@ -113,20 +121,22 @@ const page = async ({ params }: ParamsProps) => {
           >
             {product.category}
           </Badge>
-          <h1 className="text-2xl md:text-4xl capitalize font-gt">
+          <h1 className="text-2xl md:text-3xl capitalize font-semibold font-gt">
             {product.title}
           </h1>
+
           <PriceLabel
             prices={product.prices}
             colors={product.colors}
             product={product}
           />
+
           <StarRating rating={product.rating > 3 ? product.rating : 4} />
 
           <h3 className="text-sm md:text-lg">Description</h3>
-          <div
-            className="scale-90 list-decimal -ml-5"
-            dangerouslySetInnerHTML={{ __html: product.description as string }}
+          <TruncatedText
+            maxLength={200}
+            htmlContent={product.description as string}
           />
 
           <Accordion type="single" collapsible className="md:w-96 w-80">
@@ -203,12 +213,6 @@ const page = async ({ params }: ParamsProps) => {
             </p>
           </div>
           {/* {product.rating > 3 && <StarRating rating={5} />} */}
-          <div className="flex items-center gap-2">
-            <EyeIcon size={18} />
-            <p className="text-sm">
-              {Math.floor(Math.random() * 20)} Persons looking for this product
-            </p>
-          </div>
         </div>
       </main>
       {similarProduct.length > 0 && (

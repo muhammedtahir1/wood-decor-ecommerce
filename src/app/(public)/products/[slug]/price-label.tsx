@@ -2,6 +2,7 @@
 
 import AddToCartBtn from "@/components/add-to-cart-btn";
 import BuyNowBtn from "@/components/buy-now-btn";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Product } from "@prisma/client";
 import React, { useEffect, useState } from "react";
@@ -85,12 +86,24 @@ const PriceLabel = ({
     <div className="space-y-4">
       <div className="">
         {finalPrice?.discountedPrice && finalPrice.discountedPrice > 0 ? (
-          <h2 className="flex items-center gap-2 text-lg md:text-2xl">
-            <span className="text-lg font-light line-through opacity-80 relative">
-              ₹{finalPrice.price}
-            </span>
-            <span className="font-semibold">₹{finalPrice.discountedPrice}</span>
-          </h2>
+          <div className="flex items-center gap-5">
+            <h2 className="flex items-center gap-2 text-lg md:text-2xl">
+              <span className="text-lg text-red-500 font-light line-through opacity-80 relative">
+                ₹{finalPrice.price}
+              </span>
+              <span className=" ">
+                ₹{finalPrice.discountedPrice}
+              </span>
+            </h2>
+            <Badge variant="default" className="ml-2 scale-[80%]">
+              {Math.round(
+                ((finalPrice.price - finalPrice.discountedPrice) /
+                  finalPrice.price) *
+                  100
+              )}
+              % OFF
+            </Badge>
+          </div>
         ) : (
           <h2 className=" text-lg md:text-2xl">₹{finalPrice?.price}</h2>
         )}
