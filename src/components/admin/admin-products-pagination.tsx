@@ -22,17 +22,28 @@ import DeleteProduct from "./delete-product";
 import AddProductForm from "./admin-form";
 import { getProducts } from "@/actions/admin.action";
 import { ProductWithVariants } from "@/types/validations";
+import { columns, DataTable } from "./data-table";
 
-const NUMBER_OF_PRODUCTS_TO_FETCH = 8;
+// const NUMBER_OF_PRODUCTS_TO_FETCH = 8;
+
+type AdminProductsProps = {
+  initialProducts: ProductWithVariants[];
+  canNextPage: boolean;
+  canPrevPage: boolean;
+  totalPages : number;
+  pageNumber: number
+}
 
 const AdminProductsPagination = ({
   initialProducts,
-}: {
-  initialProducts: ProductWithVariants[];
-}) => {
+  canNextPage,
+  canPrevPage,
+  pageNumber,
+  totalPages
+}: AdminProductsProps) => {
   const [products, setProducts] =
     useState<ProductWithVariants[]>(initialProducts);
-  const [offset, setOffset] = useState(NUMBER_OF_PRODUCTS_TO_FETCH);
+  // const [offset, setOffset] = useState(NUMBER_OF_PRODUCTS_TO_FETCH);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
@@ -57,34 +68,34 @@ const AdminProductsPagination = ({
   //   fetchProducts();
   // }, []); // Remove offset from the dependency array
 
-  const loadMoreProducts = async () => {
-    if (!hasMore) return;
+  // const loadMoreProducts = async () => {
+  //   if (!hasMore) return;
 
-    setLoading(true);
-    try {
-      const apiProducts = await getProducts({
-        take: NUMBER_OF_PRODUCTS_TO_FETCH,
-        skip: offset,
-      });
-      if (apiProducts.length < NUMBER_OF_PRODUCTS_TO_FETCH) {
-        setHasMore(false);
-      }
-      setProducts((prevProducts) => [...prevProducts, ...apiProducts]);
-      setOffset((prevOffset) => prevOffset + NUMBER_OF_PRODUCTS_TO_FETCH);
-    } catch (error) {
-      console.error("Failed to load more products", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  //   setLoading(true);
+  //   try {
+  //     const apiProducts = await getProducts({
+  //       take: NUMBER_OF_PRODUCTS_TO_FETCH,
+  //       skip: offset,
+  //     });
+  //     if (apiProducts.length < NUMBER_OF_PRODUCTS_TO_FETCH) {
+  //       setHasMore(false);
+  //     }
+  //     setProducts((prevProducts) => [...prevProducts, ...apiProducts]);
+  //     setOffset((prevOffset) => prevOffset + NUMBER_OF_PRODUCTS_TO_FETCH);
+  //   } catch (error) {
+  //     console.error("Failed to load more products", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[90vh] pt-6 px-1 mt-2">
-      <Table>
+    <div className="min-h-[90vh] pt-2 px-1 mt-2 mb-4 md:mb-6">
+      {/* <Table>
         <TableHeader>
           <TableRow>
             <TableHead className="w-[300px]">Name</TableHead>
-            {/* <TableHead>Price</TableHead> */}
             <TableHead>Category</TableHead>
             <TableHead className="text-right">Actions</TableHead>
           </TableRow>
@@ -95,7 +106,6 @@ const AdminProductsPagination = ({
               <TableCell className="font-medium w-96">
                 {product.title}
               </TableCell>
-              {/* <TableCell>{product.}</TableCell> */}
               <TableCell>{product.slug}</TableCell>
               <TableCell className="text-right flex">
                 <Popover>
@@ -111,8 +121,11 @@ const AdminProductsPagination = ({
             </TableRow>
           ))}
         </TableBody>
-      </Table>
-      {loading && (
+      </Table> */}
+
+      <DataTable columns={columns} data={products} canNextPage={canNextPage} canPrevPage={canPrevPage} pageNumber={pageNumber} totalPages={totalPages}/>
+
+      {/* {loading && (
         <div className="flex justify-center items-center mt-4">
           <ImSpinner6 className="animate-spin" size={24} />
         </div>
@@ -122,7 +135,7 @@ const AdminProductsPagination = ({
         <Button onClick={loadMoreProducts} className="mb-10 md:mb-20">
           Load More...
         </Button>
-      )}
+      )} */}
     </div>
   );
 };
