@@ -8,8 +8,8 @@ import {
   VisibilityState,
   flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
+  // getFilteredRowModel,
+  // getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
@@ -32,11 +32,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Product } from "@prisma/client"
 import DeleteProduct from "./delete-product"
 import AddProductForm from "./admin-form"
 import { ProductWithVariants } from "@/types/validations"
 import Link from "next/link"
+import { useRouter, useSearchParams } from "next/navigation"
+import {useState} from "react"
+import { useDebounce } from 'react-use';
 // import DeleteBtn from "@/components/adminPage/delete-btn"
 // import AddEditProductBtn from "@/components/adminPage/add-product-btn"
 
@@ -127,10 +129,38 @@ type DataTableProps = {
   canPrevPage: boolean,
   pageNumber: number,
   totalPages: number,
-
 }
 
+
+
 export function DataTable({ columns, data, canNextPage, canPrevPage, pageNumber, totalPages }: DataTableProps) {
+  // server side search
+  const router = useRouter();
+const searchParams = useSearchParams();
+const [searchValue, setSearchValue] = useState(searchParams.get('title') || '');
+const [isLoading, setIsLoading] = useState(false)
+
+useDebounce(
+  () => {
+    setIsLoading(true)
+    const params = new URLSearchParams(searchParams.toString());
+    
+    if (searchValue) {
+      params.set('title', searchValue);
+      // Reset to first page when searching
+      params.set('page', '1');
+    } else {
+      params.delete('title');
+    }
+    
+    router.push(`?${params.toString()}`);
+    setIsLoading(false)
+  },
+  500,
+  [searchValue]
+);
+  
+  
   // console.log(products);
   // TODO - dynamic data is not displaying in the table
 
@@ -148,9 +178,9 @@ export function DataTable({ columns, data, canNextPage, canPrevPage, pageNumber,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
+    // getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
+    // getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
     state: {
@@ -165,13 +195,14 @@ export function DataTable({ columns, data, canNextPage, canPrevPage, pageNumber,
     <div className="w-full ">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter products..."
-          value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+          placeholder="Search products..."
+          value={searchValue}
           onChange={(event) =>
-            table.getColumn("title")?.setFilterValue(event.target.value)
+            setSearchValue(event.target.value)
           }
           className="max-w-sm bg-brand-bg-DEFALUT focus-visible:ring-0"
         />
+        {isLoading && <span className="ml-2">Searching.....</span>}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto bg-brand-bg-DEFALUT">
@@ -251,7 +282,7 @@ export function DataTable({ columns, data, canNextPage, canPrevPage, pageNumber,
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
-          Page
+          Page {" "}
           {pageNumber} of{" "}
           {totalPages}.
         </div>
@@ -261,7 +292,7 @@ export function DataTable({ columns, data, canNextPage, canPrevPage, pageNumber,
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => table.previousPage()}
+                // onClick={() => table.previousPage()}
                 disabled={!canPrevPage}
 
               >
