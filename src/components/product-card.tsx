@@ -49,16 +49,16 @@ export default function ProductCard({ data }: { data: ProductCardProps }) {
 
           <div className="">
             {priceInfo?.discountedPrice && priceInfo.discountedPrice > 0 ? (
-              <div className="flex justify-between items-center">
-                <h2 className="flex items-center gap-2 text-lg md:text-xl">
-                  <span className="text-base md:text-lg font-light line-through opacity-80 relative text-red-500">
+              <div className="flex  md:justify-between items-center">
+                <h2 className="flex items-center gap-1 md:gap-2 text-lg md:text-xl">
+                  <span className="text-sm md:text-lg font-light line-through opacity-80 relative text-red-500">
                     ₹{priceInfo.price}
                   </span>
                   <span className="font-normal">
                     ₹{priceInfo.discountedPrice}
                   </span>
                 </h2>
-                <Badge variant="default"  className="ml-2 scale-[80%]">
+                <Badge variant="default"  className="-ml-[2px] py-1 md:ml-2 text-xs scale-[70%] md:scale-[90%]">
                   {Math.round(
                     ((priceInfo.price - priceInfo.discountedPrice) /
                       priceInfo.price) *
@@ -78,7 +78,7 @@ export default function ProductCard({ data }: { data: ProductCardProps }) {
           />
         </div>
       </CardContent>
-      <CardFooter className="md:space-x-1 px-1 md:px-8 mt-2 md:mt-5">
+      <CardFooter className="md:space-x-1 px-1 md:px-8 mt-1 md:mt-5">
         <BuyNowBtn
           product={{
             id,

@@ -35,7 +35,7 @@ const Page = async ({ searchParams }: { searchParams: { page: string, title?: st
     }
 
   })
-  revalidatePath(`/admin/products`);
+  revalidatePath(`/admin/products?page=${pageNumber}?title=${title}`);
 
 
 
