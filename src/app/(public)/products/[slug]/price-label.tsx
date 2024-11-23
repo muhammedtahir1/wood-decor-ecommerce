@@ -107,10 +107,12 @@ const PriceLabel = ({
         ) : (
           <h2 className=" text-lg md:text-2xl">₹{finalPrice?.price}</h2>
         )}
+      <p className=" text-xs md:text-sm text-black/50">The price includes shipping and tax.</p>
       </div>
       {/* <h2 className="text-2xl font-bold">
         ₹{finalPrice ? finalPrice.price : "N/A"}
       </h2> */}
+      
       <div className="flex flex-wrap gap-2">
         {prices.map((priceObj, index) => (
           <button

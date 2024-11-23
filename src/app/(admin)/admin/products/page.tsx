@@ -1,7 +1,6 @@
 import prisma from "@/lib/db";
 import React from "react";
 import AdminProductsPagination from "@/components/admin/admin-products-pagination";
-import { validateUrl } from "@/lib/utils";
 import { ProductWithVariants } from "@/types/validations";
 import AdminBreadCrumbComponent from "@/components/admin/admin-breadcrumb";
 import { revalidatePath } from "next/cache";
@@ -35,7 +34,7 @@ const Page = async ({ searchParams }: { searchParams: { page: string, title?: st
     }
 
   })
-  revalidatePath(`/admin/products?page=${pageNumber}?title=${title}`);
+  // revalidatePath(`/admin/products?page=${pageNumber}?title=${title}`);
 
 
 

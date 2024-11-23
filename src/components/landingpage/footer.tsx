@@ -151,7 +151,7 @@ const Footer = () => {
 
         <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col items-center">
           <Link
-            href="https://www.unicornspace.tech/"
+            href="https://www.unicorn-space.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center text-sm text-gray-400 hover:text-white transition mb-4"

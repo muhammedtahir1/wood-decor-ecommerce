@@ -29,28 +29,29 @@ const menuItems: MenuItem[] = [
       { id: "1-6", label: "Sofa Cum beds", href: "/categories/sofa cum beds" },
     ],
   },
-  {
-    id: "2",
-    label: "INTERIORS",
-    children: [
-      { id: "2-1", label: "Modular Kitchen", href: "/categories/modular-kitchen" },
-      { id: "2-2", label: "Wardrobes", href: "/categories/wardrobes" },
-      { id: "2-3", label: "TV Units", href: "/categories/tv units" },
-    ],
-  },
+  // {
+  //   id: "2",
+  //   label: "INTERIORS",
+  //   children: [
+  //     { id: "2-1", label: "Modular Kitchen", href: "/categories/modular-kitchen" },
+  //     { id: "2-3", label: "TV Units", href: "/categories/tv units" },
+  //   ],
+  // },
   {
     id: "3",
     label: "BEDROOM",
     children: [
       { id: "3-1", label: "Wooden Beds", href: "/categories/wooden beds" },
-      { id: "3-2", label: "Upholstery Beds", href: "/categories/upholstery beds" },
+      { id: "3-2", label: "Upholstery Beds", href: "/categories/upholstery bed" },
+      { id: "3-3", label: "Wardrobes", href: "/categories/wardrobes" },
+      { id: "3-4", label: "Mattress", href: "/categories/mattress" },
     ],
   },
   {
     id: "4",
     label: "DINING AREA",
     children: [
-      { id: "4-1", label: "Wooden Dinings", href: "/categories/wooden-dining" },
+      { id: "4-1", label: "Wooden Dinings", href: "/categories/wooden dining" },
       { id: "4-2", label: "PVD Dinings", href: "/categories/pvd-dining" },
     ],
   },

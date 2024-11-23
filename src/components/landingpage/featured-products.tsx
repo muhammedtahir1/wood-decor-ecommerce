@@ -1,11 +1,15 @@
+
+
 import ProductCard from "../product-card";
 import prisma from "@/lib/db";
 import Link from "next/link";
 import { searchProductByKeyword } from "@/lib/server-utils";
-import { Product, Variants } from "@prisma/client";
 import { ReactNode } from "react";
 import { Button } from "../ui/button";
 import Heading from "./h1-style";
+
+const dynamic = 'force-dynamic'
+
 
 export default async function Featured({
   query,

@@ -18,21 +18,17 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 const components: { title: string; category: string; href: string }[] = [
-  {
-    title: "Modular Kitchen",
-    category: "interiors",
-    href: "/categories/modular kitchen",
-  },
-  {
-    title: "Wardrobes",
-    category: "interiors",
-    href: "/categories/wardrobes",
-  },
-  {
-    title: "TV units",
-    category: "interiors",
-    href: "/categories/tv units",
-  },
+  // {
+  //   title: "Modular Kitchen",
+  //   category: "interiors",
+  //   href: "/categories/modular kitchen",
+  // },
+  
+  // {
+  //   title: "TV units",
+  //   category: "interiors",
+  //   href: "/categories/tv units",
+  // },
   {
     title: "Wooden beds",
     category: "beds",
@@ -41,7 +37,17 @@ const components: { title: string; category: string; href: string }[] = [
   {
     title: "Upholstery Beds",
     category: "beds",
-    href: "/categories/upholstery beds",
+    href: "/categories/upholstery bed",
+  },
+  {
+    title: "Wardrobes",
+    category: "beds",
+    href: "/categories/wardrobes",
+  },
+  {
+    title: "Mattress",
+    category: "beds",
+    href: "/categories/mattress",
   },
   {
     title: "Wooden dining",
@@ -127,14 +133,12 @@ export function NavBarlinksMenu() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
+        {/* <NavigationMenuItem>
           <NavigationMenuTrigger className="hover:scale-105 hover:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent bg-brand-bg-DEFALUT/50">
             Interiors
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[380px] md:grid-rows-3">
-              {/* i want to filter out the components based on their categories, in this i want the category to be interiors */}
-
               {interiorComponents.map((component, i) => (
                 <Link href={component.href} key={i}>
                   <ListItem
@@ -145,7 +149,7 @@ export function NavBarlinksMenu() {
               ))}
             </ul>
           </NavigationMenuContent>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
         <NavigationMenuItem>
           <NavigationMenuTrigger className="bg-transparent hover:scale-105 hover:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent">
             Bedroom

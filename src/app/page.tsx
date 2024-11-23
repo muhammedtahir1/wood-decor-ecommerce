@@ -62,16 +62,19 @@ export default async function Home() {
           desc={"Add Luxury to your Bed Room"}
           query="upholstery"
           viewAll=""
+          seeMore={true}
         />
         <Featured
           title="Dining Area"
           desc={"Feast with loved ones at the grand dining table"}
           query="dining"
+          seeMore={true}
         />
         <Featured
           title="Wooden Beds"
           desc={"Add Luxury to your Bed Room"}
-          query="bed"
+          query="wooden beds"
+          seeMore={true}
         />
         {/* <Link
           href={"/search?q="}

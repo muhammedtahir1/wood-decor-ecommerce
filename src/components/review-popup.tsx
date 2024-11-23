@@ -139,6 +139,68 @@ const reviews: Review[] = [
     "The product is exceptional. It looks even more stunning in person than in the images. Thank you, Wood Decor.",
     product: "Upholstered Bed with Storage",
   },
+  {
+    name: "Rohit S.",
+    rating: 5,
+    comment: "The recliner chair is super comfy and provides perfect back support. Great for watching TV or taking a quick nap.",
+    product: "Recliner Chair",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrlquyo3aICdeQSWC6R9KXJF7TCY4kHIOtoA&s"
+  },
+  {
+    name: "Neha T.",
+    rating: 4,
+    comment: "The corner table is a great space-saver and adds a contemporary look to the living room. I'm happy with the purchase.",
+    product: "Corner Table"
+  },
+  {
+    name: "Deepak R.",
+    rating: 5,
+    comment: "I bought the dressing table and it's perfect for my bedroom. The storage space is just right, and it complements my decor beautifully.",
+    product: "Dressing Table"
+  },
+  {
+    name: "Karishma P.",
+    rating: 5,
+    comment: "Love this modern desk! It is sleek, stylish, and very sturdy. Perfect for both work and leisure.",
+    product: "Modern Writing Desk",
+    image: "https://5.imimg.com/data5/ANDROID/Default/2021/11/AO/GB/HG/136488533/product-jpeg.jpg"
+  },
+  {
+    name: "Arjun M.",
+    rating: 4,
+    comment: "The sofa bed is quite practical and comfortable. Its the perfect solution for extra sleeping space when guests come over.",
+    product: "Sofa Bed"
+  },
+  {
+    name: "Sanya V.",
+    rating: 5,
+    comment: "The armchair is incredibly comfortable and adds a modern touch to my living room. Perfect for relaxing with a book!",
+    product: "Armchair"
+  },
+  {
+    name: "Vikram S.",
+    rating: 5,
+    comment: "This coffee table is stylish and functional. It’s the perfect size for my living room, and the quality is good too.",
+    product: "Modern Coffee Table"
+  },
+  {
+    name: "Tanvi G.",
+    rating: 5,
+    comment: "The shoe rack is a lifesaver! It helps organize my space and has a sleek design that blends well with my home decor.",
+    product: "Shoe Rack"
+  },
+  {
+    name: "Rajeev P.",
+    rating: 5,
+    comment: "Bought the dining set for our new home, and it's amazing! The table is sturdy, and the chairs are super comfortable.",
+    product: "Wooden Dining Set"
+  },
+  {
+    name: "Suman B.",
+    rating: 5,
+    comment: "This nightstand is both practical and stylish. It has just the right amount of storage and fits perfectly beside my bed.",
+    product: "Nightstand"
+  }
   
 ];
 

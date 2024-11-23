@@ -8,11 +8,12 @@ export const CATEGORIES = [
   { label: "Sofa cum beds", value: "sofa cum beds" },
   { label: "Wooden Beds", value: "wooden beds" },
   { label: "Upholstery Bed", value: "upholstery bed" },
-  { label: "Modular kitchen", value: "modular kitchen" },
+  { label: "Mattress", value: "mattress" },
+  // { label: "Modular kitchen", value: "modular kitchen" },
   { label: "Wooden dining", value: "wooden dining" },
   { label: "PVD dining", value: "pvd dining" },
   { label: "Wardrobes", value: "wardrobes" },
-  { label: "TV units", value: "tv units" },
+  // { label: "TV units", value: "tv units" },
   { label: "Others", value: "others" },
 ];
 

@@ -22,6 +22,8 @@ import StarRating from "@/components/star-rating";
 import ReviewPopup from "@/components/review-popup";
 import PriceLabel from "./price-label";
 import TruncatedText from "@/components/truncated-text";
+import { FaWhatsapp } from "react-icons/fa";
+import { MdPhone } from "react-icons/md";
 
 type generateMetaDataProps = {
   params: { slug: string };
@@ -114,7 +116,7 @@ const page = async ({ params }: ParamsProps) => {
           </div>
         </section>
 
-        <div className="flex flex-col gap-2 md:max-w-[500px] md:overflow-y-auto">
+        <div className="flex flex-col gap-2 md:max-w-[500px] md:overflow-y-auto px-0 md:px-2">
           <Badge
             variant={"default"}
             className="max-w-28 flex items-center justify-center"
@@ -124,6 +126,8 @@ const page = async ({ params }: ParamsProps) => {
           <h1 className="text-2xl md:text-3xl capitalize font-semibold font-gt">
             {product.title}
           </h1>
+
+          <p className="text-[#76BD1C] text-sm md:text-base">In Stock</p>
 
           <PriceLabel
             prices={product.prices}
@@ -172,7 +176,7 @@ const page = async ({ params }: ParamsProps) => {
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
-              <AccordionTrigger className="text-lg">Warrenty</AccordionTrigger>
+              <AccordionTrigger className="text-lg">Warranty</AccordionTrigger>
               <AccordionContent className="scale-90 -ml-5 ">
                 <p className="mb-2">
                   The warranty begins on the purchase date and is specified on
@@ -211,6 +215,26 @@ const page = async ({ params }: ParamsProps) => {
               <u>{fromdeliveryDate.toDateString()}</u> and{" "}
               <u>{todeliveryDate.toDateString()}</u>.
             </p>
+          </div>
+          <div className="flex items-center gap-3">
+            <p className="text-sm underline">Enquiry: </p>
+            <Link
+              href="tel:+%20919341817975"
+              target="_blank"
+              className="text-black hover:text-gray-600 transition"
+            >
+              <MdPhone size={20} />
+
+            </Link>
+
+            <Link
+              href="https://api.whatsapp.com/send?phone=9845811388"
+              target="_blank"
+              className="text-black hover:text-gray-600 transition"
+            >
+              <FaWhatsapp size={22} />
+
+            </Link>
           </div>
           {/* {product.rating > 3 && <StarRating rating={5} />} */}
         </div>

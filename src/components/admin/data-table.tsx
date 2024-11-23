@@ -37,7 +37,7 @@ import AddProductForm from "./admin-form"
 import { ProductWithVariants } from "@/types/validations"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
-import {useState} from "react"
+import { useState } from "react"
 import { useDebounce } from 'react-use';
 // import DeleteBtn from "@/components/adminPage/delete-btn"
 // import AddEditProductBtn from "@/components/adminPage/add-product-btn"
@@ -136,31 +136,33 @@ type DataTableProps = {
 export function DataTable({ columns, data, canNextPage, canPrevPage, pageNumber, totalPages }: DataTableProps) {
   // server side search
   const router = useRouter();
-const searchParams = useSearchParams();
-const [searchValue, setSearchValue] = useState(searchParams.get('title') || '');
-const [isLoading, setIsLoading] = useState(false)
+  const searchParams = useSearchParams();
+  const [searchValue, setSearchValue] = useState(searchParams.get('title') || '');
+  const [isLoading, setIsLoading] = useState(false)
 
-useDebounce(
-  () => {
-    setIsLoading(true)
-    const params = new URLSearchParams(searchParams.toString());
-    
-    if (searchValue) {
-      params.set('title', searchValue);
-      // Reset to first page when searching
-      params.set('page', '1');
-    } else {
-      params.delete('title');
-    }
-    
-    router.push(`?${params.toString()}`);
-    setIsLoading(false)
-  },
-  500,
-  [searchValue]
-);
-  
-  
+
+
+  useDebounce(
+    () => {
+      setIsLoading(true)
+      const params = new URLSearchParams(searchParams.toString());
+
+      if (searchValue) {
+        params.set('title', searchValue);
+        // Reset to first page when searching
+        params.set('page', '1');
+      } else {
+        params.delete('title');
+      }
+
+      router.push(`?${params.toString()}`);
+      setIsLoading(false)
+    },
+    500,
+    [searchValue]
+  );
+
+
   // console.log(products);
   // TODO - dynamic data is not displaying in the table
 
@@ -190,6 +192,8 @@ useDebounce(
       rowSelection,
     },
   })
+  const [refresh, setRefresh] = useState(false);
+
 
   return (
     <div className="w-full ">
@@ -299,7 +303,7 @@ useDebounce(
                 Previous
               </Button>
             </Link>
-          
+
           )}
 
           {canNextPage && (
@@ -307,7 +311,11 @@ useDebounce(
               <Button
                 variant="outline"
                 size="sm"
-                // onClick={() => table.nextPage()}
+                onClick={() => {
+                  console.log("hiiiiiiiii")
+                  router.refresh()
+                  setRefresh(!refresh); // This forces a re-render
+                }}
                 disabled={!canNextPage}
               >
                 Next
