@@ -19,6 +19,9 @@ import Testimonials2 from "@/components/landingpage/testimonials2";
 // import dynamic from "next/dynamic";
 // const DynamicHeader = dynamic(() => import("@/components/landingpage/header"));
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function Home() {
   return (
     <div>
