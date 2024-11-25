@@ -6,7 +6,7 @@ import ReviewPopup from "@/components/review-popup";
 // Server Component
 const Page = async ({ searchParams }: { searchParams: any }) => {
   const query = searchParams?.q;
-  const productsResponse = await getSearchProducts({ query, take: 5 });
+  const productsResponse = await getSearchProducts({ query, take: 8 });
 
   return (
     <div>

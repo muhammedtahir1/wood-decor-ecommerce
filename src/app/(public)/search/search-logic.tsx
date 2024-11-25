@@ -9,7 +9,7 @@ import Link from "next/link";
 import { ImSpinner6 } from "react-icons/im";
 import { ProductCardProps } from "@/types/validations";
 
-const NUMBER_OF_PRODUCTS_TO_FETCH = 4;
+const NUMBER_OF_PRODUCTS_TO_FETCH = 8;
 
 const ClientComponent = ({
   initialProducts,

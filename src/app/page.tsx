@@ -56,8 +56,9 @@ export default async function Home() {
         <Featured
           title="Living room"
           desc={"Snuggle Up in Style with a Sectional Sofa's"}
-          viewAll="3+2 sofa"
-          query="3+2 sofa"
+          // viewAll="3+2 sofa"
+          seeMore={true}
+          query="sofa"
         />
 
         <Featured
